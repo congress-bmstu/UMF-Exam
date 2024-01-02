@@ -1,2 +1,76 @@
 \subsection{Линейные уравнения с частными производными первого порядка. Уравнения характеристик. Первый интеграл. Квазилинейные уравнения. Задача Коши.}
 \label{firstorder_lineq}
+
+
+
+\textsc{Определение 1.}
+
+\textit{Уравнением в частных производных первого порядка} называется уравнение вида
+\begin{equation} \label{FOlineq}
+	F\Big(x_1, \dotsc, x_n, u, \frac{\partial u}{\partial x_1}, \dotsc, \frac{\partial u}{\partial x_n}\Big) = 0,
+\end{equation}
+где $ x_1б \dotsc, x_n $ --- независимые переменные, $ u = u(x_1, \dotsc, x_n) $ --- неизвестная функция, $ F(x_1, \dotsc, x_n, \allowbreak p_1, \dotsc, p_n) $ --- заданная непрерывно дифференцируемая функция (здесь $ p_i $ обозначают частные производные $ u'_{x_i} = \frac{\partial u}{\partial x_i}$, $i = \overline{1, n}$) в некоторой области $ G \subset \mathbb{R}^{2 n + 1}$, причем в каждой точке области G
+\begin{equation*}
+	\sum \limits_{i = 1}^{n}\Bigg(\frac{\partial F}{\partial p_i}\Bigg)^2 \not = 0.
+\end{equation*}  
+
+Уравнение \eqref{FOlineq} сокращенно можно записать в виде 
+\begin{equation} \label{FOsimp}
+	F(x, u, \nabla u) = 0, \tag{1'}
+\end{equation}
+где $ x = (x_1, \dotsc, x_n) $ и $\nabla u = \Big(\frac{\partial u}{\partial x_1}, \dotsc, \frac{\partial u}{\partial x_n}\Big)$.
+
+
+В зависимости от того, как неизвестная функция $ u $ и ее частные производные входят в уравнение \eqref{FOlineq}, различают \textit{линейные} и \textit{нелинейные} уравнения.
+
+
+\textsc{Определение 2.} \textit{(Линейные уравнения с частными производными первого порядка)}
+
+Уравнение вида 
+\begin{equation}
+	a_1(x_1, \dotsc, x_n) \frac{\partial u}{\partial x_1} + \dotsc + a_n(x_1, \dotsc, x_n) \frac{\partial u}{\partial x_n} = b(x_1, \dotsc, x_n),
+\end{equation}
+где $ a_1, \dotsc, a_n, b \in C^1(D), D \subset \mathbb{R}^{n}$, называется \textit{линейным неоднородным уравнением с частными производными первого порядка. Если $ b(x_1, \dotsc, x_n) = 0$, то уравнение называется линейным однородным.}
+
+
+\textsc{Определение 3.} \textit{(Квазилинейные уравнения)}
+
+Уравнение вида 
+\begin{equation}
+	a_1(x_1, \dotsc, x_n, u) \frac{\partial u}{\partial x_1} + \dotsc + a_n(x_1, \dotsc, x_n, u) \frac{\partial u}{\partial x_n} = b(x_1, \dotsc, x_n, u),
+\end{equation}
+где $ a_1, \dotsc, a_n, b \in C^1(D), D \subset \mathbb{R}^{n}$, называется \textit{квазилинейным неоднородным уравнением с частными производными первого порядка. Если $ b(x_1, \dotsc, x_n, u) = 0$, то уравнение называется квазилинейным однородным.} 
+
+\textsc{Определение 4.} \textit{(Первый интеграл)}
+
+Первым интегралом нормальной системы
+\begin{equation} \label{norm_sys}
+	\begin{cases}
+		\dot{x}_1 = f_1(t, x_1, \dotsc, x_n), \\
+		\dotsc \\
+		\dot{x}_n = f_n(t, x_1, \dotsc, x_n),
+	\end{cases}
+\end{equation} 
+называется такая функция $ v(t, x_1, \dotsc, x_n)$, что она постоянна вдоль любого решения этой системы. Выражение $ v(t, x_1, \dotsc, x_n) = 0$ называется общим интегралом системы. 
+
+\textit{Замечание:} Если $ v(t, x_1, \dotsc, x_n) $ --- первый интеграл системы \eqref{norm_sys}, то его производная вдоль решения равняется нулю, то есть 
+\begin{equation*}
+	\frac{d v}{d t} = \frac{\partial v}{\partial t} + \frac{\partial v}{\partial x_1} \dot{x}_1 + \dotsc + \frac{\partial v}{\partial x_n} \dot{x}_n = \frac{\partial v}{\partial t} + \frac{\partial v}{\partial x_1} f_1(x_1, \dotsc, x_n) + \dotsc + \frac{\partial v}{\partial x_n} f_n(x_1, \dotsc, x_n) = 0.
+\end{equation*}
+
+Справедливо и обратное, то есть функция, удовлетворяющая такому условию, является первым интегралом системы.
+
+\textsc{Определение 5.} \textit{(Задача Коши)}
+
+\textit{Задачей Коши} называется задача нахождения решения уравнения 
+\begin{equation*}
+	a_1(x, y, z) \frac{\partial z}{\partial x} + a_2(x, y, z) \frac{\partial z}{\partial y} = b(x, y, z),
+\end{equation*}
+проходящего через кривую
+\begin{equation*}
+	\begin{cases}
+		x = \varphi(t), \\
+		y = \psi(t), \\
+		z = \eta(t).
+	\end{cases}
+\end{equation*}
