@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsthm, mathrsfs, mathtools, amssymb}
+\usepackage{enumitem}
+
+\usepackage{epigraph}
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+% для волнистой линии для фотонов создал стиль линии snake arrow
+% рисует волну и на конце ее чуть-чуть прямую линию оставляет для стрелки
+\tikzset{snake arrow/.style=
+	{->,
+		decorate,
+		decoration={snake,amplitude=.4mm,segment length=2mm,post length=1mm}},
+}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{wrapfig}
+%\usepackage{hyperref}
+%\hypersetup{
+	%	colorlinks,
+	%	citecolor=black,
+	%	filecolor=black,
+	%	linkcolor=black,
+	%	urlcolor=black
+	%}
+
+\usepackage{geometry}
+\geometry{verbose,a4paper,tmargin=1cm,bmargin=2cm,lmargin=1.5cm,rmargin=1.5cm}
+
+\begin{document}
+	%  \tableofcontents \newpage
+	
+	\section{Теоретическая часть}
+	
+	\input{teor-1} \newpage
+	
+\end{document}
