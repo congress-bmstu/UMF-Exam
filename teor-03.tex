@@ -1,1 +1,92 @@
 \subsection{Уравнение колебаний бесконечной струны (стержня). Задача Коши с начальными условиями. Формула Даламбера. Характеристики.}
+
+
+Многие задачи механики и физики описываются уравнением колебаний вида 
+\begin{equation} \label{oscillation}
+	\rho \frac{\partial^2 u}{\partial t^2} = \operatorname{div}(p \operatorname{grad}{u}) - q u + F(x, t),
+\end{equation}
+где неизвестная функция $ u(x, t) $ зависит от $ n (n = 1, 2, 3)$ пространственных координат $x = (x_1, x_2, \dotsc, x_n)$ и времени $t$; коэффициенты $\rho, p$ и $q$ определяются свойствами среды, где происходит колебательный процесс; свободный член $F(x, t)$ выражает интенсивность внешнего возмущения. В уравнении \eqref{oscillation} в соответствии с определением операторов $\operatorname{div}$ и $\operatorname{grad}$
+\begin{equation*}
+	\operatorname{div}(p\operatorname{grad} u) = \sum \limits_{i = 1}^{n} \frac{\partial}{\partial x_i} \Big(p \frac{\partial u}{\partial x_i}\Big).
+\end{equation*}
+
+Изучение методов построения решений краевых задач для уравнений гиперболического типа мы начинаем с задачи с начальными условиями для неограниченной струны 
+\begin{align}
+	u_{tt} - a^2 u_{xx} = 0, \label{infinite_string} \\
+	\begin{rcases}
+		u(x, 0) = \varphi(x), \\
+		u_t(x, 0) = \psi(x).
+	\end{rcases} \label{inf_str_cond}
+\end{align}
+
+Преобразуем это уравнение к каноническому виду, содержащему смешанную производную. Уравнение характеристик 
+\begin{equation*}
+	d x^2 - a^2 d t^2 = 0 
+\end{equation*}
+распадается на два уравнения:
+\begin{equation*}
+	d x - a dt = 0, \quad d x + a dt = 0,
+\end{equation*}
+интегралами которых являются прямые 
+\begin{equation*}
+	x - a t = C_1, \quad x + a t = C_2.
+\end{equation*}
+Введя, как обычно, новые переменные
+\begin{equation}
+	\xi = x + a t, \quad \eta = x - a t,
+\end{equation}
+уравнение колебаний струны преобразуем к виду
+\begin{equation} \label{homo_oscil}
+	u_{\xi \eta} = 0.
+\end{equation}
+
+Найдем общий интеграл последнего уравнения. Очевидно, для всякого решения \eqref{homo_oscil}
+\begin{equation*}
+	u_{\eta}(\xi, \eta) = f^{\ast}(\eta),
+\end{equation*}
+где $f^{\ast}(\eta)$ --- некоторая непрерывная функция только переменного $\eta$. 
+Интегрируя это равенство по $\eta$ при фиксированном $\xi$, получаем
+\begin{equation} \label{ufunc}
+	u(\xi, \eta) = \int f^{\ast}(\eta) \, d \eta + f_1(\xi) = f_1(\xi) + f_2(\eta)
+\end{equation}
+где $f_1$ и $f_2$ являются функциями только переменных $\xi$ и $\eta$. Обратно, какими бы ни были $f_1$ и $f_2$, функция $u(\xi, \eta)$, определяемая формулой \eqref{ufunc}, представляет собой решение \eqref{homo_oscil}. Т.к. всякое решение \eqref{ufunc} может быть представленно в виде \eqref{homo_oscil} при соответствующем выборе $f_1$ и $f_2$, то формула \eqref{homo_oscil} является общим интегралом этого уравнения. Следовательно функция
+\begin{equation} \label{general_int}
+	u(x, t) = f_1(x + a t) + f_2(x - a t)
+\end{equation}
+является общим интегралом уравнения \eqref{infinite_string}.
+
+Допустим, что решение рассматриваемой задачи существует, тогда оно дается формулой \eqref{general_int}. Определим функции $f_1$ и $f_2$ таким образом, чтобы удовлетворялись начальные условия:
+\begin{align}
+	u(x, 0) = f_1(x) + f_2(x) = \varphi(x), \\
+	u_t(x, 0) = a f'_1(x) - a f'_2(x) = \psi(x).
+\end{align}
+
+Интегрируя второе равенство, получаем 
+\begin{equation*}
+	f_1(x) - f_2(x) = \frac{1}{a} \int \limits_{x_0}^{x} \psi(\alpha) \, d\alpha + C,
+\end{equation*}
+где $x_0$ и $C$ --- постоянные. Из равенств 
+\begin{align*}
+	f_1(x) + f_2(x) = \varphi(x), \\
+	f_1(x) - f_2(x) = \frac{1}{a} \int \limits_{x_0}^{x} \psi(\alpha) \, d\alpha + C
+\end{align*}
+находим
+\begin{equation} \label{f1f2}
+	\begin{rcases}
+		f_1(x) = \frac{1}{2} \varphi(x) + \frac{1}{2a} \int \limits_{x_0}^{x} \psi(\alpha) \, d\alpha + \frac{C}{2}, \\
+		f_2(x) = \frac{1}{2} \varphi(x) - \frac{1}{2a} \int \limits_{x_0}^{x} \psi(\alpha) \, d\alpha - \frac{C}{2}.
+	\end{rcases}
+\end{equation}
+
+Таким образом, мы определили функции $f_1$ и $f_2$ через заданные функции $\varphi$ и $\psi$, причем равенства  \eqref{f1f2} должны иметь место для любого значения аргумента. Подставив в \eqref{general_int} найденные значения $f_1$ и $f_2$, получим
+\begin{equation}
+	u(x, t) = \frac{\varphi(x + a t) + \varphi(x - a t)}{2} + \frac{1}{2a} \Bigg\{\int \limits_{x_0}^{x  + a t}\psi(\alpha) \, d\alpha - \int \limits_{x_0}^{x - at} \psi(\alpha) \, d\alpha \Bigg\}
+\end{equation}
+или 
+\begin{equation} \label{dAlamber}
+	u(x, t) = \frac{\varphi(x + a t) + \varphi(x - a t)}{2} + \frac{1}{2a} \int \limits_{x - a t}^{x + a t} \psi(\alpha) \, d\alpha.
+\end{equation}
+
+Формулу \eqref{dAlamber}, называемую \textit{формулой Даламбера}, мы получили, предполагая существование рещения поставленной задачи. Эта формула доказывает единственность решения. В самом деле, если бы существовало второе решение задачи \eqref{infinite_string}-\eqref{inf_str_cond}, то оно бы представлялось формулой \eqref{dAlamber} и совпадало с первым решением. 
+
+Нетрудно убедиться, что \eqref{dAlamber} удовлетворяет (в предположении двукратной дифференцируемости функции $\varphi$ и однократной функции $\psi$) уравнению и начальным условиям. Таким образом, изложенный метод доказывает как единственность, так и существование решения поставленной задачи.
