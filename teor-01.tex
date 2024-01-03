@@ -74,3 +74,23 @@
 		z = \eta(t).
 	\end{cases}
 \end{equation*}
+
+Рассмотрим уравнение
+\begin{equation*}
+	a_1(x_1, \dotsc, x_n, u) \frac{\partial u}{\partial x_1} + \dotsc + a_n(x_1, \dotsc, x_n, u) \frac{\partial u}{\partial x_n} = 0
+\end{equation*}
+сопоставленная ему система обыкновенныъ дифференциальных уравнений называется \textit{системой уравнений характеристик}
+\begin{equation}
+	\frac{d x_1}{a_1(x_1, \dotsc, x_n)} = \frac{d x_2}{a_2(x_1, \dotsc, x_n)} = \dotsc = \frac{d x_n}{a_n(x_1, \dotsc, x_n)}.
+\end{equation}
+
+Также систему можно записать в виде:
+\begin{equation}  \label{char_sys}
+	\begin{cases}
+		\dot{x}_1 = a_1(x_1, \dotsc, x_2), \\
+		\dotsc \\
+		\dot{x}_n = a_n(x_1, \dotsc, x_n).
+	\end{cases} \tag{5'}
+\end{equation}
+
+\textit{Замечание}: функция $ u(x_1, \dotsc, x_n) $ является решением линейного однородного уравнения в частных проихводных первого порядка тогда и только тогда, когда является независящим от времени первым интегралом системы \eqref{char_sys}. 
