@@ -1,1 +1,97 @@
-\subsection{Разделение переменных в смешанной краевой задаче для уравнения теплопроводности/диффузии. Построение функции влияния мгновенного точечного источника.}
+\subsection{Разделение переменных в смешанной краевой задаче для уравнения теплопроводности/диффузии.
+Построение функции влияния мгновенного точечного источника.}
+
+\paragraph{Однородная правая часть} Рассматривается смешанная краевая задача для уравнения
+теплопроводности:
+\begin{equation}\label{1.10-main-homogeneous}
+  \begin{cases}
+    u_t = a^2 u_{xx}, \\
+    \left. \left( \alpha_1 u + \beta_1 u_x \right) \right|_{x=0} = 0, \\
+    \left. \left( \alpha_2 u + \beta_2 u_x \right) \right|_{x = l} = 0, \\
+    u(x, 0) = \varphi(x), \\
+  \end{cases}
+\end{equation}
+в которой разделим переменные: $u = X(x) T(t)$:
+\[
+  \begin{cases}
+    \dfrac{1}{a^2} \dfrac{T'}{T} = \dfrac{X''}{X} = - \lambda, \\
+    \left( \alpha_1 X(0) + \beta_1 X'(0) \right) T(t) = 0, \\
+    \left( \alpha_2 X(l) + \beta_2 X'(l) \right) T(t) = 0. \\
+  \end{cases}
+\]
+
+Для $X(x)$ получается такая задача:
+\[
+  \begin{cases}
+    -X'' - \lambda X = 0, \\
+    \left( \alpha_1 X(0) + \beta_1 X'(0) \right) = 0, \\
+    \left( \alpha_2 X(l) + \beta_2 X'(l) \right) = 0,
+  \end{cases}
+\]
+разрешая которую, получим систему функций $X_n$ и соотвествующие собственные значения
+$\lambda_n$. Таким образом, решение представляется в виде ряда:
+\[
+  u(x, t) = \sum_n T_n(t) X_n(x)
+\]
+
+Для $T(t)$ тогда:
+\[
+  \begin{cases}
+    - T_n' - a^2 \lambda_n T_n = 0, \\ 
+    T_n(0) = \varphi_n,
+  \end{cases}
+\]
+где $\varphi_n$ -- коэффициенты разложения Фурье соответствующей функции.
+Общее решение этого диффура представляет собой $T_n = \varphi_n e^{- a^2 \lambda_n t}$, тогда
+окончательный ответ:
+\[
+  u(x, t) = \sum_n \varphi_n e^{ a^2 \lambda_n t} X_n(x)
+  = \sum_n
+    \left( \dfrac{1}{\|X_n\|^2} \int\limits_0^l \varphi(\xi) X_n(\xi) \, d\xi \right)
+    e^{- a^2 \lambda_n t} X_n(x) =
+\]
+по свойствам линейности и при выполнении условия равномерной сходимости:
+\[
+  = \int\limits_0^l
+    \left( \sum_n \dfrac{1}{\|X_n\|^2} e^{- a^2 \lambda_n t} X_n(\xi) X_n(x) \right)
+    \varphi(\xi) \, d\xi
+  = \int\limits_0^l G(x, \xi, t) \varphi(\xi) \, d\xi,
+\]
+а функцию $G = \sum_n \dfrac{1}{\|X_n\|^2} e^{- a^2 \lambda_n t} X_n(\xi) X_n(x)$ называют
+\emph{функцией влияния мгновенного точечного источника}.
+
+\paragraph{Неоднородная правая часть} Если в задачу \eqref{1.10-main-homogeneous} добавить 
+неоднородность правой части:
+\begin{equation}
+  \begin{cases}
+    u_t = a^2 u_{xx} + f(x, t), \\
+    \left. \left( \alpha_1 u + \beta_1 u_x \right) \right|_{x=0} = 0, \\
+    \left. \left( \alpha_2 u + \beta_2 u_x \right) \right|_{x = l} = 0, \\
+    u(x, 0) = \varphi(x), \\
+  \end{cases}
+\end{equation}
+то решение изменится только на этапе нахождения коэффициентов $T_n(t)$:
+\[
+  \begin{cases}
+    T_n' = - a^2 \lambda_n T_n + f_n(t)
+      \Leftrightarrow
+      -T_n'(t) - a^2 \lambda_n T_n(t) = - f_n(t), \\
+    T_n(0) = 0,
+  \end{cases}
+\]
+где $f_n = \dfrac{1}{\|X_n\|^2} \int_0^l f_n(\xi) X_n(\xi) \, d\xi$ -- коэффициенты разложения
+функции $f$. Причём решение представим в виде $T_n(t) = C_n(t) \cdot e^{-a^2 \lambda_n t}$
+(метод вариации произвольных постоянных. Тогда несложно получить, что
+$C_n(t) = \int_0^t f_n(\tau) e^{a^2 \lambda_n \tau} \, d\tau + C$, подставляя это в начальное
+условие, получим что $C = \varphi_n$. Собирая всё вместе:
+\begin{multline*}
+  u(x, t)
+  = \sum_n \left( \varphi_n + \int_0^t f_n(\tau) e^{a^2 \lambda_n \tau} \, d\tau \right) X_n(x) = \\
+  = \sum_n \left( \int_0^l \varphi(\xi) X_n(\xi) \, d\xi
+    + \int_0^t \left( \int_0^l f(\xi, \tau) X_n(\xi) \dfrac{1}{\| X_n \|^2} \, d\xi 
+    \right) e^{a^2 \lambda_n \tau} \, d\tau \right) X_n(x) = \\
+  = \int_0^l G(x, \xi, t) \varphi(\xi) \, d\xi
+  + \int_0^l \int_0^t \sum_n \dfrac{1}{\|X_n\|^2} X_n(x) X_n(\xi) e^{-a^2 \lambda_n (t-\tau)} f(\xi, \tau) \, d\tau d\xi = \\
+  = \int_0^l G(x, \xi, t) \varphi(\xi) \, d\xi
+    + \int_0^l \int_0^t G(x, \xi, t-\tau) f(\xi, \tau) \, d\tau d\xi.
+\end{multline*}
