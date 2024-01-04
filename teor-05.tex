@@ -56,3 +56,119 @@
 \end{equation*}
 
 \paragraph{Теорема единственности для смешанной краевой задачи для уравнения колебаний струны.}
+
+\textit{Возможно существование только одной функции $u(x, t)$, определенной в области $0 \leqslant x \leqslant l, t \geqslant 0$ и удовлетворяющей уравнению}
+\begin{align} \label{equa}
+	\rho(x) \frac{\partial^2 u}{\partial t^2} = \frac{\partial}{\partial x} \Big(k(x) \frac{\partial u}{\partial x}\Big) + F(x, t) \quad (\rho(x) > 0, k(x) > 0), \\
+	0 < x < l, t > 0,
+\end{align}
+\textit{начальным и граничным условиям}
+\begin{equation}
+	\begin{rcases}
+		u(x, 0) = \varphi(x), \quad u_t(x, 0) = \psi(x), \\
+		u(0, t) = \mu_1(t), \quad u(l, t) = \mu_2(t),
+	\end{rcases}
+\end{equation}
+\textit{если выполнены условия:}
+\textit{\begin{enumerate}
+	\item функция $u(x, t)$ и производные, входящие в уравнение \eqref{equa}, а также производная $u_{xt}$ непрерывны на отрезке $0 \leqslant x \leqslant l$ при $l \geqslant 0$;
+	\item коэффициенты $\rho(x)$ и $k(x)$ непрерывны на отрезке $0 \leqslant x \leqslant l$.
+\end{enumerate}}
+
+Допустим, что существует два решения $u_1(x, t)$ и $u_2(x, t)$, и рассмотрим разность $v(x, t) = u_1(x, t) - u_2(x, t)$. 
+
+Функция $v(x, t)$, очевидно, удовлетворяет однородному уравнению
+\begin{equation} \label{homoeqrho}
+	\rho \frac{\partial^2 v}{\partial t^2} = \frac{\partial}{\partial x} \Big(k \frac{\partial v}{\partial x}\Big)
+\end{equation}
+и однородным дополнительным условиям 
+\begin{equation}
+	\begin{rcases}
+		v(x, 0) = 0, \quad v(0, t) = 0, \\
+		v_t(x, 0) = 0; \quad v(l, t) = 0,
+	\end{rcases}
+\end{equation}
+а также условию теоремы.
+
+Докажем, что функция $v(x, t)$ тождественно равна нулю.
+
+Рассмотрим функцию 
+\begin{equation}
+	E(t) = \frac{1}{2} \int \limits_{0}^{l} [k(v_x)^2 + \rho(v_t)^2] \, dx
+\end{equation}
+и покажем, что она не зависит от $t$. Продифференцируем $E(t)$ по $t$:
+\begin{equation*}
+	\frac{d E(t)}{dt} = \int \limits_{0}^{l} (k v_x v_{xt} + \rho v_t v_{tt}) \, dx.
+\end{equation*}
+Интегрируя по частям первое слагаемое правой части, будем иметь
+\begin{equation} \label{firstint}
+	\int \limits_{0}^{l} k v_x v_{xt} \, dx = [k v_x v_t]_{0}^{l} - \int \limits_{0}^{l} v_t (k v_x)_x \, dx.
+\end{equation}
+Подстановка обращается в нуль в силу граничных условий (из $v(0, t) = 0$ следует $v_t(0, t) = 0$ и аналогично для $x = l$). Отсюда
+\begin{equation*}
+	\frac{d E(t)}{dt} = \int \limits_{0}^{l} [\rho v_t v_{tt} - v_t (k v_x)_x] \, dx = \int \limits_{0}^{l} v_{t} [\rho v_{tt} - (k v_{x})_x] \, dx = 0,
+\end{equation*}
+т.е. $E(t) = const$. Учитывая начальные условия, получаем
+\begin{equation} \label{energ}
+	E(t) = const = E(0) = \frac{1}{2} \int \limits_{0}^{l} [k(v_x)^2 + \rho (v_t)^2]_{t = 0} \, dx = 0,
+\end{equation}
+так как 
+\begin{equation*}
+	v(x, 0) = 0, v_t(x, 0) = 0.
+\end{equation*}
+
+Пользуясь формулой\eqref{energ} и положительностью $k$ и $\rho$, заключаем, что 
+\begin{equation*}
+	v_x(x, t) \equiv 0, \quad v_t(x, t) \equiv 0,
+\end{equation*}
+откуда и следует тождество
+\begin{equation}
+	v(x, t) = const = C_0.
+\end{equation}
+Исходя из начального условия, находим
+\begin{equation*}
+	v(x, 0) = C_0 = 0;
+\end{equation*}
+тем самым доказано, что 
+\begin{equation}
+	v(x, t) \equiv 0.
+\end{equation}
+
+Следовательно, если существует две функции: $u_1(x, t)$ и $u_2(x, t)$, удовлетворяющие всем условиям теоремы, то $u_1(x, t) \equiv u_2(x, t)$.
+
+Для второй краевой задачи функция $v = u_1 - u_2$ удовлетворяет граничным условиям 
+\begin{equation}
+	v_x(0, t) = 0, \quad v_x(l, t) = 0,
+\end{equation}
+и подстановка в формуле \eqref{firstint} также образается в нуль. Дальнейшая часть доказательства теоремы остается без изменений.
+
+Для третьей краевой задачи доказательство требует некоторого видоизменения. Рассматривая по-прежнему два решения $u_1$ и $u_2$, получаем для их разности $v(x, t) = u_1 - u_2$ уравнение \eqref{homoeqrho} и граничные условия 
+\begin{equation}
+	\begin{rcases}
+		v_x(0, t) - h_1 v(0, t) = 0 \quad (h_1 \geqslant 0), \\
+		v_x(l, t) + h_2 v(l, t) = 0 \quad (h_2 \geqslant 0).
+	\end{rcases}
+\end{equation}
+
+Представим подстановку в \eqref{firstint} в виде 
+\begin{equation}
+	[k v_x v_t]_{0}^{l} = - \frac{k}{2} \frac{\partial}{\partial t}[h_2 v^2(l, t) + h_1 v^2(0, t)].
+\end{equation}
+Интегрируя $\frac{dE}{dt}$ в пределах от нуля до $t$, получаем
+\begin{equation}
+	E(t) - E(0) = \int \limits_{0}^{t} \int \limits_{0}^{l} v_t[\rho v_{tt} - (k v_x)_x] \, dx \, dt - \frac{k}{2} \{h_2[v^2(l, t) - v^2(l, 0)] + h_1[v^2(0, t) - v^2(0, 0)]\},
+\end{equation}
+откуда в силу уравнения и начальных условий следует 
+\begin{equation}
+	E(t) = -\frac{k}{2} [h_2 v^2(l, t) + h_1 v^2(0, t)] \leqslant 0.
+\end{equation}
+
+Так как ввиду неотрицательности подынтегральной функции значения $E(t) \geqslant 0$, то 
+\begin{equation}
+	E(t) \equiv 0,
+\end{equation}
+а следовательно, и
+\begin{equation}
+	v(x, t) \equiv 0.
+\end{equation}
+
