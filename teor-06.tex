@@ -1,1 +1,206 @@
 \subsection{Метод разделения переменных для уравнения колебаний на отрезке.}
+
+Метод разделения переменных, или метод Фурье является одним из наиболее распространенных методов решения уравнений с частными производными.
+
+Изложение этого метода проведем для задачи колебания струны, закрепленной на концах (т.е. на отрезке). 
+
+Итак, будем искать решение уравнения 
+\begin{equation} \label{oscil}
+	u_{tt} = a^2 u_{xx},
+\end{equation}
+удовлетворяющее однородным граничным условиям 
+\begin{equation} \label{bord_cond}
+	u(0, t) = 0, u(l, t) = 0
+\end{equation}
+и начальным условиям 
+\begin{equation} \label{init_cond}
+	\begin{cases}
+		u(x, 0) = \varphi(x),
+		\\
+		u_t(x, 0) = \psi(x).
+	\end{cases}
+\end{equation}
+
+Уравнение \eqref{oscil} линейно и однородно, поэтому сумма частных решений также является решением этого уравнения. Имея достаточно большое число частных решений, можно попытаться при помощи суммирования их с некоторыми коэффициентами найти искомое решение. 
+
+Поставим основную вспомогательную задачу.
+
+\textit{Найти решение уравнения}
+\begin{equation*}
+	u_{tt} = a^2 u_{xx},
+\end{equation*}
+\textit{не равное тождественно нулю, удовлетворяющее однородным граничным условиям}
+\begin{equation}
+	\label{ucond}
+	\begin{cases}
+		u(0, t) = 0,
+		\\
+		u(l, t) = 0
+	\end{cases}
+\end{equation}
+\textit{и представимое в виде произведения}
+\begin{equation} \label{sol_form}
+	u(x, t) = X(x) T(t),
+\end{equation}
+\textit{где $X(x)$ --- функция только переменного $x$, $T(t)$ --- функция только переменного $t$.}
+
+Подставляя предполагаемую форму решения \eqref{sol_form} в уравнение \eqref{oscil}, получим 
+\begin{equation*}
+	X'' T = \frac{1}{a^2} T'' X,
+\end{equation*}
+или, после деления на $X T$,
+\begin{equation} \label{need}
+	\frac{X''(x)}{X(x)} = \frac{1}{a^2} \frac{T''(t)}{T(t)}.
+\end{equation}
+
+Чтобы функция \eqref{sol_form} была решением уравнения \eqref{oscil}, равенство \eqref{need} должно удовлетворяться тождественно, т.е. для всех значений назависимых переменных $0 < x < l$, $t > 0$. Правая часть равенства \eqref{need} является функцией только переменного $t$, а левая --- только $x$. Фиксируя, например, некоторое значение $x$ и меняя $t$ (или наоборот), получим, что правая и левая части равенства \eqref{need} при изменении своих аргементов сохраняют постоянное значение
+\begin{equation} \label{comstlambd}
+	\frac{X''(x)}{X(x)} = \frac{1}{a^2} \frac{T''(t)}{T(t)} = -\lambda,
+\end{equation}
+где $\lambda$ --- постоянная, которую для удобства последующих выкладок берем со знаком "минус", ничего не предполагая при этом о ее знаке.
+
+Из соотношения \eqref{comstlambd} получаем обыкновенные дифференциальные уравнения для определения функций $X(x)$ и $T(t)$:
+\begin{align}
+	&X''(x) + \lambda X(x) = 0, \quad X(x) \not \equiv 0, \\
+	&T''(t) + a^2 \lambda T(t) = 0, \quad T(t) \not \equiv 0. \label{Teq}
+\end{align}
+
+Граничные условия \eqref{bord_cond} дают
+\begin{align*}
+	u(0, t) = X(0) T(t) = 0, \\
+	u(l, t) = X(l) T(t) = 0.
+\end{align*}
+Отсюда следует, что функция $X(x)$ должна удовлетворять дополнительным условиям 
+\begin{equation}
+	X(0) = X(l) = 0,
+\end{equation}
+так как иначе мы имели бы
+\begin{equation*}
+	T(t) \equiv 0 \text{ и } u(x, t) \equiv 0,
+\end{equation*}
+в то время как задача состоит в нахождении нетривиального решения. Для функции $T(t)$ в основной вспомогательной задаче никаких дополнительных условий нет. 
+
+Таким образом, в связи с нахождением функции $X(x)$ мы приходим к простейшей задаче о собственных значениях.
+\begin{equation} \label{euigen}
+	\begin{cases} 
+		X''(x) + \lambda X(x) = 0, \\
+		X(0) = X(l) = 0.
+	\end{cases}
+\end{equation}
+
+Рассмотрим отдельно возможные значения параметра $\lambda$:
+\begin{enumerate}
+	\item $\lambda < 0$
+	\begin{equation*}
+		X(x) = C_1 e^{\sqrt{- \lambda} x} + C_2 e^{-\sqrt{- \lambda} x}.
+	\end{equation*}
+	Граничные условия дают
+	\begin{align*}
+		X(0) = C_1 + C_2 = 0, \\
+		X(l) = C_1 e^{\alpha} + C_2 e^{-\alpha} = 0 \quad (\alpha = l\sqrt{-\lambda}),
+	\end{align*}
+	т.е. 
+	\begin{equation*}
+		C_1 = - C_2 \text{ и } C_1(e^{\alpha} + e^{-\alpha}) = 0.
+	\end{equation*}
+	Но в рассматриваемом случае $\alpha$ действительно и положительно, так что $e^{\alpha} - e^{-\alpha} \not = 0$. Поэтому 
+	\begin{equation*}
+		C_1 = C_2 = 0,
+	\end{equation*}
+	следовательно, 
+	\begin{equation*}
+		X(x) \equiv 0.
+	\end{equation*}
+	
+	\item $\lambda = 0$
+	\begin{equation*}
+		X(x) = C_1 x + C_2.
+	\end{equation*}
+	Граничные условия дают
+	\begin{align*}
+		X(0) = [C_1 x + C_2]_{x = 0} = C_2 = &~0, \\
+		X(l) = C_1 l = &~0,
+	\end{align*}
+	т.е. $C_1 = 0$ и $C_2 = 0$ и, следовательно, 
+	\begin{equation*}
+		X(x) \equiv 0. 
+	\end{equation*}
+	
+	\item $\lambda > 0$
+	\begin{equation*}
+		X(x) = D_1 \cos{\sqrt{\lambda} x} + D_2 \sin{\sqrt{\lambda} x}.
+	\end{equation*}
+	Граничные условия дают
+	\begin{align*}
+		X(0) = D_1 = 0, \\
+		X(l) = D_2 \sin{\sqrt{\lambda}l} = 0. 
+	\end{align*}
+	Если $X(x)$ не равно тождественно нулю, то $D_2 \not = 0$, поэтому 
+	\begin{equation*}
+		\sin{\sqrt{\lambda}l} = 0,
+	\end{equation*}
+	или
+	\begin{equation*}
+		\sqrt{\lambda} = \frac{\pi n}{l},
+	\end{equation*}
+	где $n$ --- любое целое число. Следоовательно, нетривиальные решения задачи \eqref{euigen} возможны лишь при значениях 
+	\begin{equation*}
+		\lambda = \lambda_n = \Big(\frac{\pi n}{l}\Big)^2.
+	\end{equation*}
+	Этим собственным значениям соответствуют собственные функции \begin{equation*}
+		X_n(x) = D_n \sin{\frac{\pi n}{l} x},
+	\end{equation*}
+	где $D_n$ --- произвольная постоянная.
+	
+	
+	Итак, только при значениях $\lambda$, равных
+	\begin{equation*}
+		\lambda_n = \Big(\frac{\pi n}{l}\Big)^2.
+	\end{equation*}
+	существуют нетривиальные решения задачи \eqref{euigen}
+	\begin{equation*}
+		X_n(x) = \sin{\frac{\pi n}{l} x},
+	\end{equation*}
+	определяемые с точностью до произвольного множителя, который мы положили равным единице. Этим же значениям $\lambda_n$ соответствуют решения уравнения \eqref{Teq}
+	\begin{equation*}
+		T_n(t) = A_n \cos{\frac{\pi n}{l} a t} + B_n \sin{\frac{\pi n}{l} a t},
+	\end{equation*}
+	где $A_n$ и $B_n$ --- произвольные постоянные.
+\end{enumerate}
+	
+Возвращаясь к задаче \eqref{oscil}---\eqref{init_cond} заключаем, что функции 
+	\begin{equation*}
+		u_n(x, t) = X_n(x) T_n(t) = \Big(A_n \cos{\frac{\pi n}{l} a t} + B_n \sin{\frac{\pi n}{l} a t}\Big) \sin{\frac{\pi n}{l} x}
+	\end{equation*}
+	являются частными решениями уравнения \eqref{oscil}, удовлетворяющими граничными условиям \eqref{ucond} и представивым в виде произведения \eqref{sol_form}. Эти решения могут удовлетворить начальным условиям \eqref{init_cond} нашей задачи только для частных случаев начальных функций $\varphi(x)$ и $\psi(x)$.
+	
+	Обратимся к решению задачи \eqref{oscil}---\eqref{init_cond} в общем случае 
+	\begin{equation} \label{sol}
+		u(x, t) = \sum \limits_{n = 1}^{\infty} u_n(x, t) = \sum \limits_{n = 1}^{\infty} \Big(A_n \cos{\frac{\pi n}{l} a t} + B_n \sin{\frac{\pi n}{l} a t}\Big) \sin{\frac{\pi n}{l} x}
+	\end{equation} 
+	В силу линейности оно также удовлетворяет граничным условиям. Начальные условия позволят определить коэффициенты $A_n$ и $B_n$.
+	\begin{equation} \label{formulas}
+		\begin{cases}
+			u(x, 0) = \varphi(x) = \sum \limits_{n = 1}^{\infty} u_n(x, 0) = \sum \limits_{n = 1}^{\infty} A_n \sin{\frac{\pi n}{l} x}, \\
+			u_t(x, 0) = \psi(x) = \sum \limits_{n = 1}^{\infty} \frac{\partial u_n}{\partial t}(x, 0) = \sum \limits_{n = 1}^{\infty} \frac{\pi n}{l} a B_n \sin{\frac{\pi n}{l} x}.
+		\end{cases}
+	\end{equation}
+	Из теории рядов Фурье известно, что произвольная кусочно-непрерывная и кусочно-дифференцируемая функция $f(x)$, заданная в промежутке $0 \leqslant x \leqslant l$, разлагается в ряд Фурье
+	\begin{equation}
+		f(x) = \sum \limits_{n = 1}^{\infty} b_n \sin{\frac{\pi n}{l} x},
+	\end{equation}
+	где
+	\begin{equation}
+		b_n = \frac{2}{l} \int \limits_{0}^{l} f(\xi) \sin{\frac{\pi n}{l}\xi} \, d\xi. 
+	\end{equation}
+	Если функции $\varphi(x)$ и $\psi(x)$ удовлетворяют условиям разложения в ряд Фурье, то
+	\begin{align}
+		\varphi(x) = \sum \limits_{n = 1}^{\infty} \varphi_{n} \sin{\frac{\pi n}{l} x}, \quad \varphi_n = \frac{2}{l} \int \limits_{0}^{l} \varphi(\xi) \sin{\frac{\pi n}{l} \xi} \, d\xi, \\
+		\psi(x) = \sum \limits_{n = 1}^{\infty} \psi_{n} \sin{\frac{\pi n}{l} x}, \quad \psi_n = \frac{2}{l} \int \limits_{0}^{l} \psi(\xi) \sin{\frac{\pi n}{l} \xi} \, d\xi.
+	\end{align}
+	
+	Сравнение этих рядов с формулами \eqref{formulas} показывает, что для выполнения начальных условий надо положить 
+	\begin{equation}
+		A_n = \varphi_n, \quad B_n = \frac{l}{\pi n a} \psi_n,
+	\end{equation}
+	чем полностью определяется функция \eqref{sol}, лающая решение исследуемой задачи. 
