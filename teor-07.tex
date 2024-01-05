@@ -1,1 +1,103 @@
 \subsection{Смешанная краевая задача о колебаниях прямоугольной мембраны. Метод разделения переменных.}
+
+Процесс колебаний плоской однородной мембраны описывается уравнением колебаний 
+\begin{equation} \label{memb_prob}
+	u_{tt} = a^2 \Delta u.
+\end{equation}
+
+Пусть в плоскости $(x, y)$ расположена прямоугольная мембрана со сторонами $b_1$ и $b_2$, закрепленная по краям и возбуждаемая с помощью начального отклонения и начальной скорости. Для нахождения функции $u(x, y, t)$, характеризующей отклонение мембраны от положения равновесия, мы должны решить уравнение колебаний 
+\begin{equation}
+	\tag{77'}
+	\frac{\partial^2 u}{\partial t^2} = a^2 \Bigg(\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}\Bigg)
+\end{equation}
+при заданных начальных условиях 
+\begin{equation} \label{init_cond_memb}
+	\begin{cases}
+		u(x, y, 0) = \varphi(x, y), \\
+		\frac{\partial u}{\partial t}(x, y, 0) = \psi(x, y)
+	\end{cases}
+\end{equation}
+и граничных условиях
+\begin{align}
+	u(0, y, t) = 0, \quad u(b_1, y, t) = 0, \\
+	u(x, 0, t) = 0, \quad u(x, b_2, t) = 0. \label{bord_cond_memb}
+\end{align}
+
+Мы ищем решение методом Фурье, полагая
+\begin{equation} \label{fourie_sol_memb}
+	u(x, y, t) = v(x, y) T(t).
+\end{equation}
+
+Подставляя \eqref{fourie_sol_memb} в \eqref{memb_prob} и разделяя переменные получаем для $T(t)$
+\begin{equation}
+	T'' + a^2 \lambda T = 0,
+\end{equation}
+а для $v(x, y)$ --- следующую краевую задачу:
+\begin{equation}
+	\begin{cases}
+		v_{xx} + v_{yy} + \lambda v = 0; \\
+		v(0, y) = 0, \quad v(b_1, y) = 0 \\
+		v(x, 0) = 0, \quad v(x, b_2) = 0.
+	\end{cases}
+\end{equation}
+
+Таким образом, сама задача ждя собственных значений состоит в решении однородного уравнения в частных производных при однородных граничных условиях. Будем и эту задачу решать методом разделения переменных, полагая 
+\begin{equation*}
+	v(x, y) = X(x) Y(y)
+\end{equation*}
+
+Проводя разделение переменных получаем следующие одномерные задачи на собственные значения 
+\begin{align}
+	\begin{cases}
+		X'' + \nu X = 0, \\
+		X(0) = 0, \quad X(b_1) = 0;
+	\end{cases} \label{Xprob}\\
+	\begin{cases}
+		Y'' + \mu Y = 0, \\
+		Y(0) = 0, \quad Y(b_2) = 0,
+	\end{cases} \label{Yprob}
+\end{align}
+где $\mu$ и $\nu$ связаны соотношением $\mu + \nu = \lambda$. 
+
+Решения уравнений \eqref{Xprob} и \eqref{Yprob} имеют вид
+\begin{gather*}
+	X_n(x) = \sin{\frac{n \pi}{b_1} x}, \quad Y_{m}(y) = \sin{\frac{m \pi}{b_2} y}; \\
+	\nu_n = \Big(\frac{n \pi}{b_1}\Big)^2; \quad \mu_m = \Big(\frac{m \pi}{b_2}\Big)^2.
+\end{gather*}
+Собственным значениям 
+\begin{equation*}
+	\lambda_{n, m} = \Big(\frac{n \pi}{b_1}\Big)^2 + \Big(\frac{m \pi}{b_2}\Big)^2;
+\end{equation*}
+таким образом, соответствуют собственные функции
+\begin{equation*}
+	v_{n, m} = A_{n, m} \sin{\frac{n \pi}{b_1} x} \sin{\frac{m \pi}{b_2} y},
+\end{equation*}
+где $A_{n, m}$ --- некоторый постоянный множитель. Выберем его так, чтобы норма функции $v_{m, n}$ была равне единице:
+\begin{equation*}
+	\int \limits_{0}^{b_1} \int \limits_{0}^{b_2} v^2_{n, m} \, dx \, dy = A_{n, m}^2 \int \limits_0^{b_1} \sin^2{\frac{n \pi}{b_1}x} \, dx \int \limits_{0}^{b_2} \sin^2{\frac{m \pi}{b_2} y} \, dy = 1 \Rightarrow A_{n, m} = \sqrt{\frac{4}{b_1 b_2}}.
+\end{equation*}
+Функции
+\begin{equation} \label{Vformula}
+	v_{n, m}(x, y) = \sqrt{\frac{4}{b_1 b_2}} \sin{\frac{n \pi}{b_1} x} \sin{\frac{m \pi}{b_2} y}
+\end{equation}
+образуют ортонормированную систему собственных функций прямоугольной мембраны.
+
+Возвращаясь к исходной задаче для уравнения \eqref{memb_prob}, мы видим, что частные решения
+\begin{equation}
+	u_{n, m} = v_{n, m}(x, y) \underbrace{C_{n, m} \cos{\sqrt{\lambda_{n, m}} a t} + D_{n, m} \sin{\sqrt{\lambda_{n, m}} a t}}_{=T(t)}
+\end{equation}
+представляют собой стоячие волны, профиль которых определяется собственными функциями $v_{n, m}$. Геометрические места точек внутри прямоугольника, в которых собственные функции обращаются в нуль, называют узловыми линиями. Расмотрим для простоты квадрат со стороной $b (b_1 = b_2)$. Узловые линии функции 
+\begin{equation}
+	v_{n, m} = \frac{2}{b} \sin{\frac{n \pi}{b} x} \sin{\frac{m \pi}{b} y}
+\end{equation}
+являются прямыми, параллельными осям координат. 
+
+Искомое решение уравнения \eqref{memb_prob} при дополнительных условиях \eqref{init_cond_memb}---\eqref{bord_cond_memb} имеет вид
+\begin{equation*}
+	u(x, y, t) = \sum \limits_{m = 1}^{\infty} \sum \limits_{n = 1}^{\infty} ()
+\end{equation*}
+где $v_{n, m}$ определяется формулой \eqref{Vformula}, а коэффициенты $C_{n, m}$ и $D_{n, m}$ равны
+\begin{align*}
+	&C_{n, m} = \int \limits_{0}^{b_1} \int \limits_{0}^{b_2} \varphi(x, y) v_{n, m}(x, y) \, dx \, dy = \sqrt{\frac{4}{b_1 b_2}} \int \limits_{0}^{b_1} \int \limits_{0}^{b_2} \varphi(x, y) \sin{\frac{n \pi}{b_1} x} \sin{\frac{m \pi}{b_2} y} \, dx \, dy, \\
+	&D_{n, m} = \frac{1}{\sqrt{a^2 \lambda_{n, m}}} \sqrt{4}{b_1 b_2} \int \limits_{0}^{b_1} \int \limits_{0}^{b_2} \psi(x, y) \sin{\frac{n \pi}{b_1} x} \sin{\frac{m \pi}{b_2} y} \, dx \, dy.
+\end{align*}
