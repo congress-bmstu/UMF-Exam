@@ -1,1 +1,102 @@
-\subsection{Первая и вторая формулы Грина в ограниченной области. Потенциалы простого и двойного слоя. Их свойства, физический смысл.}
+\subsection{Первая и вторая формулы Грина в ограниченной области. Потенциалы простого и
+двойного слоя. Их свойства, физический смысл.}
+
+\paragraph{Первая формула Грина}
+
+В Тихонове-Самарском (стр. 307) даётся такая первая формула Грина:
+\[
+  \iiint \limits_T u \Delta v \, d\tau
+  = \iint \limits_\Sigma u \dfrac{\partial v}{\partial n} \, d\sigma
+    - \iiint \limits_T \left(
+      \dfrac{\partial u}{\partial x} \dfrac{\partial v}{\partial x} + 
+      \dfrac{\partial u}{\partial y} \dfrac{\partial v}{\partial y} + 
+      \dfrac{\partial u}{\partial z} \dfrac{\partial v}{\partial z} \right) \, d\tau,
+\]
+где $T$ -- некоторый объём, органиченный поверхностью $\Sigma$;
+$u(x, y, z), v(x, y, z)$ -- непрерывно-дифференцируемы внутри $T+\Sigma$;
+$\dfrac{\partial}{\partial n} = \cos\alpha \dfrac{\partial}{\partial x} 
+  + \cos\beta \dfrac{\partial}{\partial y} 
+  + \cos\gamma \dfrac{\partial}{\partial z}$ -- производная по направлению внешней нормали.
+Эта формула является прямым следствием формулы Остроградского-Гаусса. Причём можно чуть упростить
+запись этой формулы, если вспомнить что такое градиент:
+$\grad u = \nabla u = \left( \dfrac{\partial u}{\partial x}, 
+  \dfrac{\partial u}{\partial y},
+  \dfrac{\partial u}{\partial z} \right) $:
+\[
+  \iiint \limits_T u \Delta v \, d\tau
+  = \iint \limits_\Sigma u \dfrac{\partial v}{\partial n} \, d\sigma
+    - \iiint \limits_T \nabla u \cdot \nabla v \, d\tau,
+\]
+
+\paragraph{Вторая формула Грина}
+
+Рассматривая разницу первых формул Грина, применённых к $u \Delta v$ и $v \Delta u$, можно
+получить вторую формулу Грина:
+\[
+  \iiint \limits_T \left( u \Delta v - v \Delta u \right) \, d\tau
+  = \iint \limits_\Sigma \left( u \dfrac{\partial v}{\partial n} - v \dfrac{\partial u}{\partial n}  \right) \, d\sigma
+\]
+
+\paragraph{Потенциалы простого и двойного слоя}
+
+Я не стал переделывать обозначения, поэтому просто: область у нас G, поверхность, которая ее
+ограничивает -- $S$, и, если я правильно понял, $G_1 = \mathbb{R}^n \backslash \bar G$. 
+
+Следующая формула в Тихонове-Самарском называется \emph{основной интегральной формулой Грина}
+\footnote{Тихонов-Самарский стр 310}, а во Владимирове называется просто формулой Грина
+\footnote{Владимиров, стр. 262}.
+
+Пусть $u \in \mathcal{C}^2 (\bar G)$ и $u(x) = 0, x \in G_1$; тогда при $x \notin S$ справедлива
+следующая формула Грина (это из Владимирова):
+\begin{align*}
+  u(x) &= - \dfrac{1}{(n-2) \sigma_n} \int\limits_G \dfrac{\Delta u(y)}{|x-y|^{n-2}} \, dy
+  + \dfrac{1}{(n-2) \sigma_n} \int\limits_S \left[ 
+    \dfrac{1}{|x-y|^{n-2}} \dfrac{\partial u(y)}{\partial n} 
+    - u(y) \dfrac{\partial }{\partial n_y} \dfrac{1}{|x-y|^{n-2}}\right] \, dS_y, n \geqslant 3, \\
+  u(x) &= - \dfrac{1}{2\pi} \int\limits_G \Delta u(y) \ln \dfrac{1}{|x-y|} \, dy
+  + \dfrac{1}{2\pi} \int\limits_S \left[ 
+    \ln \dfrac{1}{|x-y|} \dfrac{\partial u(s)}{\partial n} 
+    - u(y) \dfrac{\partial }{\partial n_y} \ln \dfrac{1}{|x-y|} \right] \, dS_y, n=2
+\end{align*}
+Другими словами, в области $G$ функция $u(x)$ представляется в виде суммы трёх ньютоновых
+(логарифмических) потенциалов:
+\[
+  u(x) = V_n(x) + V_n^{(0)} (x) + V_n^{(1)} (x), x\in G,
+\]
+где (считаем для определенности $n \geqslant 3$)
+\[
+  V_n(x) = \mathcal{E}_n * \left\{ \Delta u \right\} = - \dfrac{1}{(n-2) \sigma_n} \int_G \dfrac{\Delta u(y)}{|x-y|^{n-2}} \, dy
+\]
+-- объёмный потенциал с плотностью $- \dfrac{1}{(n-2) \sigma_n} \left\{ \Delta u \right\}$;
+
+\[
+  V_n^{(0)} (x) = - \mathcal{E} * \left( \dfrac{\partial u}{\partial n} \delta_S \right) 
+  = \dfrac{1}{(n-2) \sigma_n} \int_S \dfrac{1}{|x-y|^{n-2}} \dfrac{\partial u(y)}{\partial n} \, dS_y
+\]
+-- потенциал простого слоя на $S$ с поверхностной плотностью $\dfrac{1}{(n-2) \sigma_n} \dfrac{\partial u}{\partial n}$;
+
+\[
+  V_n^{(1)} (x) = - \mathcal{E}_n * \dfrac{\partial }{\partial n} (u \delta_S)
+  = - \dfrac{1}{(n-2) \sigma_n} \int_S u(y) \dfrac{\partial }{\partial n_y} \dfrac{1}{|x-y|^{n-2}} \, dS_y
+\]
+-- потенциал двойного слоя на $S$ с поврехностной плотностью $-\dfrac{1}{(n-2) \sigma_n} u$
+
+Формула Грина справедлива и для функций $u$ класса
+$\mathcal{C}^2 (G) \bigcap \mathcal{C}^1 (\bar G)$, если в ней интеграл по области $G$ понимать
+как несобственный. (Этот интеграл может сходиться не абсолютно.)
+
+Для гармонической в области $G$ функции $u$ класса $\mathcal{C}^1 (\bar G)$ формула Грина принимает
+следующий вид:
+\begin{align*}
+  u(x) &= \dfrac{1}{(n-2) \sigma_n} \int_S \left[ 
+    \dfrac{1}{|x-y|^{n-2}} \dfrac{\partial u(y)}{\partial n}
+    - u(y) \dfrac{\partial }{\partial n_y} \dfrac{1}{|x-y|^{n-2}}\right] \, dS_y, n \geqslant 3, \\
+  u(x) &= \dfrac{1}{2\pi} \int_S \left[ 
+    \ln \dfrac{1}{|x-y|} \dfrac{\partial u(y)}{\partial n}
+    - u(y) \dfrac{\partial }{\partial n_y} \ln \dfrac{1}{|x-y|}\right] \, dS_y, n=2
+\end{align*}
+
+Поверхностные потенциалы $V_n{(0)}$, $V_n^{(1)}$ можно непрерывно дифференцировать вне $S$ под
+знаком интеграла бесконечное число раз, и эти потенциалы -- гармонические функции вне $S$.
+
+% TODO дописать физический смысл и свойства
