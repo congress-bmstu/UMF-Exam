@@ -42,4 +42,44 @@
 
 \textit{Докажем, что решение второй внутренней краевой задачи определяется с точностью до произвольной постоянной.}
 
-Доказательство проведем при дополнительном предположении, что функция $u$ имеет 
+Доказательство проведем при дополнительном предположении, что функция $u$ имеет непрерывные первые производные в области $T + \Sigma$. 
+
+Пусть $u_1$ и $u_2$ --- две непрерывно дифференцируемые в $T + \Sigma$ функции, удовлетворяющие уравнению $\Delta u = 0$ в $T$ и условию $\partial u/ \partial n |_{\Sigma} = f(M)$ на $\Sigma$. Для функции $u = u_1 - u_2$ будем иметь 
+\begin{equation*}
+	\frac{\partial u}{\partial n} \Big|_{\Sigma} = 0.
+\end{equation*}
+Полагая в первой формуле Грина (%TODO: здесь должна быть отсылка на Сашин пункт ахахах%
+) $v = u$ и учитывая соотношения $\Delta u = 0$ и $\partial u / \partial n |_{\Sigma} = 0$, получаем 
+\begin{equation*}
+	 \iiint \limits_{T} \Big[\Bigg(\frac{\partial u}{\partial x}\Bigg)^2 + \Bigg(\frac{\partial u}{\partial y}\Bigg)^2 + \Bigg(\frac{\partial u}{\partial z}\Bigg)^2\Bigg] \, d\tau = 0.
+\end{equation*}
+
+Отсюда в силу непрерывности функции $u$ и ее первых производных следует 
+\begin{equation*}
+	\frac{\partial u}{\partial x} = \frac{\partial u}{\partial y} = \frac{\partial u}{\partial z} \equiv 0, \quad \text{ т.е. } u \equiv const,
+\end{equation*}
+что и требовалось доказать. 
+
+Изложенный метод применим и в случае неограниченной области для функций, удовлетворяющих требованиям регулярности на бесконечности.
+\newline 
+
+\textit{Докажем, что внешняя краевая задача имеет единственное решение, регулярное на бесконечности.}
+
+В случае неограниченной области для функции, внешней к замкнутой поверхности формула Грина применима и имеет вид:
+\begin{equation} \label{out_green}
+	\iiint \limits_{T} u \Delta v \, d\tau = - \iiint \limits_{T} \Bigg[\frac{\partial u}{\partial x}\frac{\partial v}{\partial x} + \frac{\partial u}{\partial y}\frac{\partial v}{\partial y} + \frac{\partial u}{\partial z}\frac{\partial v}{\partial z}\Bigg] \, d\tau + \iint \limits_{\Sigma} u \frac{\partial v}{\partial n} \, d\sigma.
+\end{equation}
+
+Полагая в ней $v = u = u_1 - u_2$ и учитывая, что $\Delta u = 0$ и $\partial u / \partial n |_{\Sigma} = 0$, получаем
+\begin{equation}
+	\iiiint \limits_{T} (u_x^2 + u_y^2 + u_z^2) \, d\tau = 0.
+\end{equation}
+Отсюда в силу непрерывности производных функции $u$ следует, что 
+\begin{equation*}
+	u_x = 0, \quad u_y = 0, \quad u_z = 0 \text{ и } u \equiv const. 
+\end{equation*}
+Так как $u = 0$ на бесконечности, то
+\begin{equation}
+	u \equiv 0, \text{ т.е. } u_1 \equiv u_2,
+\end{equation}
+что и требовалось доказать.  
