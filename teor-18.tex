@@ -40,6 +40,13 @@
 	u \equiv 0.
 \end{equation*}
 
+Согласно следствию из принципа максимума, если функция $u$ гармоническая вне области $G$, и $u(\infty) = 0$, то так же можно говорить, что 
+\begin{equation*}
+	\abs{u(x)} \leqslant \max\limits_{\xi \in S}{\abs{u(\xi)}}, \quad x \in \bar{G_1}, G_1 = \mathbb{R}^n \ \bar{G}  
+\end{equation*}
+
+Поэтому единственность доказывается аналогично внутреннему случаю. 
+
 \textit{Докажем, что решение второй внутренней краевой задачи определяется с точностью до произвольной постоянной.}
 
 Доказательство проведем при дополнительном предположении, что функция $u$ имеет непрерывные первые производные в области $T + \Sigma$. 
@@ -51,7 +58,7 @@
 Полагая в первой формуле Грина (%TODO: здесь должна быть отсылка на Сашин пункт ахахах%
 ) $v = u$ и учитывая соотношения $\Delta u = 0$ и $\partial u / \partial n |_{\Sigma} = 0$, получаем 
 \begin{equation*}
-	 \iiint \limits_{T} \Big[\Bigg(\frac{\partial u}{\partial x}\Bigg)^2 + \Bigg(\frac{\partial u}{\partial y}\Bigg)^2 + \Bigg(\frac{\partial u}{\partial z}\Bigg)^2\Bigg] \, d\tau = 0.
+	 \iiint \limits_{T} \Bigg[\Bigg(\frac{\partial u}{\partial x}\Bigg)^2 + \Bigg(\frac{\partial u}{\partial y}\Bigg)^2 + \Bigg(\frac{\partial u}{\partial z}\Bigg)^2\Bigg] \, d\tau = 0.
 \end{equation*}
 
 Отсюда в силу непрерывности функции $u$ и ее первых производных следует 
