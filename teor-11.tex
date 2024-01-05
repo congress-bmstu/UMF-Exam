@@ -1,1 +1,114 @@
-\subsection{Уравнение теплопроводности/диффузии на бесконечной и полубесконечной прямой. Функция влияния мгновенного точечного источника.}
+\subsection{Уравнение теплопроводности/диффузии на бесконечной и полубесконечной прямой.
+Функция влияния мгновенного точечного источника.}
+
+\paragraph{Бесконечная прямая}
+\begin{equation}\label{1.10.1-main}
+  \begin{cases}
+    u_t = a^2 u_{xx} + f(x, t), &-\infty < x < +\infty, t > 0, \\
+    |u(\pm \infty, t)| < \infty, \\
+    u(x, 0) = \varphi(x),
+  \end{cases}
+\end{equation}
+а теперь проделаем разделение переменных, причём <<переменную разделения>> обозначим за $\lambda^2$,
+потому что несложно проверить, что при отрицательных значениях не будет органиченности на
+бесконечности. После разделения переменных получаем такую задачу для $X(x)$:
+\[
+  \begin{cases}
+    -X'' - \lambda^2 X = 0, \\
+    |X(\pm \infty)| < \infty,
+  \end{cases}
+\]
+несложно получить, что собственные значения такой задачи имеют непрерывный спектр
+$\lambda \in (-\infty, +\infty)$, а собственные функции: $X = e^{i\lambda x}$.
+
+Это всё позволяет сказать о общем виде будущего решения:
+\[
+  u(x, t) = \int\limits_{-\infty}^{+\infty} A(t, \lambda) e^{i \lambda x} \, d\lambda,
+\]
+подставим это в \eqref{1.10.1-main}:
+\[
+  \begin{cases}
+    \int\limits_{-\infty}^{+\infty} \dfrac{\partial A(t, \lambda)}{\partial t} e^{i \lambda x} \, d\lambda
+      = \int\limits_{-\infty}^{+\infty} - a^2 \lambda^2 A(t, \lambda) e^{i \lambda x} \, d\lambda
+      + \int\limits_{-\infty}^{+\infty} F(t, \lambda) e^{i \lambda x} \, d\lambda, \\
+    
+    \int\limits_{-\infty}^{+\infty} A(0, \lambda) e^{i \lambda x} \, d\lambda 
+      = \int\limits_{-\infty}^{+\infty} \Phi(\lambda) e^{i \lambda x} \, d\lambda,
+  \end{cases}
+\]
+где $F, \Phi$ -- соответсвующие коэффициенты разложения по базису, а по совместительству -- образы 
+преобразования Фурье.
+
+\[
+  \begin{cases}
+    \dfrac{\partial A(t, \lambda)}{\partial t}
+      = - a^2 \lambda^2 A(t, \lambda)
+      + F(t, \lambda), \\
+    A(0, \lambda) = \Phi(\lambda),
+  \end{cases}
+\]
+такой диффур решим, аналогично такому же диффуру в \ref{question:split-variables-in-heat}, то
+есть методом вариации произвольных постоянных. Тогда ответ получим в виде:
+\[
+  A(t, \lambda) = \left(
+    \Phi(\lambda)
+    + \int\limits_0^t F(\tau, \lambda) e^{a^2 \lambda^2 \tau} \, d\tau \right)
+    \cdot e^{- a^2 \lambda^2 t}
+\]
+теперь всё что остаётся это найти $F$ и $\Phi$, а их можно найти с помощью обратного преобразования
+Фурье:
+\[
+  f(x, t) = \int\limits_{-\infty}^{+\infty} F(t, \lambda) e^{i \lambda x} \, d\lambda
+  \Leftrightarrow
+  F(t, \lambda)
+  = \dfrac{1}{2\pi} \int\limits_{-\infty}^{+\infty} f(\xi, t) e^{-i \lambda \xi} \, d\x,
+\]
+и аналогично для $\Phi$. Тогда окончательный ответ перепишем в виде:
+\begin{multline*}
+  u(x, t) = \int\limits_{-\infty}^{+\infty}
+    \left( \dfrac{1}{2\pi} \int\limits_{-\infty}^{+\infty} \varphi(\xi) e^{-i \lambda \xi} \, d\xi
+      + \dfrac{1}{2\pi} \int\limits_0^t
+      \left( \int\limits_{-\infty}^{+\infty} f(\xi, \tau) e^{-i \lambda \xi} \, d\xi \right)
+      e^{a^2 \lambda^2 \tau} d\tau \right)
+    \cdot e^{-a^2 \lambda^2 t} \cdot e^{i \lambda x} \, d\lambda = \\
+  = \int\limits_{-\infty}^{+\infty}
+    \left( \int\limits_{-\infty}^{+\infty}
+      \dfrac{1}{2\pi} e^{-i\lambda (\xi-x) - a^2\lambda^2t} \, d\lambda \right) \varphi(\xi) \, d\xi
+  + \int\limits_{-\infty}^{+\infty} \int\limits_{0}^{t}
+    \left( \dfrac{1}{2\pi} e^{-i\lambda(\xi-x) - a^2\lambda^2(t - \tau)} \right)
+    f(\xi, \tau) \, d\tau d\xi = \\
+  = \int\limits_{-\infty}^{+\infty} G(x, \xi, t) \varphi(\xi) \, d\xi
+    + \int\limits_0^t \int\limits_{-\infty}^{+\infty} G(x, \xi, \tau) f(\xi, t-\tau) \, d\xi d\tau.
+\end{multline*}
+
+Функция влияния мгновенного точечного источника:
+\[
+  G(x, \xi, t) = \dfrac{1}{2\pi} \int\limits_{-\infty}^{+\infty} e^{-i \lambda(\xi-x) - a^2 \lambda^2 t} \, d\lambda
+  = \dfrac{1}{2\sqrt{\pi a^2 t}} e^{- \dfrac{(x-\xi)^2}{4 a^2 t}}
+\]
+Причём эта функция сама удовлетворяет уравнению теплопроводности по переменным $x$ и $t$.
+% Следующий этап будет разложение функций $f(x, t), \varphi(x)$ в ряды Фурье. Но у нас получился
+% непрерывный спектр, то есть это будет не ряд, а интеграл:
+% \[
+%   f(x, t) = \int\limits_{-\infty}^{+\infty} F_{\lambda} (t) e^{i \lambda x} \, d\lambda,
+%   \varphi(x) = \int\limits_{-\infty}^{+\infty} \Phi_\lambda e^{i \lambda x} \, d\lambda,
+% \]
+% возьмём обратное преобразование Фурье от обоих частей и получим:
+% \[
+  
+% \]
+
+
+\paragraph{Полубесконечная прямая}
+Аналогично предыдущему вопросу рассматриваем задачу:
+\begin{equation}\label{1.10.2-main}
+  \begin{cases}
+    u_t = a^2 u_{xx} + f(x, t), &0 < x < +\infty, t > 0, \\
+    u(0, t) = \varphi(t), \\
+    |u(+\infty), t| < \infty, \\
+    u(x, 0) = \psi(x),
+  \end{cases}
+\end{equation}
+
+% TODO дописать
+

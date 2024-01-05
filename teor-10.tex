@@ -1,5 +1,6 @@
 \subsection{Разделение переменных в смешанной краевой задаче для уравнения теплопроводности/диффузии.
 Построение функции влияния мгновенного точечного источника.}
+\label{question:split-variables-in-heat}
 
 \paragraph{Однородная правая часть} Рассматривается смешанная краевая задача для уравнения
 теплопроводности:
@@ -86,10 +87,10 @@ $C_n(t) = \int_0^t f_n(\tau) e^{a^2 \lambda_n \tau} \, d\tau + C$, подста�
 условие, получим что $C = \varphi_n$. Собирая всё вместе:
 \begin{multline*}
   u(x, t)
-  = \sum_n \left( \varphi_n + \int_0^t f_n(\tau) e^{a^2 \lambda_n \tau} \, d\tau \right) X_n(x) = \\
+  = \sum_n \left( \varphi_n + \int_0^t f_n(\tau) e^{a^2 \lambda_n \tau} \, d\tau \right) e^{-a^2 \lambda_n t}  X_n(x) = \\
   = \sum_n \left( \int_0^l \varphi(\xi) X_n(\xi) \, d\xi
     + \int_0^t \left( \int_0^l f(\xi, \tau) X_n(\xi) \dfrac{1}{\| X_n \|^2} \, d\xi 
-    \right) e^{a^2 \lambda_n \tau} \, d\tau \right) X_n(x) = \\
+    \right) e^{a^2 \lambda_n \tau} \, d\tau \right) e^{-a^2 \lambda_n t} X_n(x) = \\
   = \int_0^l G(x, \xi, t) \varphi(\xi) \, d\xi
   + \int_0^l \int_0^t \sum_n \dfrac{1}{\|X_n\|^2} X_n(x) X_n(\xi) e^{-a^2 \lambda_n (t-\tau)} f(\xi, \tau) \, d\tau d\xi = \\
   = \int_0^l G(x, \xi, t) \varphi(\xi) \, d\xi
