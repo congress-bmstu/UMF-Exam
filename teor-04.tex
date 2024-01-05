@@ -1,8 +1,8 @@
 \subsection{Уравнение колебаний полубесконечной струны (стержня). Метод отражений.}
 
-\begin{equation}
-	\square_{a} = \frac{\partial^2}{\partial t^2} - a^2 \Delta
-\end{equation}
+%\begin{equation}
+	%\square_{a} = \frac{\partial^2}{\partial t^2} - a^2 \Delta
+%\end{equation}
 
 Изложенный в пункте \ref{DalamberFormula} метод решения задачи Коши позволяет решать некоторые смешанные задачи для этого уравнения. Для определенности рассмотрим смешанную задачу, описыващую колебание полубесконечной струны $x > 0$ с закрепленным левым концом
 \begin{equation} \label{x0cond}
@@ -13,12 +13,8 @@
 \begin{equation} \label{xg0condim}
 	u(x, t) = g(x + a t) - g(-x + a t)
 \end{equation}
-
-Действительно, решение представляется в виде \eqref{general_int}, где $f(\xi) \in \mathcal{C}^2(\mathbb{R}^1)$ и $g(\eta) \in \mathcal{C}^2(\eta > 0)$. Отсюда, учитывая условие \eqref{x0cond}, получим
-\begin{equation} 
-	0 = f_1(-a t) + f_2(a t)
-\end{equation}
-отсюда и вытекает представление \eqref{xg0condim}. 
+(т.к. подставляя начальные условия в \eqref{general_int} $0 = f_1(-a t) + f_2(a t)$
+отсюда и вытекает представление \eqref{xg0condim}).
 
 Построим решение смешанной задачи \eqref{infinite_string}, \eqref{inf_str_cond}, \eqref{x0cond}. Всякое классическое решение $u(x, t)$ этой задачи в силу \eqref{xg0condim} допускает нечетное продолжение $\tilde{u}(x, t)$ по $x$ класса $\mathcal{C}^2(\mathbb{R}^2)$, и это продолжение удовлетворяет уравнению \eqref{infinite_string} в $\mathbb{R}^2$.
 \begin{figure}[H]
@@ -32,6 +28,7 @@
 		\includegraphics[width=\textwidth]{img/mirror2.png}
 		\caption{}
 	\end{subfigure}
+	\caption{}
 \end{figure}
 Отсюда из условий \eqref{inf_str_cond} вытекает, что решение $\tilde{u}(x, t)$ удовлетворяет начальным условиям
 \begin{equation}
@@ -57,4 +54,24 @@
 \end{equation}
 
 Аналогичные рассуждения можно провести для $x - a t \leqslant 0$. 
-%TODO: Провести и дописать
+\begin{equation*}
+	\tilde{u}_0(x - a t) = - u_0(-x + a t), \quad \tilde{u}_1(\xi) = -u_1(-\xi), \quad x - a t \leqslant \xi \leqslant 0,
+\end{equation*}
+формула \eqref{formula} принимает вид
+\begin{equation} \label{other_formula}
+	u(x, t) = \frac{1}{2} [u_0(x + a t) - u_0(-x + a t)] + \frac{1}{2a} \int_{-x + a t}^{x + a t} u_1(\xi) \,d\xi, \quad 0 \leqslant x \leqslant a t.
+\end{equation}
+
+Как видно из формулы \eqref{other_formula}, в точку $(x, t)$, $0 \leqslant x \leqslant a t$, приходят два волны: прямая волна из точки $(x + a t, 0)$ и один раз отраженная волна из точки $(a t - x, 0)$ (совпадающая с прямой волной из фиктивной точки $(x - at, 0)$; см. рис. 2).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{img/mirror3}
+	\caption{}
+\end{figure}
+
+Аналогично рассматривается смешанная задача для полубесконечной струны $x > 0$ со свободным концом:
+\begin{equation*}
+	u_x|_{x = 0} = 0.
+\end{equation*}
+Здесь также имеет место отражение волн от конца струны $x = 0$, но уже без изменения знака. 
