@@ -1,1 +1,97 @@
 \subsection{Классическая свёртка. Свертка обобщённых функций. Обобщённое решение дифференциального уравнения.}
+
+
+\paragraph{Классическая свертка.}\footnote{Владимиров В.С. стр. 101 и далее}
+Важным инструментом математической физики является операция свертки. Для локально интегрируемых в $\mathbb{R}^n$ функций $f(x)$ и $g(x)$ их свертка $f \ast g$ определяется интегралом
+\begin{equation}
+	\label{convolution}
+	(f \ast g)(x) = \int f(y)g(x - y) \, dy = \int g(y) f(x - y) \, dy = (g \ast f)(x)
+\end{equation}
+при условии, что этот интеграл существует и определяет локально интегрируемую в $\mathbb{R}^n$ функцию $(f \ast g)(x)$. Наша задача --- распространить это определение на обобщенные функции. 
+
+\paragraph{Свертка обобщенных функций}
+
+Для локально интегрируемых функций $f(x) \in \mathbb{R}^n$ и $g(x) \in \mathbb{R}^m$ их произведение $f(x)g(y)$ будет локально интегрируемой функцией $\mathbb{R}^{n+m}$. Эта функция определяет (регулярную) обобщенную функцию, действующую на основные функции $\varphi(x, y) \in \mathcal{D}$ по формулам
+\begin{align*}
+	&(f(x)g(y), \varphi) = \int f(x) g(y) \varphi(x, y) \, dx \, dy = \int f(x) \int g(y) \varphi(x, y) \, dy \, dx = (f(x), (g(y), \varphi(x, y))), \\
+	&(g(y) f(x), \varphi) = \int g(y) f(x) \varphi(x, y) \, dx \, dy = \int g(y) \int f(x) \varphi(x, y) \, dx \, dy = (g(y), (f(x), \varphi(x, y))).
+\end{align*}
+
+Эти равенства следуют из теоремы о совпадении повторных интегралов с кратным. Формулы выше мы примем за определение \textit{прямого произведения} $f(x) \cdot g(y)$ обобщенных функций $f(x) \in \mathcal{D}'(\mathbb{R}^n)$ и $g(y) \in \mathcal{D}'(\mathbb{R}^m)$:
+\begin{equation*}
+	(f(x) \cdot g(y), \varphi) = (f(x), (g(y), \varphi(x, y))), \quad \varphi \in \mathcal{D}(\mathbb{R}^{n+m}).
+\end{equation*}	
+
+Для локально интегрируемых в $\mathbb{R}^{n}$ функций $f(x)$ и $g(x)$ их свертка $f \ast g$ определяется формулой \eqref{convolution}. Если интеграл \eqref{convolution} есть локально интегрируема в $\mathbb{R}^n$ функция, то свертка $f \ast g$ определяет регулярную обобщенную функцию, действующую на основные функции $\varphi \in \mathcal{D}(\mathbb{R}^n)$ по правилу
+\begin{align*}
+	(f \ast g, \varphi) = \int [f \ast g](\xi)\varphi(\xi) \, d\xi = \int\Big[\int g(y) f(\xi - y) \, dy\Big] \varphi(\xi) \, d\xi = \\
+	= \int g(y) \Big[\int f(\xi - y)\varphi(\xi) \, d\xi\Big] \, dy = \int g(y) \Big[\int f(x) \varphi(x + y) \, dx\Big] \, dy,
+\end{align*}
+т.е.
+\begin{equation*}
+	(f \ast g, \varphi) = \iint f(x) g(y) \varphi(x + y) \, dx \, dy, \quad \varphi \in \mathcal{D}(\mathbb{R}^n).
+\end{equation*}
+
+\textit{Свойства свертки}
+
+\begin{enumerate}
+	\item Линейность
+	\begin{equation*}
+		(\lambda_1 f_1 + \lambda_2 f_2) \ast g = \lambda_1 (f_1 \ast g) + \lambda_2 (f_2 \ast g), \quad f_1, f_2, g \in \mathcal{D}',
+	\end{equation*}
+	при условии, что свертки $f_1 \ast g$ и $f_2 \ast g$ существуют.
+	
+	\item Коммунативность
+	\begin{equation*}
+		f \ast g = g \ast f.
+	\end{equation*}
+	
+	\item Дифференцирование
+	\begin{equation*}
+		\partial^{\alpha} f \ast g = \partial^{\alpha}(f \ast g) = f \ast \partial^{\alpha} g.
+	\end{equation*}
+	
+	\item Сдвиг
+	\begin{equation*}
+		f(x + h) \ast g(x) = (f \ast g)(x + h), \quad h \in \mathbb{R}^n,
+	\end{equation*}
+	т.е. операции сдвига и свертки коммутируют.
+\end{enumerate}
+
+\paragraph{Обобщенное решение дифференциального уравнения.}\footnote{Владимиров В.С. стр. 142 и далее}
+
+Пусть 
+\begin{equation}
+	\label{common_difeq}
+	\sum \limits_{\abs{\alpha}}^{m} a_{\alpha}(x) \partial^{\alpha} u = f(x), \quad f \in \mathcal{D}',
+\end{equation}
+--- линейное дифференциальное уравнение порядка $m$ с коэффициентами $a_{\alpha} \in \mathcal{C}^{\infty}(\mathbb{R}^n)$. Вводя линейный дифференциальный оператор 
+\begin{equation*}
+	L(x, \partial) = \sum \limits_{\abs{\alpha} = 0}^{m} a_{\alpha} a_{\alpha}(x) \partial^{\alpha},
+\end{equation*}
+перепишем это уравнение в виде 
+\begin{equation}
+	L(x, \partial) u = f(x).
+\end{equation}
+
+Обобщенным решением уравнения \eqref{common_difeq} в области $G$ называется всякая обобщенная функция $u \in \mathcal{D}'(G)$, удовлетворяющая этому уравнению в обобщенном смысле, т.е. для любой $\varphi \in \mathcal{D}(G)$
+\begin{equation}
+	\label{common_with_op}
+	(L(x, \partial)u, \varphi) = (f, \varphi).
+\end{equation}
+
+Равенство \eqref{common_with_op} равносильно равенству
+\begin{equation*}
+	(u, L^{\ast}(x, \varphi)) = (f, \varphi), \quad \varphi \in \mathcal{D}(G),
+\end{equation*}
+где 
+\begin{equation}
+	L^{\ast}(x, \partial)\varphi = \sum \limits_{\abs{\alpha} = 0}^{m} (-1)^{\abs{\alpha}} \partial^{\alpha}(a_{\alpha} \varphi).
+\end{equation}
+
+Действительно,
+\begin{gather*}
+	(L(x, \partial) u, \varphi) = \Bigg(\sum \limits_{\abs{\alpha} = 0}^{m} a_{}\alpha \partial^{\alpha} u, \varphi\Bigg) = \sum\limits_{\abs{\alpha} = 0}^{m} (a_{\alpha} \partial^{\alpha} u, \varphi) = \sum\limits_{\abs{\alpha} = 0}^{m} (\partial^{\alpha} u, a_{\alpha} \varphi) = \\ = \sum\limits_{\abs{\alpha} = 0}^{m} (-1)^{\abs{\alpha}} (u, \partial^{\alpha}(a_{\alpha}\varphi)) = \Bigg(u, \sum\limits_{\abs{\alpha} = 0}^{m} (-1)^{\abs{\alpha}} \partial^{\alpha} (a_{\alpha} \varphi)\Bigg) = (u, L^{\ast}(x, \partial)\varphi).
+\end{gather*}
+
+Ясно, что всякое классическое решение является и обобщенным решением. Обратное утверждение доказывается с помощью леммы Дюбуа-Реймона. 
