@@ -1,84 +1,94 @@
 \subsection{Функция Грина уравнения Лапласа первой краевой задачи в круге, на полуплоскости в полупространстве. Метод отражений.}
 
-Функцией Грина (внутренней) задачи Дирихле для (ограниченной) области $G$ называется функция $\mathcal{G}(x, y)$, $x \in \bar{G}$, $y \in G$, обладающая следующими свойствами:
-\begin{enumerate}
-	\item при каждом $y \in G$ представляется в виде
-	\begin{equation}
-		\mathcal{G}(x, y) = \frac{1}{4 \pi \abs{x - y}} + g(x, y),
-	\end{equation}
-	где функция $g(x, y)$ гармоническая в $G$ и непрерыная на $\bar{G}$ по $x$;
-	
-	\item при каждом $y \in G$ удовлетворяет граничному условию 
-	\begin{equation}
-		\mathcal{G}(x, y)|_{x \in S} = 0.
-	\end{equation}
-\end{enumerate}
+\paragraph{Метод отражений (метод электростатических изображений).}
 
-Для построения функции Грина для области с достаточно широкой симметрией весьма эффективным оказывается \textit{метод отражений}. Продемострируем его на примере шара. 
+Для построения функции источника в виде
+\begin{equation*}
+	G(M, M_0) = \frac{1}{4 \pi R_{M M_0}} + v
+\end{equation*}
+индуцированное поле $v$ представляется как поле зарядов, расположенных вне поверхности $\Sigma$ и выбираемых таким образом, чтобы выполнялось условие
+\begin{equation*}
+	v|_{\Sigma} = -\frac{1}{4 \pi R}.
+\end{equation*}
 
-	Шар $U_{R}$. Пусть $y \in U_{R}$, $y \not = 0$ и 
-	\begin{equation} \label{inverse_transform}
-		y^{\ast} = y \frac{R^2}{\abs{y}^2}, \quad \abs{y} \abs{y^{\ast}} = R^2,
-	\end{equation}
-	--- симметричная точка относительно сферы $S_R$ при преобразование инверсии.
-	
-	Ищем функцию Грина в виде
-	\begin{equation} \label{green}
-		\mathcal{G}(x, y) = \frac{1}{4 \pi \abs{x - y}} - \frac{\alpha}{4 \pi \abs{x - y^{\ast}}},
-	\end{equation}
-	где $- \alpha / 4 \pi$ --- неизвестный заряд в симметричной точке $y^{\ast}$. Функция
-	\begin{equation*}
-		g(x, y) = - \frac{\alpha}{4 \pi \abs{x - y^{\ast}}}
-	\end{equation*}
-	гармоническая в $U_{R}$. Подберем $\alpha$ так, чтобы $\mathcal{G}(x, y)$ обратилась в нуль на $S_{R}$ (из условий определения функции Грина для данной задачи вытекает, что функция грина образается в нуль на $S$). Для этого заметим, 
+Приведем примеры построения функции источника методом отражений.
 
-	\begin{figure}[H]
-		\centering
-		\begin{subfigure}{0.4\textwidth}
-			\centering
-			\includegraphics[width=0.7\linewidth]{img/mirror4}
-			\caption{}
-			\label{img_a}
-		\end{subfigure}
-		\vspace{5mm}
-		\begin{subfigure}{0.4\textwidth}
-			\centering
-			\includegraphics[width=0.7\linewidth]{img/mirror5}
-			\caption{}
-			\label{img_b}
-		\end{subfigure}
-		\caption{}
-	\end{figure}
-	что при $\abs{x} = R$ треугольники $Oxy^{\ast}$ и $Oxy$ подобны: один угол у них общий, а прилегающие стороны в силу \eqref{inverse_transform} пропорциональны (рис. \ref{img_a}). Поэтому при $\abs{x} = R$ справедливо соотношение 
-	\begin{equation*}
-		\abs{R}{\abs{y}} = \frac{\abs{x - y^{\ast}}}{\abs{x - y}},
-	\end{equation*} 
-	и, следовательно, в силу \eqref{green} необходимо положить $\alpha = R/\abs{y}$. Итак,
-	\begin{equation} \label{ballGreen}
-		\mathcal{G}(x, y) = \frac{1}{4 \pi \abs{x - y}} - \frac{R}{4 \pi \abs{y} \abs{x - y^{\ast}}} = \frac{1}{4 \pi \abs{x - y}} - \frac{R \abs{y}}{4 \pi \abs{x \abs{y}^2 - y R^2}}
-	\end{equation}
-	есть \textit{функция Грина для шара}. Формула \eqref{ballGreen} справедлива и при $y = 0$:
-	\begin{equation*}
-		\mathcal{G}(x, 0) = \frac{1}{4 \pi \abs{x}} - \frac{1}{4 \pi R}.
-	\end{equation*}
+Пусть дана сфера радиуса $R$ с центром в точке $O$.
 
-	Полупространство $x_3 > 0$ \footnote{Эта область неограничена. Функция Грина в этом случае должна удовлетворять дополнительному условию $\mathcal{G}(x, y) \to 0$ при $\abs{x} \to \infty$, $y \in G$}. Пусть точка $y = (y_1, y_2, y_3)$ лежит в этом полупространстве, $y_3 > 0$. Точка $\tilde{y} = (y_1, y_2, -y_3)$ --- симметричная с $y$ точка относительно $x_3 = 0$ (рис. \ref{img_b}).
-	
-	Нетрудно проверить, что \textit{функция Грина для полупространства $x_3 > 0$ определяется формулой }
-	\begin{equation}
-		\boxed{\mathcal{G}(x, y) = \frac{1}{4 \pi \abs{x - y}} - \frac{1}{4 \pi \abs{x - \tilde{y}}}.}
-	\end{equation}
-	
-	Функция Грина для задачи Дирихле на плоскости  представляется в виде
-	\begin{equation}
-		\mathcal(z, \zeta) = \frac{1}{2 \pi} \ln{\frac{1}{\abs{z - \zeta}}} + g(z, \zeta),
-	\end{equation}
-	где $g(z, \zeta)$ гармоническая в $G$ и непрерывна на $\bar{G}$ по $z$ и удовлетворяет граничному условию 
-	\begin{equation}
-		\mathcal{G}(z, \zeta)|_{z \in S} = 0.
-	\end{equation}
-	
-	Пусть теперь $G$ --- односвязная область, ограниченная кусочно гладкой кривой $S$, и $w = w(z)$ --- функция, конформно отображающая область $G$ на единичный круг
-	\begin{equation}
-		w(z, \zeta) = \frac{w(z) - w(\zeta)}{}
-	\end{equation}
+Поместим в точку $M_0$ единичный заряд и отложим на радиусе, проходящем через точку $M_0$, такой отрезок $OM_1$, что
+\begin{equation} \label{section}
+	\rho_0 \rho_1 = R^2,
+\end{equation}
+где $\rho_0 = \abs{OM_0}$ и $\rho_1 = \abs{OM_1}$. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{img/sphere_green}
+	\caption{}
+\end{figure}
+
+Точки $M_0$ и $M_1$ называются сопряженными друг другу. 
+
+Докажем, что для всех точек $P$ на сфере, расстояния до $M_0$ и $M_1$ пропорциональны. Рассмотрим $\triangle OPM_0$ и $\triangle OMP_1$. Они подобны по общему углу и двум пропорциональным сторонам
+\begin{equation*}
+	\frac{\rho_0}{R} = \frac{R}{\rho_1}, \text{ или } \frac{\abs{OM_0}}{R} = \frac{R}{\abs{OM_1}}.
+\end{equation*}
+Из подобия следует
+\begin{equation} \label{prop}
+	\frac{r_0}{r_1} = \frac{\rho_0}{R} = \frac{R}{\rho_1},
+\end{equation}
+где $r_0 = \abs{\overrightarrow{M_0P}}$, $r_1 = \abs{\overrightarrow{M_1 P}}$. Из пропорции \eqref{prop} получаем  
+\begin{equation*}
+	r_0 = \frac{\rho_0}{R} r_1
+\end{equation*}
+для всех точек сферы. Поэтому гармоническая функция $v = -R/\rho_0 \cdot 1/r_1$ на сфере принимает то же значение, что и функция $-1/r_0$. она представляет, очевидно потенциал заряда величины $-R/\rho_0$, помещенного в точку $M_1$.
+
+Таким образом 
+\begin{equation} \label{final_green}
+	G(P, M_0) = \frac{1}{4 \pi} \Bigg(\frac{1}{r_0} - \frac{R}{\rho_0} \frac{1}{r_1}\Bigg)
+\end{equation}
+
+\paragraph{Функция источника для круга.}
+
+Функция источника для круга может быть получена таким же способом, как и функция источника для сферы. В этом случа ее следует искать в виде
+\begin{equation}
+	G = \frac{1}{2 \pi} \ln{\frac{1}{r}} + v.
+\end{equation}
+
+Повторяя рассуждения от \eqref{section} до \eqref{final_green}, мы найдем функцию $G$ в виде 
+\begin{equation}
+	G = \frac{1}{2 \pi} \Bigg[\ln{\frac{1}{r_0}} - \ln{\frac{R}{\rho_0} \frac{1}{r_1}}\Bigg],
+\end{equation}
+где $\rho_0 = \abs{OM_0}$, $r_0 = \abs{M_0 P}$, $r_1 = \abs{M_1 P}$, $R = \abs{OP}$ --- радиус круга (см. рис. \ref{circle_green}).
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{img/circle_green}
+	\caption{}
+	\label{circle_green}
+\end{figure}
+Нетрудно убедиться в том, что определенная таким образом гармоническая функция обращается в нуль на границе: $G|_{C} = 0$.
+
+\paragraph{Функция источника для полупространства.}
+
+Найдем функцию источника для полупространства $z > 0$. Поместим в точку $M_0(x_0, y_0, x_0)$ единичный заряд, который создает в неограниченном пространстве поле, потенциал которого определяется функцией 
+\begin{equation*}
+	\frac{1}{4 \pi} \frac{1}{R_{M_0 M}}, \text{ где } R_{M_0 M} = \sqrt{(x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2}.
+\end{equation*}
+Нетрудно видеть, что "индуцированное поле" $v$ является полем отрицательного единичного заряда, помещенного в точку $M_1(x_0, y_0, -z_0)$, являющуюся зеркальным изображением точки $M_0$ в плоскости $z = 0$ (рис. \ref{halfdim_green}). 
+Функция $G$, равная
+\begin{equation*}
+	G(M, M_0) = \frac{1}{4 \pi R_0} - \frac{1}{4 \pi R_1},
+\end{equation*}
+где
+\begin{align*}
+	R_0 = \abs{\overrightarrow{M_0 M}} = \sqrt{(x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2}, \\
+	R_1 = \abs{\overrightarrow{M_1 M}} = \sqrt{(x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2}, \\
+\end{align*}
+обращается в нуль при $z = 0$ и имеет нужную особенность в точке $M_0$.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{img/halfdim_green}
+	\caption{}
+	\label{halfdim_green}
+\end{figure}
