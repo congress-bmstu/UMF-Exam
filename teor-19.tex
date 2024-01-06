@@ -4,14 +4,14 @@
 \paragraph{Первая формула Грина}
 
 В Тихонове-Самарском (стр. 307) даётся такая первая формула Грина:
-\[
-  \iiint \limits_T u \Delta v \, d\tau
-  = \iint \limits_\Sigma u \dfrac{\partial v}{\partial n} \, d\sigma
-    - \iiint \limits_T \left(
-      \dfrac{\partial u}{\partial x} \dfrac{\partial v}{\partial x} + 
-      \dfrac{\partial u}{\partial y} \dfrac{\partial v}{\partial y} + 
-      \dfrac{\partial u}{\partial z} \dfrac{\partial v}{\partial z} \right) \, d\tau,
-\]
+\begin{equation} \label{first_green_formula}
+	\iiint \limits_T u \Delta v \, d\tau
+	= \iint \limits_\Sigma u \dfrac{\partial v}{\partial n} \, d\sigma
+	- \iiint \limits_T \left(
+	\dfrac{\partial u}{\partial x} \dfrac{\partial v}{\partial x} + 
+	\dfrac{\partial u}{\partial y} \dfrac{\partial v}{\partial y} + 
+	\dfrac{\partial u}{\partial z} \dfrac{\partial v}{\partial z} \right) \, d\tau,
+\end{equation}
 где $T$ -- некоторый объём, органиченный поверхностью $\Sigma$;
 $u(x, y, z), v(x, y, z)$ -- непрерывно-дифференцируемы внутри $T+\Sigma$;
 $\dfrac{\partial}{\partial n} = \cos\alpha \dfrac{\partial}{\partial x} 
