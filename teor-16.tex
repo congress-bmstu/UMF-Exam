@@ -1,1 +1,116 @@
-\subsection{Метод разделения переменных решения первой краевой задачи для уравнения Лапласа внутри круга и вне круга. Интеграл Пуассона.}
+\subsection{Метод разделения переменных решения первой краевой задачи для уравнения Лапласа внутри круга и вне круга. Интеграл Пуассона}
+\subsubsection{Лаплас}
+%ref: С-Т, стр. 328 (основное); Пикулин, стр. 18
+Рассмотрим уравнение Лапласа $ \Delta u = 0 $ внутри круга радиуса $ \rho $ с граничным условием
+$ u(\rho, \varphi) = f(\varphi) $. Некоторые дополнительные условия: $ u $ непрерывна внутри круга, $ f
+$ непрерывно дифференцируема. От условия на $ f $ можно избавиться.
+
+Перейдём в полярные координаты с центром в центре круга. Там\footnote{См. раздел
+\ref{sec:14}.}
+\[
+    \Delta u = \frac{1}{r} \frac{\partial}{\partial r}\left( r \frac{\partial
+    u}{\partial r} \right) + \frac{1}{r^2}\frac{\partial^2 u}{\partial
+  \varphi^2} = 0.
+\]
+Разделим переменные и после подстановки получим
+\[
+    \frac{(rR')'}{R/r} = - \frac{\Phi''}{\Phi} = \lambda \geqslant 0.
+\]
+Соответствующая задача Штурма -- Лиувилля $ \Phi'' + \lambda\Phi = 0 $
+тогда будет иметь тригонометрические решения\footnote{См. раздел \ref{sec:prost_sl}, <<простейший
+случай>>.} $ \Phi = A\cos\sqrt\lambda \varphi + B\sin\sqrt\lambda \varphi $.
+При этом условия начальной системы функции $ \Phi $ не касаются, однако из
+однозначности решения вытекает $ 2\pi $-периодичность функции $ \Phi(\varphi)
+$\footnote{Отсюда и требование к знаку $ \lambda $. Заметим, что случай
+$ \lambda = 0 $, $\Phi \equiv \mathrm{const} = A $ входит в обозрение.}.
+Это условие можно записать официально как\footnote{Говорить о периодичности
+  здесь не совсем корректно, поскольку и так $ \varphi \in [0, 2\pi) $.
+Требуется лишь, чтобы для любого $ n $ $ \Phi^{(n)}(0) = \Phi^{(n)}(2\pi) $.
+Тогда после возвращения в декартовы координаты функция $ u $ будет непрерывной
+со всеми своими производными.} $ \Phi(0) = \Phi(2\pi) $, $ \Phi'(0) =
+\Phi'(2\pi) $. Из самого уравнения вытекает тогда, что $ \Phi^{(n)}(0) =
+\Phi^{(n)}(2\pi) $ для любого $ n $. После подстановки $ \Phi $ в условия спектр
+быстро угадывается, однако можно и строго прийти к уравнению\footnote{См. раздел
+\ref{sec:S-L}.} 
+\[
+  \left(\cos ( \sqrt\lambda 2\pi ) - 1\right)^2 + \sin^2 \left(\sqrt\lambda2\pi\right)=0,
+\]
+откуда уже явно видно, что $ \lambda_n = n^2 $.
+
+Функцию $ R(r) $, как решение уравнения Эйлера, будем искать в виде $ R(r) = r^\mu $.
+Подставляя и сокращая, получаем $ n^2 = \mu^2 $, а $ R(r) = Cr^n + Dr^{-n} +
+E\ln r $.
+Теперь, исходя из ограниченности гармонических функций и условий задачи, приравниваем один из
+коэффициентов $ C $, $ D $, а также коэффициент $ E $ к нулю и получаем частные решения  
+\begin{align*}
+  u_n(r,\varphi) &= r^n(A_n\cos n\varphi + B_n \sin n\varphi) \quad \text{для
+  задачи внутри круга},\\
+    u_n(r,\varphi) &= r^{-n}(A_n\cos n\varphi + B_n \sin n\varphi) \quad \text{для
+  задачи вне круга}.\\
+\end{align*}
+Учитывая получившийся вид решения, разложим граничное условие $ f(\varphi) $ в
+ряд Фурье 
+\begin{equation}
+    \alpha_0 = \frac{1}{\pi}\int\limits_{-\pi}^{\pi}f(\psi)\,d\psi, \quad
+    \alpha_n = \frac{1}{\pi}\int\limits_{-\pi}^{\pi}f(\psi)\cos
+    n\psi\,d\psi,\quad
+    \beta_n = \frac{1}{\pi}\int\limits_{-\pi}^{\pi}f(\psi)\sin n\psi\,d\psi
+    \label{eq:fourier_exp}
+\end{equation}
+и приравняем коэффициенты ряда $ u(a, \varphi) $, откуда уже получим $ A_n $ и $ B_n $.
+Конкретно, 
+\begin{align}
+  f(\varphi) &= \frac{\alpha_0}{2} + \sum_{n=1}^\infty(\alpha_n\cos n\varphi +
+  \beta_n \sin n\varphi),\\
+  u(\rho, \varphi) &= \frac{\alpha_0}{2} + \sum_{n=1}^\infty t^n (\alpha_n\cos
+  n\varphi + \beta_n \sin n\varphi), \label{eq:fourier_sol}
+\end{align}
+где $ t = r/a \leqslant 1 $ для внутренней задачи и
+$ t = a/r \leqslant 1 $ для внешней.
+
+%TODO: как раскладывать в ряд Фурье (?)
+%TODO: формулы для An Bn (?)
+
+
+
+\subsubsection{Интеграл Пуассона}
+%ref: С-Т, стр. 333; Пикулин, стр. 20 (основное); Олейник, стр. 86; Шубин, стр. 130;
+%Свешников, стр. 212; Петровский, стр. 251
+Ограничимся на время внутренним случаем и соединим формулы
+\eqref{eq:fourier_exp} и \eqref{eq:fourier_sol}:
+\[
+  u(r,\varphi) = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} \left[ \frac{1}{2} + \sum_{n=1}^\infty \left(
+  \frac{r}{a} \right)^n (\cos n\psi\cos n\varphi + \sin n\psi \sin n\varphi
+)\right] \, d\psi.
+\]
+Используя формулы косинуса суммы, Эйлера, суммы геометрической прогрессии,
+комплексную формулу косинуса, при
+$ t := r/a < 1 $ получим
+\begin{multline*}
+    \frac{1}{2} + \sum t^n(\cos n\psi \cos n\varphi + \sin n\psi \sin n\varphi)
+    = \frac{1}{2} + \sum t^n \cos n(\varphi - \psi) =\\=
+    \frac{1}{2} + \frac{1}{2}\sum t^n \left[ e^{in(\varphi-\psi)} +
+    e^{-in(\varphi - \psi)} \right] = \frac{1}{2} \left( 1 + \sum \left[
+(te^{i(\varphi - \psi)})^n + (te^{-i(\varphi - \psi)})^n \right]  \right) =\\=
+  \frac{1}{2} \left[ 1 + \frac{te^{i(\varphi - \psi)}}{1 - te^{i(\varphi-\psi)}}
+    + \frac{te^{-i(\varphi - \psi)}}{1 - te^{-i(\varphi-\psi)}}\right] =
+    \frac{1}{2} \frac{1 - t^2}{1 - 2t\cos(\varphi - \psi) + t^2}.
+\end{multline*}
+Таким образом, \emph{интегралом Пуассона} называется интеграл 
+\[
+    \frac{1}{2\pi} \int\limits_{-\pi}^{\pi}f(\psi) K(r, \varphi, a,
+    \psi)\,d\psi,
+\]
+а выражение  
+\[
+    K(r,\varphi, a,\psi) = \frac{a^2 - r^2}{r^2 - 2ar\cos(\varpsi-\psi) + a^2}
+\]
+называют \emph{ядром Пуассона}. Видно, что $ K > 0 $, поскольку при $ r < a $ и
+$ 2ar < a^2 + r^2 $. При $ r = a $ интеграл теряет смысл, однако в пределе при
+$ r \to a $ стремится\footnote{Поскольку ряд, из
+которого был получен интеграл, непрерывен в замкнутой области.} к граничной функции $ f(\varphi) $, что позволяет
+доопределить его соответствующим образом и назвать решением $
+u(r,\varphi) $.
+
+Понятно, что для внешней задачи надо просто
+поменять числитель ядра на $ r^2 - a^2 $.
