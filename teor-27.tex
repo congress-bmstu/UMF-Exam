@@ -1,17 +1,43 @@
 \subsection{Регуляризация степенных особенностей. Сингулярная обобщённая функция $\mathcal{P} \frac{1}{x}$. Формула Сохоцкого.}
 
+\paragraph{Регуляризация степенных особенностей.}\footnote{Источник: https://fizik.ilyam.org/files/konspekts/matfizika6-distributions2.pdf} Регуляризацией функции $f(x)$, имеющей неинтегрируемую особенность вида $\frac{1}{(x - x_0)^{\alpha}}$, называется функционал $(f, \varphi)$, который для пробных функций $\varphi(x)$, равных нулю в окресности точки $x_0$, выражается интегралом $\int f(x) \varphi(x) \, dx$.
 
-\paragraph{Регуляризация степенных особенностей.} Регуляризацией функции $f(x)$, имеющей неинтегрируемую особенность вида $\frac{1}{(x - x_0)^{\alpha}}$, называется функционал $(f, \varphi)$, который для пробных функций $\varphi(x)$, равных нулю в окресности точки $x_0$, выражается интегралом $\int f(x) \varphi(x) \, dx$.
+\paragraph{Сингулярная обобщенная функция $\mathcal{P}{\frac{1}{x}}$. Формула Сохоцкого.} \footnote{Источник: Владимиров В.С.}
 
-\paragraph{Сингулярные обобщенные функции.}
+В соответствии с определением регулярной обобщенной функции, сингулярную функцию нельзя отождествить ни с какой локально интегрируемой функцией. Простейшим примером такой функции является $\delta$-функция Дирака.
 
-В соответствии с определение, данным в предыдущем пунке, сингулярную функцию нельзя отождествить ни с какой локально интегрируемой функцией. Простейшим примером сингулярной обобщенной функции является $\delta$-функция Дирака.
+Введем линейный функционал $\mathcal{P}{\frac{1}{x}}$, действующий по формуле
+\begin{equation*}
+	(\mathcal{P}{\frac{1}{x}}, \varphi) = \underbrace{\text{V.p.} \int \frac{\varphi(x)}{x} \, dx}_{\text{a.k.a. инт. в смысле гл. зн-я}} = 
+	\lim \limits_{\epsilon \to +0} \Big(\int_{-\infty}^{-\epsilon} + \int_{+\epsilon}^{+\infty}\Big) \frac{\varphi(x)}{x} \, dx, \quad \varphi \in \mathcal{D}(\mathbb{R}^1).
+\end{equation*} 
 
+Установим равенство
 \begin{equation}
-	(\delta, \varphi) = \varphi(0), \quad \varphi \in \mathcal{D}.
+	\label{huinya_s_potolka}
+	\lim \limits_{\epsilon \to +0} \int \frac{\varphi(x)}{x + i \epsilon} \, dx = - i \pi \varphi(0) + \text{V.p.} \int \frac{\varphi(x)}{x} \, dx, \quad \varphi \in \mathcal{D}.
 \end{equation}
-Очевидно, $\delta \in \mathcal{D}', \delta(x) = 0, x \not = 0$, так что $\operatorname{spt}{\delta} = \{0\}$ ($\operatorname{spt}$ --- это носитель, от слова \textit{support}).
- 
+
+Действительно, если $\varphi(x) = 0$ при $\abs{x} > R$, то 
+\begin{align*}
+	\lim \limits_{\epsilon \to +0} \int \frac{\varphi(x)}{x + i \epsilon} \, dx = \lim \limits_{\epsilon \to +0} \int_{-R}^{R} \frac{x - i \epsilon}{x^2 + \epsilon^2} \varphi(x) \, dx = \\
+	= \varphi(0) \lim \limits_{\epsilon \to +0} \int_{-R}^{R} \frac{x - i \epsilon}{x^2 + \epsilon^2} \, dx + \lim \limits_{\epsilon \to +0} \int_{-R}^{R} \frac{x - i \epsilon}{x^2 + \epsilon^2} [\varphi(x) - \varphi(0)] \, dx = \\
+	= - 2 i \varphi(0) \lim \limits_{\epsilon \to +0} \arctan{\frac{R}{\epsilon}} + \int_{-R}^{R} \frac{\varphi(x) - \varphi(0)}{x} \, dx = \\
+	= - i \pi \varphi(0) + \text{V.p.} \int \frac{\varphi(x)}{x} \, dx.
+\end{align*}
+
+Соотношение \eqref{huinya_s_potolka} означает, что существует предел последовательности $1/(x + i \epsilon)$ в $\mathcal{D}$, $\epsilon \to +0$, который мы обозначим $1/(x + i0)$, и этот предел равен $-i \pi \delta(x) + \mathcal{P}{\frac{1}{x}}$. Итак,
+\begin{equation}
+	\label{sohoc}
+	\frac{1}{x + i 0} = - i \pi \delta(x) + \mathcal{P}{\frac{1}{x}}.
+\end{equation}
+Аналогично, 
+\begin{equation}
+	\label{sohoc'}
+	\frac{1}{x - i0} = i \pi \delta(x) + \mathcal{P}{\frac{1}{x}}. 
+\end{equation}
+
+Формулы \eqref{sohoc} и \eqref{sohoc'} называются формулами Сохоцкого. Они широко используются, например, в квантовой физике.
 
 
 
