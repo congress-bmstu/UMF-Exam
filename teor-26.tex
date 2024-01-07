@@ -1,3 +1,93 @@
 \subsection{Основные функции и обобщенные функции, сходимость в пространстве основных функций. Регулярная обобщённая функция. Носитель обобщённой функции}
 %aut: Slava
 %ref: Владимиров, стр. 65
+\subsubsection{Основа}
+\textsc{Пример мотивации.} Найти плотность материальной точки. Интеграл
+плотности по
+области, содержащей эту точку должен давать её массу.
+
+Рассмотрим однородный шар $ U_\delta $ в пространстве\footnote{Для удобства
+вектор $ \mathbf x $ будет записываться как просто $ x $.} $ \mathbb R^3 $ массы $ m = 1 $ в начале координат. Плотность этого шара выражается
+соотношениями\footnote{См. формулу объёма шара.}  
+\[
+  f_\delta(x) = \begin{cases}
+    0, & |x| > \delta,\\
+    \dfrac{3}{4\pi \delta^3}, & |x| < \delta.
+  \end{cases}
+\]
+Теперь нужно устремить его радиус $ \delta \to 0 $. Классический предел не
+даёт вменяемого результата, поэтому рассмотрим \emph{слабый предел}. Именно, для
+каждой непрерывной функции $ \varphi $ найдём предел 
+\[
+  \lim_{\delta \to 0} \int f_\delta(x)\varphi(x) \, dx = \varphi(0).
+\]
+Действительно, для любого $ \varepsilon > 0 $ имеем такую $ \delta_0 $, что при
+всех $ \delta < \delta_0 $ 
+\begin{multline*}
+    \left| \int f_\delta(x)\varphi(x)\, dx - \varphi(0) \right| =
+    \frac{3}{4\pi\delta^3} \left| \int_{|x| < \delta} \varphi(x) - \varphi(0)\,dx
+    \right| \leqslant\\\leqslant
+    \frac{3}{4\pi\delta^3} \int_{|x|<\delta}|\varphi(x)-\varphi(0)|\, dx <
+    \varepsilon \frac{3}{4\pi\delta^3} \int_{|x| <\delta} dx = \varepsilon.
+\end{multline*}
+Здесь была использована непрерывность $ \varphi $, а также общие свойства
+интегралов.
+
+\sloppy
+Назовём тогда \emph{$ \delta $-функцией Дирака} полученный
+функционал\footnote{<<Настоящий>> аргумент $ \delta $ --- функция. Запись $
+\delta(x) $ удобна и обоснована. Применение функционала к функции будем записывать как ($\delta,
+\varphi  $).} $ \delta(x)\colon C(\mathbb R^3) \to \mathbb R $, $(\delta, \varphi) = \lim\int
+f_\delta\varphi\,dx = \varphi(0)$. Для точки массой $ m $ находящейся в
+$ x_0  $ имеем плотность $
+m\delta(x - x_0) $. Чтобы получить её массу, подействуем нашей функцией $ (m\delta, 1)
+= m\cdot1(x_0) = m$ на $ \varphi\equiv 1 $. Полученный функционал линеен и
+непрерывен в смысле нормы $ L_2 $. Функционалы с такими свойствами и называют
+\emph{обобщёнными функциями}.
+
+\subsubsection{Пространство основных функций $ \mathcal D $} Функция $ \varphi $ в
+нашем примере, как говорят, является \emph{основной функцией} для $ \delta(x) $.
+Она достаточно хороша, чтобы соответствующий предел существовал. Ясно, что чем
+<<лучше>> пространство основных функций, тем больше существует линейных непрерывных
+функционалов на нем. 
+
+Пространство основных функций $ \mathcal D = \mathcal D(\mathbb R^n) $ ---
+все финитные\footnote{Носитель --- замыкание множества, на котором функция
+отлична от нуля (обозн. $ \operatorname{supp} $) --- компактен (ограничен).} бесконечно дифференцируемые в $
+\mathbb R^n $ функции вместе с введённым понятием сходимости.
+
+\paragraph{Сходимость в $ \mathcal D $.} Скажем, что последовательность функций $ \varphi_k \in
+\mathcal D$ сходится к функции $ \varphi \in \mathcal D $, если 
+\begin{enumerate}
+  \item Существует такое число $ R > 0 $, что $ \operatorname{supp} \varphi_k \subset U_R $.
+  \item Для любого мультииндекса $ \alpha = (\alpha_1, \alpha_2, \ldots,
+    \alpha_n) $ выполняется\footnote{Обозначения: $\alpha_k = 0, 1, \ldots$;
+    $|\alpha| := \sum \alpha_k$; $\partial^\alpha f(x) :=
+  \frac{\partial^{|\alpha|}f(x_1, \ldots, x_n)}{\partial x_1^{\alpha_1}
+\ldots\partial_n^{\alpha_n}}$. Знаком $ \rightrightarrows $ обозначается
+равномерная сходимость: $ \exists \delta \forall\varepsilon\colon |x-x_0| < \delta
+\Rightarrow |f(x) - f(x_0)| < \varepsilon $.} 
+  \[
+      \partial^\alpha \varphi_k(x) \rightrightarrows \partial^\alpha\varphi(x),
+      \quad k \to \infty.
+  \]
+\end{enumerate}
+
+\paragraph{Примеры непрерывных операторов на $ \mathcal D $.} 
+\begin{enumerate}
+  \item Докажем по определению\footnote{Определение: $ f_k \to f
+      \Rightarrow Lf_k \to Lf $, что равносильно ($ g_k = |f - f_k| $) $ g_k \to 0
+    \Rightarrow Lg_k \to 0 $.} непрерывность оператора дифференцирования, то есть
+    что $ \varphi_k \to 0 $ влечёт $
+    \partial^\alpha\varphi_k \to 0 $. Первое требование выполняется очевидным
+    образом. Второе требование следует из соотношения $ \partial^\beta \circ
+    \partial^\alpha = \partial^{\alpha + \beta} $.
+  \item Аналогично показывается, что непрерывен оператор $ (l, \varphi(x)) :=
+    \varphi(Ax + B) $, $ A \neq 0 $.
+  \item  Непрерывна операция умножения на функцию\footnote{$C^\infty(\mathbb
+      R^n)$ есть
+    пространство бесконечно дифференцируемых на $ \mathbb R^n $ функций.} $
+  a(x)\in C^\infty(\mathbb R^n) $.
+\end{enumerate}
+Заметим, что все перечисленные операции переводят функции из $ \mathcal D $ в
+функции из $ \mathcal D $ (это обособленные факты).
