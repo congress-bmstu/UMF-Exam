@@ -1,1 +1,45 @@
 \subsection{Пространство быстроубывающих функций и пространство функций медленного роста. Обобщённое преобразование Фурье. Обобщённое преобразование Фурье свертки и обобщённое равенство Парсеваля.}
+
+\paragraph{Пространства $\mathcal{D}$ и $\mathcal{D}'$}
+ОПРЕДЕЛЕНИЕ. Отнесём ко множеству \emph{основных функций} $\mathcal{D} = \mathcal{D} (\mathbb{R}^n)$ все
+финитные бесконечно дифференцируемые в $\mathbb{R}^n$ функции. Сходимость в $\mathcal{D}$
+определим следующим образом:
+\[
+  \varphi_k \to \varphi \text{ в } \mathcal{D}, \varphi_k, \varphi \in \mathcal{D}
+  \Leftrightarrow
+  \begin{cases}
+    \exists R > 0 : \operatorname{supp} \varphi_k \subset U_R, \\
+    \forall \alpha=(\alpha_1, \alpha_2, \dots, \alpha_n) :
+      \partial^{\alpha} \varphi_k(x) \rightrightarrows \partial^{\alpha} \varphi(x), x\in\mathbb{R}^n, 
+      k \to \infty
+  \end{cases}
+\]
+
+Обозначение: $\mathcal{D} (G) = \left\{ \varphi \in \mathcal{D} : \supp\varphi \subset G \right\}$.
+
+ОПРЕДЕЛЕНИЕ. Обобщённой функцией называется всякий линейный непрерывный функционал на пространстве
+основных функций $\mathcal{D}$. $\mathcal{D}' = \left\{ f: \mathcal{D} \mapsto \mathbb{C} \right\} $
+
+\begin{itemize}
+  \item Линейный: $\forall f \in \mathcal{D}' \quad \forall \varphi, \psi \in \mathcal{D} : (f, \lambda \varphi + \mu \psi) = \lambda (f, \varphi) + \mu (f, \psi)$.
+
+  \item Непрерывный: $\varphi_k \to 0 \text{ в } \mathcal{D}, k \to \infty \Rightarrow (f, \varphi_k) \to 0, k \to \infty$.
+
+  \item Сходимость в пространстве $\mathcal{D}'$: $f_k \to f, f_k, f \in \mathcal{D}' \Leftrightarrow
+\forall \varphi \in \mathcal{D} : (f_k, \varphi) \to (f, \varphi), k \to \infty$.
+
+ \item Говорят, что обобщённая функция равна нулю в $G$, если $\forall \varphi \in \mathcal{D}(G) : (f, \varphi) = 0$. 
+\end{itemize}
+
+ОПРЕДЕЛЕНИЕ. \emph{Регулярными обобщёнными функциями} называются такие обобщённые функции, которые
+определяются локально интегрируемыми в $\mathbb{R}^n$ функциями по формуле:
+\[
+  (f, \varphi) = \int f(x) g(x) \, dx,
+\]
+остальные называются \emph{сингулярными}.
+
+То есть таким функциям можно сопоставить какуюто нормальную обычную функцию $f(x)$, причём верна
+лемма Дюбуа-Реймона: для того, чтобы локально интегрируемая в $G$ функция $f(x)$ обращалась в нуль
+в области $G$ в смысле обобщенных функций, необходимо и достаточно, чтобы $f(x) = 0$ в $G$.
+
+
