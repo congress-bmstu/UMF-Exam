@@ -1,1 +1,57 @@
-\subsection{Собственные значения и собственные функции задачи Штурма–Лиувилля для цилиндра. Краевые задачи для уравнений Лапласа и Пуассона в ограниченном цилиндре.}
+\subsection{Собственные значения и собственные функции задачи Штурма -- Лиувилля для цилиндра. Краевые задачи для уравнений Лапласа и Пуассона в ограниченном цилиндре}
+\subsubsection{Штурм -- Лиувилль}
+%aut: Slava
+%ref: Свешников, стр. 121 (147 2ed.)
+Рассматривается задача 
+\[
+  \begin{cases}
+    \Delta u + \lambda u = 0, & 0 < r < a, \ 0\leqslant \varphi \leqslant 2\pi,
+    \ 0 < z < l,\\
+    \alpha u_r(a, \varphi, z) + \beta u(a, \varphi, z) = 0,\\
+    \alpha_1 u_z(r,\varphi, 0) - \beta_1 u(r,\varphi, 0) = 0,\\
+    \alpha_2 u_z(r,\varphi, l) + \beta_2 u(r,\varphi, l) = 0.
+  \end{cases}
+\]
+Напомним\footnote{См. раздел \ref{sec:14}.}, 
+\[
+  \Delta u(r,\varphi,z) = \Delta_2 u + u_{zz},
+\]
+где $ \Delta_2 $ --- оператор Лапласа на плоскости.
+
+Разделим переменные --- $ u = v(r, \varphi) Z(z) $ --- и получим соотношение 
+\[
+    \frac{\Delta_2 v + \lambda v}{v} = - \frac{Z''}{Z} =: \nu.
+\]
+Так задача Штурма -- Лиувилля распалась на две задачи Штурма -- Лиувилля: 
+\[
+  \begin{cases}
+    Z'' + \nu Z = 0, \quad 0 < z < l,\\
+    \alpha_1Z'(0) -\beta_1 Z(0) = 0,\\
+    \alpha_2 Z'(l) + \beta_2 Z(l) = 0.
+  \end{cases}\quad
+  \begin{cases}
+    \Delta v + \varkappa = 0, \quad 0 < r < a, \ 0 \leqslant \varphi \leqslant
+    2\pi,\\
+    \alpha v_z(a,\varphi) + \beta v(a,\varphi) = 0,
+  \end{cases}
+\]
+где $ \varkappa := \lambda - \nu $. Первая (одномерная) задача была решена в
+разделе \ref{sec:S-L}, вторая (круговая) --- в разделе \ref{sec:20}. 
+
+Собственные функции имеют вид 
+\[
+  u_{knm}(r, \varphi, z) = J_n \left( \sqrt{\varkappa_{kn}}r \right) (A_{kn}
+\cos n\varphi + B_{kn} \sin n\varphi) Z_m(z),
+\]
+а собственные значения вычисляются по формуле $ \lambda_{knm} = \varkappa_{kn} +
+\nu_m$.
+
+
+
+\subsubsection{Лаплас}
+%ref: Пикулин, стр. 32
+
+
+
+\subsubsection{Пуассон}
+%ref: Пикулин, стр. 37
