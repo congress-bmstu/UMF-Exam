@@ -1,113 +1,109 @@
 \subsection{Собственные значения и собственные функции задачи Штурма -- Лиувилля
-в круге, в круговом кольце и во внешности круга. Краевые задачи для уравнения
-Лапласа в указанных областях}\label{sec:20}
+	в круге, в круговом кольце и во внешности круга. Краевые задачи для уравнения
+	Лапласа в указанных областях}\label{sec:20}
 \subsubsection{Штурм -- Лиувилль}
 %aut: Slava
 %ref: Свешников, стр. 117
-<<<<<<< HEAD
-Рассматривается задача
-=======
 \paragraph{Внутренняя задача (круг и кольцо).}
 Рассматривается задача\footnote{В кольцевой задаче добавится, разумеется, ещё
-одно граничное условие, что, впрочем, не повлияет на ход решения.}
->>>>>>> 2d8f780c9da7cb788c9d886af504b5c161a7c671
+	одно граничное условие, что, впрочем, не повлияет на ход решения.}
 \[
-  \begin{cases}
-    \Delta u + \lambda u = 0,\\
-    \alpha u(a, \varphi)_n + \beta u(a, \varphi) = 0.
-  \end{cases}
+\begin{cases}
+	\Delta u + \lambda u = 0,\\
+	\alpha \frac{\partial u(a, \varphi)}{\partial \mathbf n} + \beta u(a, \varphi) = 0.
+\end{cases}
 \]
-Напомним\footnote{См. раздел \ref{sec:14}.}, что  
+Из однородности условий заключаем, что $ \lambda \geqslant 0 $. Иные случаи будут разобраны в разделе
+\ref{sec:laplace_cylinder}. Напомним\footnote{См. раздел \ref{sec:14}.}, что  
 \[
-    \Delta u = \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial
-    u}{\partial r} \right) + \frac{1}{r^2} \frac{\partial^2 u}{\partial
-  \varphi^2}.
+\Delta u = \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial
+	u}{\partial r} \right) + \frac{1}{r^2} \frac{\partial^2 u}{\partial
+	\varphi^2}.
 \]
 Тогда после разделения переменных получим\footnote{Знак $ \nu $ обусловлен
-требуемой периодичностью $ \Phi(\varphi) $.}
+	требуемой периодичностью $ \Phi(\varphi) $.}
 \[
-    \frac{r (r R')' + \lambda r^2 R}{R} = - \frac{\Phi''}{\Phi} =: \nu \geqslant
-    0.
+\frac{r (r R')' + \lambda r^2 R}{R} = - \frac{\Phi''}{\Phi} =: \nu \geqslant
+0.
 \]
 Получили простейшую задачу Штурма -- Лиувилля с периодическими
 условиями\footnote{См., например, раздел \ref{sec:16}.}
 на $ \Phi(\varphi) $ с решением $ \Phi_n(\varphi) = A\cos n\varphi + B\sin
 n\varphi $ ($ \nu_n = n^2 $) и задачу
-\[
-  \begin{cases}
-    r^2R'' + rR' + (\lambda r^2 - n^2) R = 0,\\
-    \alpha R'(a) + \beta R(a) = 0.
-  \end{cases}
-\]
-с дополнительным условием ограниченности. Заменой $ x := r\sqrt\lambda $
+\begin{equation}
+	\label{eq:bessel_eq}
+	\begin{cases}
+		r^2R'' + rR' + (\lambda r^2 - n^2) R = 0,\\
+		\alpha R'(a) + \beta R(a) = 0.
+	\end{cases}
+\end{equation}
+с дополнительным условием ограниченности. При $ \lambda = 0 $ полученное
+уравнение вырождается в уравнение Эйлера с ФСР $ \{1, \ln r , r^n, r^{-n}\}$, $n
+\in \mathbb N$. При $ \lambda > 0 $ заменой $ x := r\sqrt\lambda $
 уравнение
 приводится к \emph{уравнению Бесселя}\footnote{См. раздел \ref{sec:bessel}.} 
 \[
-    x^2y'' + xy' + (x^2 - n^2) y = 0
+x^2y'' + xy' + (x^2 - n^2) y = 0
 \]
-с решением  
-\[
-    R_n(r) = C_1 J_n(\sqrt \lambda r) + C_2 N_n (\sqrt\lambda r), \quad n = 0,
-    1, 2, \ldots
-\]
-Здесь, возможно, потребуется исключить одну из функций, неограниченную в
-заданной области. Функция $ N_n $ не ограничена в нуле, а $ J_n $ в бесконечности.
+с решениями $ \{J_n(\sqrt \lambda r), N_n(\sqrt\lambda r)\} $, $ n = 0, 1, \ldots $
+% \[
+%     R_n(r) = C_1 J_n(\sqrt \lambda r) + C_2 N_n (\sqrt\lambda r), \quad n = 0,
+%     1, 2, \ldots
+% \]
+Здесь, возможно, потребуется исключить функции, неограниченные в
+заданной области. Функция $ N_n $ неограниченна в нуле, а $ J_n $ ограничена
+везде.
 В кольцевой задаче ничего исключать не надо. Далее будем считать, что задача
-<<<<<<< HEAD
-внутренняя, тогда $ R_n(r) = J_n(\sqrt\lambda_n r) $ и $ \lambda_n $ ищется
-=======
 круговая внутренняя, тогда $ R_n(r) = r^n $ при $ \lambda = 0 $, $ R_n(r) =
 J_n(\sqrt\lambda_n r) $ при $ \lambda > 0 $, и положительные $
 \lambda_n $ ищутся
->>>>>>> 2d8f780c9da7cb788c9d886af504b5c161a7c671
 численно из
 граничного соотношения  
 \[
-    \alpha \sqrt\lambda J'_n(\sqrt\lambda a) + \beta J_n(\sqrt\lambda a) = 0.
+\alpha \sqrt\lambda J'_n(\sqrt\lambda a) + \beta J_n(\sqrt\lambda a) = 0.
 \]
-<<<<<<< HEAD
-Корней может быть и больше одного, поэтому окончательно собственные функции
-=======
 Положительных корней при классических условиях счётное число, поэтому окончательно собственные функции
->>>>>>> 2d8f780c9da7cb788c9d886af504b5c161a7c671
 круга имеют вид 
 \[
-  u_{nk}(r, \varphi) = J_n(\sqrt{\lambda_{nk}} r)(A_{nk}\cos n\varphi +
-  B_{nk}\sin
-  n\varphi).
+u_{nk}(r, \varphi) = \{r^n; \ J_n(\sqrt{\lambda_{nk}} r)\}(A_{nk}\cos n\varphi +
+B_{nk}\sin
+n\varphi).
 \]
-Найдём скалярный квадрат этой функции $ \|u_{kn}\|^2 =
+%TODO: проверить запись, суммирование
+При этом при данных условиях $ r^n $ всегда исключается из
+рассмотрения\footnote{Поскольку невыполнимо условие Неймана $ R'(a) = 0 $, а $
+	\lambda = 0 $ в остальных случаях не даёт нетривиальных решений.}. Найдём скалярный квадрат этой функции $ \|u_{kn}\|^2 =
 \|J_n\|^2\cdot\|\Phi_n\|^2 $, где норму $ \Phi_n $ считаем известной из
 теории рядов Фурье. Найдём в цилиндрических координатах, используя
 интегрирование по частям,
 \[
-    \|J_n\|^2 = \int\limits_{0}^{a} J^2_n(\sqrt\lambda r)r\,dr =
-    \frac{1}{\lambda}\int\limits_{0}^{a\sqrt\lambda}J^2_n(x)x\,dx =
-    \frac{1}{\lambda} \left[ \frac{x^2}{2}J^2_n(x) -
-    \int x^2 J_n(x)J'_n(x)\,dx  \right]^{a\sqrt\lambda}_0,
+\|J_n\|^2 = \int\limits_{0}^{a} J^2_n(\sqrt\lambda r)r\,dr =
+\frac{1}{\lambda}\int\limits_{0}^{a\sqrt\lambda}J^2_n(x)x\,dx =
+\frac{1}{\lambda} \left[ \frac{x^2}{2}J^2_n(x) -
+\int x^2 J_n(x)J'_n(x)\,dx  \right]^{a\sqrt\lambda}_0,
 \]
 где из уравнения Бесселя
 \[
-  x^2 J_n = -x^2 J''_n - xJ'_n + n^2J_n = - x(xJ'_n)' + n^2 J_n,
+x^2 J_n = -x^2 J''_n - xJ'_n + n^2J_n = - x(xJ'_n)' + n^2 J_n,
 \]
 поэтому выражение в квадратных скобках равно
 \[
-  % \int J^2_n(x) x\,dx = \frac{x^2}{2}J^2_n(x) - \int x^2 J_n(x)J'_n(x)\,dx =\\=
-  \frac{x^2}{2} J^2_n(x) + \int xJ_n' (xJ_n')'\,dx - n^2 \int J_n J_n' \, dx
-  =
-  \frac{x^2}{2} J^2_n + \frac{x^2}{2} (J'_n)^2 - \frac{n^2}{2} J^2_n.
+% \int J^2_n(x) x\,dx = \frac{x^2}{2}J^2_n(x) - \int x^2 J_n(x)J'_n(x)\,dx =\\=
+\frac{x^2}{2} J^2_n(x) + \int xJ_n' (xJ_n')'\,dx - n^2 \int J_n J_n' \, dx
+=
+\frac{x^2}{2} J^2_n + \frac{x^2}{2} (J'_n)^2 - \frac{n^2}{2} J^2_n.
 \]
-Итак, учитывая тождество $ J_n(0) = 0 $,
+Итак, учитывая тождество $ J_n(0) = 0 $, для $ r = a $ получим
 \[
-    \|J_n\|^2 = \frac{a^2}{2} \left[ (J'_n(a\sqrt\lambda))^2 + \left( 1 -
-    \frac{n^2}{a^2\lambda} \right) J_n^2 (a\sqrt\lambda) \right].
+\|J_n\|^2 = \frac{a^2}{2} \left[ (J'_n(a\sqrt\lambda))^2 + \left( 1 -
+\frac{n^2}{a^2\lambda} \right) J_n^2 (a\sqrt\lambda) \right].
 \]
 Например, для задачи Дирихле ($ \alpha = 0 $, $ \beta = 1 $) имеем $
 J_n(a\sqrt\lambda) = 0 $, а значит,  
 \[
-  \|J_n\|^2 = \frac{a^2}{2} (J'_n(a\sqrt{\lambda_{nk}})^2.
+\|J_n\|^2 = \frac{a^2}{2} (J'_n(a\sqrt{\lambda_{nk}}))^2.
 \]
-
+Для задачи Неймана ($ \alpha = 1 $, $ \beta = 0 $), обратно, $ J'_n(a\sqrt\lambda) = 0. $
 
 \paragraph{Внешняя круговая задача (задача дифракции).}
 %ref: Боголюбов, стр. 293, Пикулин, стр. 52
@@ -115,19 +111,19 @@ J_n(a\sqrt\lambda) = 0 $, а значит,
 дополнительное условие --- условие излучения, выделяющее уходящую волну. На
 плоскости условие имеет один из двух видов 
 \[
-    u_r \pm i\sqrt\lambda u = o \left( \frac{1}{\sqrt r} \right), \quad
-    r\to\infty.
+u_r \pm i\sqrt\lambda u = o \left( \frac{1}{\sqrt r} \right), \quad
+r\to\infty.
 \]
 Будем для примера считать, что выбран знак <<минус>>. Представим решение для $ R(r) $, учитывая указанную асимптотику, в виде
 \emph{функций Ханкеля первого рода} 
 \[
-  R_{nk}(r) = A H^{(1)}_n(\sqrt\lambda_{nk} r),
+R_{nk}(r) = A H^{(1)}_n(\sqrt\lambda_{nk} r),
 \]
 % а решение имеет вид 
 % \[
 %   u = \sum_{n=0}^\infty \frac{H_n^{(1)}(\sqrt\lambda_{nk}
-%     r)}{\alpha\sqrt\lambda_{nk}
-%     H^{(1)}'_n(\sqrt\lambda_{nk} a) - \beta H_n^{(1)}(\sqrt\lambda_{nk} a)} (\alpha_n\cos
+	%     r)}{\alpha\sqrt\lambda_{nk}
+	%     H^{(1)}'_n(\sqrt\lambda_{nk} a) - \beta H_n^{(1)}(\sqrt\lambda_{nk} a)} (\alpha_n\cos
 %   n\varphi + \beta_n \sin n\vqrphi),
 % \]
 % где $ \alpha $, $ \beta $ --- коэффициенты разложения в ряд Фурье граничной
@@ -138,7 +134,7 @@ J_n(a\sqrt\lambda) = 0 $, а значит,
 Краевая задача с условием излучения со знаком <<плюс>> для $ R(r) $ имеет
 решения  
 \[
-  R_{nk}(r) = AH^{(2)}_n(\sqrt{\lambda_{nk}} r).
+R_{nk}(r) = AH^{(2)}_n(\sqrt{\lambda_{nk}} r).
 \]
 
 % \[
@@ -158,8 +154,8 @@ J_n(a\sqrt\lambda) = 0 $, а значит,
 $, полученной в ходе решения уравнения Эйлера на $ R(r) $, не стоит исключать ни
 одной функции:
 \[
-  u(r,\varphi) = a_0 + b_0\ln r + \sum_{n=1}^\infty [(a_nr^n + b_nr^{-n})\cos
-  n\varphi + (c_n r^n + d_n r^{-n})\sin n\varphi].
+u(r,\varphi) = a_0 + b_0\ln r + \sum_{n=1}^\infty [(a_nr^n + b_nr^{-n})\cos
+n\varphi + (c_n r^n + d_n r^{-n})\sin n\varphi].
 \]
 Хода решения это никак не изменит, однако теперь потребуется
 разложить в ряд Фурье две граничных функции (для $ R_1 $ и $ R_2 $) и приравнять
@@ -174,7 +170,7 @@ $, полученной в ходе решения уравнения Эйлер
 взятия производной теперь для
 внутренней задачи $
 A_n = (\alpha_n)/(na^{n-1}) $, $ B_n = (R\beta_n)/(na^{n-1}) $. Коэффициент $
-\alpha_0 $ в данном случае быть ненулевым не может. Для внешней задачи $
+A_0 $ в данном случае будет произвольным. Для внешней задачи $
 u_{\mathbf n}|_{r=a} = -u_r|_{r=a} $, остальное аналогично.
 
 Для смешанных краевых задач ход решения аналогичный.
