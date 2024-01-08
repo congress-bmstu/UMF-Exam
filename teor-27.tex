@@ -1,32 +1,82 @@
 \subsection{Регуляризация степенных особенностей. Сингулярная обобщённая функция $\mathcal{P} \frac{1}{x}$. Формула Сохоцкого.}
+%autor: Сеня (изначально), но вообще скорее Саша
 
-\paragraph{Регуляризация степенных особенностей.}\footnote{Источник: https://fizik.ilyam.org/files/konspekts/matfizika6-distributions2.pdf стр. 13} Регуляризацией функции $f(x)$, имеющей неинтегрируемую особенность вида $\frac{1}{(x - x_0)^{\alpha}}$, называется функционал $(f, \varphi)$, который для пробных функций $\varphi(x)$, равных нулю в окресности точки $x_0$, выражается интегралом $\int f(x) \varphi(x) \, dx$.
+\paragraph{Главное значение интеграла по Коши}
 
-\paragraph{Сингулярная обобщенная функция $\mathcal{P}{\frac{1}{x}}$. Формула Сохоцкого.} \footnote{Источник: Владимиров В.С. стр. 77}
+ОПРЕДЕЛЕНИЕ. Для особой точки $\infty$. Пусть $f(x)$ определена на интервале $(-\infty, +\infty)$
+и $\forall A : \left| \int\limits_{-A}^A f(x) \, dx \right| < \infty$, но несобственный интеграл 
+$\int\limits_{-\infty}^{+\infty} f(x) \, dx$ расходится, то
+\[
+  v.p. \int\limits_{-\infty}^{+\infty} f(x) \, dx = \lim_{A \to +\infty} \int\limits_{-A}^A f(x) \, dx.
+\]
+если соответствующий предел существует\footnote{\url{https://en.wikipedia.org/wiki/Cauchy_principal_value}, на русском тоже нормально написано}.
+
+Например, для интеграла $\int_{\mathbb{R}} x \, dx$ главное значение будет 0.
+
+ОПРЕДЕЛЕНИЕ. Для конечной особой точки.
+\[
+  v.p. \int\limits_a^b f(x) \, dx = \lim_{\varepsilon \to +0} \left( 
+    \int\limits_a^{c-\varepsilon} f(x) \, dx + \int\limits_{c+\varepsilon}^b f(x) \, dx \right)
+    = \lim_{\varepsilon\to+0} \left( \int\limits_{a}^{c-\varepsilon} + \int\limits_{c+\varepsilon}^b \right) f(x) \, dx,
+\]
+если соответственно, существует такой предел, а соответствующие интегралы сходятся при $\varepsilon \in U_\delta (0)$.
+
+\paragraph{Регуляризация степенных особенностей.}
+Всякий функционал f называется регуляризацией функции g, если для любых основных функций $\varphi$,
+равных нулю в окрестности особой точки g, действует по формуле $(f, \varphi) = \int g(x) \varphi(x) \, dx$.
+
+Как сказал Покровский, регуляризация -- это придание смысла тому, что смысла не имеет.
+
+В случае степенных особенностей, регуляризация это <<вырезание>> некоторой окрестности особой точки.
+Если на всём пространстве кроме этой окрестности всё, очевидно из определения, однозначно, то
+происходящее в этой окрестности можно задать огромным числом способов. Основной метод этого вырезания
+состоит в использованиии интеграла в смысле главного значения. Регуляризации, построенные таким
+образом обозначаются $\mathcal{P} f$:
+\[
+  \left( \mathcal{P} \dfrac{1}{|x-x_0|^m}, \varphi \right) = v.p. \int \dfrac{\varphi(x)}{|x-x_0|^m} \, dx.
+\]
+Впринцепе этой записи уже достаточно, чтобы понять что это такое и использовать в каких-то задачах,
+однако каждый раз вычислять предел от интеграла, стоящий в определении главного значения,
+неудобно и бессмысленно.
+
+
+\paragraph{Сингулярная обобщенная функция $\mathcal{P}{\frac{1}{x}}$}
 
 В соответствии с определением регулярной обобщенной функции, сингулярную функцию нельзя отождествить ни с какой локально интегрируемой функцией. Простейшим примером такой функции является $\delta$-функция Дирака.
 
 Введем линейный функционал $\mathcal{P}{\frac{1}{x}}$, действующий по формуле
 \begin{equation*}
-	(\mathcal{P}{\frac{1}{x}}, \varphi) = \underbrace{\text{V.p.} \int \frac{\varphi(x)}{x} \, dx}_{\text{a.k.a. инт. в смысле гл. зн-я}} = 
-	\lim \limits_{\epsilon \to +0} \Big(\int_{-\infty}^{-\epsilon} + \int_{+\epsilon}^{+\infty}\Big) \frac{\varphi(x)}{x} \, dx, \quad \varphi \in \mathcal{D}(\mathbb{R}^1).
-\end{equation*} 
+	(\mathcal{P}{\frac{1}{x}}, \varphi)
+  \equiv v.p. \int \frac{\varphi(x)}{x} \, dx
+  = \lim \limits_{\varepsilon \to +0} \Big(\int_{-\infty}^{-\varepsilon} + \int_{+\varepsilon}^{+\infty}\Big) \frac{\varphi(x)}{x} \, dx, \quad \varphi \in \mathcal{D}(\mathbb{R}^1).
+\end{equation*}
+впринцепе уже этого достаточно, но каждый раз считать этот предел будет не очень удобно, поэтому
+можно придумать как дальше расписать этот предел чтобы всё было замечательно.
+
+\begin{multline*}
+  (\mathcal{P} \dfrac{1}{x}, \varphi)
+  = \lim_{\varepsilon\to+0} \left(\int_{-\infty}^{-\varepsilon} + \int_{\varepsilon}^{+\infty}\right)
+    \dfrac{\varphi(x) - \varphi(0) + \varphi(0)}{x} \, dx
+    = \lim_{\varepsilon\to+0} \left[ \int_{-\infty}^{-\varepsilon}  \right] 
+\end{multline*}
+
+\paragraph{Формула Сохоцкого.}\footnote{Источник: Владимиров В.С. стр. 77}
 
 Установим равенство
 \begin{equation}
 	\label{huinya_s_potolka}
-	\lim \limits_{\epsilon \to +0} \int \frac{\varphi(x)}{x + i \epsilon} \, dx = - i \pi \varphi(0) + \text{V.p.} \int \frac{\varphi(x)}{x} \, dx, \quad \varphi \in \mathcal{D}.
+	\lim \limits_{\varepsilon \to +0} \int \frac{\varphi(x)}{x + i \varepsilon} \, dx = - i \pi \varphi(0) + \text{V.p.} \int \frac{\varphi(x)}{x} \, dx, \quad \varphi \in \mathcal{D}.
 \end{equation}
 
 Действительно, если $\varphi(x) = 0$ при $\abs{x} > R$, то 
 \begin{align*}
-	\lim \limits_{\epsilon \to +0} \int \frac{\varphi(x)}{x + i \epsilon} \, dx = \lim \limits_{\epsilon \to +0} \int_{-R}^{R} \frac{x - i \epsilon}{x^2 + \epsilon^2} \varphi(x) \, dx = \\
-	= \varphi(0) \lim \limits_{\epsilon \to +0} \int_{-R}^{R} \frac{x - i \epsilon}{x^2 + \epsilon^2} \, dx + \lim \limits_{\epsilon \to +0} \int_{-R}^{R} \frac{x - i \epsilon}{x^2 + \epsilon^2} [\varphi(x) - \varphi(0)] \, dx = \\
-	= - 2 i \varphi(0) \lim \limits_{\epsilon \to +0} \arctan{\frac{R}{\epsilon}} + \int_{-R}^{R} \frac{\varphi(x) - \varphi(0)}{x} \, dx = \\
+	\lim \limits_{\varepsilon \to +0} \int \frac{\varphi(x)}{x + i \varepsilon} \, dx = \lim \limits_{\varepsilon \to +0} \int_{-R}^{R} \frac{x - i \varepsilon}{x^2 + \varepsilon^2} \varphi(x) \, dx = \\
+	= \varphi(0) \lim \limits_{\varepsilon \to +0} \int_{-R}^{R} \frac{x - i \varepsilon}{x^2 + \varepsilon^2} \, dx + \lim \limits_{\varepsilon \to +0} \int_{-R}^{R} \frac{x - i \varepsilon}{x^2 + \varepsilon^2} [\varphi(x) - \varphi(0)] \, dx = \\
+	= - 2 i \varphi(0) \lim \limits_{\varepsilon \to +0} \arctan{\frac{R}{\varepsilon}} + \int_{-R}^{R} \frac{\varphi(x) - \varphi(0)}{x} \, dx = \\
 	= - i \pi \varphi(0) + \text{V.p.} \int \frac{\varphi(x)}{x} \, dx.
 \end{align*}
 
-Соотношение \eqref{huinya_s_potolka} означает, что существует предел последовательности $1/(x + i \epsilon)$ в $\mathcal{D}$, $\epsilon \to +0$, который мы обозначим $1/(x + i0)$, и этот предел равен $-i \pi \delta(x) + \mathcal{P}{\frac{1}{x}}$. Итак,
+Соотношение \eqref{huinya_s_potolka} означает, что существует предел последовательности $1/(x + i \varepsilon)$ в $\mathcal{D}$, $\varepsilon \to +0$, который мы обозначим $1/(x + i0)$, и этот предел равен $-i \pi \delta(x) + \mathcal{P}{\frac{1}{x}}$. Итак,
 \begin{equation}
 	\label{sohoc}
 	\frac{1}{x + i 0} = - i \pi \delta(x) + \mathcal{P}{\frac{1}{x}}.
