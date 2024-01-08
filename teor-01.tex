@@ -5,23 +5,10 @@
 \textsc{Определение 1.}
 
 \textit{Уравнением в частных производных первого порядка} называется уравнение вида
-\begin{equation} \label{FOlineq}
-	F\Big(x_1, \dotsc, x_n, u, \frac{\partial u}{\partial x_1}, \dotsc, \frac{\partial u}{\partial x_n}\Big) = 0,
-\end{equation}
-где $ x_1б \dotsc, x_n $ --- независимые переменные, $ u = u(x_1, \dotsc, x_n) $ --- неизвестная функция, $ F(x_1, \dotsc, x_n, \allowbreak p_1, \dotsc, p_n) $ --- заданная непрерывно дифференцируемая функция (здесь $ p_i $ обозначают частные производные $ u'_{x_i} = \frac{\partial u}{\partial x_i}$, $i = \overline{1, n}$) в некоторой области $ G \subset \mathbb{R}^{2 n + 1}$, причем в каждой точке области G
-\begin{equation*}
-	\sum \limits_{i = 1}^{n}\Bigg(\frac{\partial F}{\partial p_i}\Bigg)^2 \not = 0.
-\end{equation*}  
-
-Уравнение \eqref{FOlineq} сокращенно можно записать в виде 
 \begin{equation} \label{FOsimp}
-	F(x, u, \nabla u) = 0, \tag{1'}
+	F(x, u, \nabla u) = 0,
 \end{equation}
 где $ x = (x_1, \dotsc, x_n) $ и $\nabla u = \Big(\frac{\partial u}{\partial x_1}, \dotsc, \frac{\partial u}{\partial x_n}\Big)$.
-
-
-В зависимости от того, как неизвестная функция $ u $ и ее частные производные входят в уравнение \eqref{FOlineq}, различают \textit{линейные} и \textit{нелинейные} уравнения.
-
 
 \textsc{Определение 2.} \textit{(Линейные уравнения с частными производными первого порядка)}
 
@@ -42,6 +29,8 @@
 
 \textsc{Определение 4.} \textit{(Первый интеграл)}
 
+%TODO: переписать этот раздел (арнольд)
+
 Первым интегралом нормальной системы
 \begin{equation} \label{norm_sys}
 	\begin{cases}
@@ -61,6 +50,8 @@
 
 \textsc{Определение 5.} \textit{(Задача Коши)}
 
+%TODO: мало и исправить 
+
 \textit{Задачей Коши} называется задача нахождения решения уравнения 
 \begin{equation*}
 	a_1(x, y, z) \frac{\partial z}{\partial x} + a_2(x, y, z) \frac{\partial z}{\partial y} = b(x, y, z),
@@ -76,6 +67,8 @@
 
 \textsc{Определение 6.}
 \textit{(Уравнения характеристик)}
+
+%TODO: исправить 
 
 Рассмотрим уравнение
 \begin{equation*}
