@@ -104,11 +104,109 @@ $\lambda \in (-\infty, +\infty)$, а собственные функции: $X =
 \begin{equation}\label{1.10.2-main}
   \begin{cases}
     u_t = a^2 u_{xx} + f(x, t), &0 < x < +\infty, t > 0, \\
-    u(0, t) = \varphi(t), \\
-    |u(+\infty), t| < \infty, \\
+    \alpha u_x(0, t) + \beta u(0, t) = 0, \\
+    |u(+\infty, t)| < \infty, \\
     u(x, 0) = \psi(x),
   \end{cases}
 \end{equation}
 
-% TODO дописать
+Метод, классически используемый для решения таких задач называется методом продолжения. Идея этого
+метода состоит в том, чтобы перейти к уже решённой задаче для бесконечной прямой. Рассмотрим этот
+метод для задачи без неоднородности:
+\[
+  \begin{cases}
+    u_t = a^2 u_{xx}, &x > 0, t > 0, \\
+    \alpha u_x(0, t) + \beta u(0, t) = 0, \\
+    |u(+\infty, t)| < \infty, \\
+    u(x, 0) = \psi(x),
+  \end{cases}
+\]
+Итак, перейдём к задаче на функцию $U(x, t)$, определённую на $x \in \mathbb{R}, t > 0$, причём
+искомое решение $u(x, t)$ будет просто выражаться как сужение $u(x, t) = U(x, t), x\geqslant 0, t>0$.
+Тогда задача на $U$ будет выглядеть как-то так:
+\[
+  \begin{cases}
+    U_t = a^2 U_{xx}, &t > 0, \\
+    \alpha U_x(0, t) + \beta U(0, t) = 0, \\
+    |U(\pm \infty, t)| < \infty, \\
+    U(x, 0) = \Psi(x),
+  \end{cases}
+\]
+и здесь не понятно, каким образом продолжить функцию $\psi$. Тогда решим задачу с конца, раз уж мы
+знаем общий вид решения задачи на бесконечной прямой:
+\[
+  U(x, t) = \int\limits_{-\infty}^{+\infty} G(x, \xi, t) \cdot \Psi(\xi) \, d\xi, \quad
+  G(x, \xi, t) = \dfrac{1}{2\sqrt{\pi a^2 t}} e^{- \dfrac{(x-\xi)^2}{4 a^2 t}},
+\]
+подставим этот вид в граничное условие в нуле (и еще используем тот факт, что $\dfrac{\partial G}{\partial x} = - \dfrac{\partial G}{\partial \xi}$):
+{ \small
+\begin{multline*}
+  \left. 
+    \alpha \int\limits_{-\infty}^{+\infty}
+      \dfrac{\partial G(x, \xi, t)}{\partial x} \Psi(\xi) \, d\xi
+    + \beta \int\limits_{-\infty}^{+\infty} G \Psi(\xi) \, d\xi \right|_{x=0} = \\
+  = \left. 
+    - \alpha \int\limits_{-\infty}^{+\infty}
+      \dfrac{\partial G(x, \xi, t)}{\partial \xi} \Psi(\xi) \, d\xi
+    + \beta \int\limits_{-\infty}^{+\infty} G \Psi(\xi) \, d\xi \right|_{x=0} = \\
+  = \left. 
+    \left. - \alpha G(x, \xi, t) \Psi(\xi) \right|_{-\infty}^{+\infty}
+    + \alpha \int\limits_{-\infty}^{+\infty} G(x, \xi, t) \Psi' (\xi) \, d\xi
+    +\beta \int\limits_{-\infty}^{+\infty} G(x, \xi, t) \Psi(\xi) \, d\xi \right|_{x=0} = \\
+  =  \int\limits_{-\infty}^{+\infty} 
+      \left( \alpha \Psi' (\xi) + \beta \Psi(\xi) \right)
+      G(0, \xi, t) \, d\xi = \\
+  = \int\limits_{0}^{+\infty} 
+      \left( \alpha \Psi' (\xi) + \beta \Psi(\xi) \right)
+      G(0, \xi, t) \, d\xi
+    + \int\limits_{-\infty}^{0} 
+      \left( \alpha \Psi' (\zeta) + \beta \Psi(\zeta) \right)
+      G(0, \zeta, t) \, d\zeta
+  = \left|\, \begin{aligned}
+    \xi = -\zeta \\
+    d\xi = - d\zeta \\
+    G(0, -\xi, t) = G(0, \xi, t)
+  \end{aligned} \,\right| = \\
+  = \int\limits_{0}^{+\infty} 
+      \left( \alpha \Psi' (\xi) + \beta \Psi(\xi) \right)
+      G(0, \xi, t) \, d\xi
+    + \int\limits_{0}^{+\infty} 
+      \left( \alpha \Psi' (-\xi) + \beta \Psi(-\xi) \right)
+      G(0, \xi, t) \, d\xi = \\
+  = \int\limits_{0}^{+\infty} 
+    \left( ( \alpha\Psi'(\xi) + \beta\Psi(\xi)) + (\alpha \Psi'(-\xi) +\beta\Psi(-\xi)) \right)
+      G(0, \xi, t) \, d\xi,
+\end{multline*}
+}
+таким образом, если $\Psi$ такая, что $\alpha\Psi' + \beta\Psi$ -- нечётная функция, то выполняется
+граничное условие в нуле. При каждом конкретном наборе $\alpha, \beta$ надо опять искать как
+продолжать функцию $\psi$. Но для базовых задач Дирихле и Неймана можно использовать готовые решения.
 
+Рассмотрим к примеру задачу Дирихле: $\alpha = 0, \beta = 1$. Тогда: $\Psi(x) = \begin{cases}
+  \psi(x), x > 0, \\
+  - \psi(-x), x < 0
+\end{cases} $. Теперь разберемся с видом решения:
+\begin{multline*}
+  u(x, t) \stackrel{x>0}{=} U(x, t) = \int\limits_{-\infty}^{+\infty} \Psi(\xi) G(x, \xi, t) \, d\xi
+  = \int\limits_{0}^{+\infty} \psi(\xi) G(x, \xi, t) \, d\xi
+    - \int\limits_{0}^{+\infty} \psi(\xi) G(x, -\xi, t) \, d\xi
+  = \int\limits_{0}^{+\infty} \left( G(x, \xi, t) - G(x, -\xi, t) \right) \psi(\xi) \, d\xi.
+\end{multline*}
+Таким образом, функция влияния мгновенного точечного источника:
+\[
+  G_1(x, \xi, t) = G(x, \xi, t) - G(x, -\xi, t)
+  = \dfrac{1}{2\sqrt{\pi a^2 t}} \left( e^{- \dfrac{(x-\xi)^2}{4 a^2 t}} - e^{- \dfrac{(x+\xi)^2}{4 a^2 t}} \right) 
+\]
+
+И дальше несложно показать, что решение в неоднородной задаче будет выражаться:
+\[
+  \begin{cases}
+    u_t = a^2 u_{xx} + f(x, t), \quad 0 < x < +\infty, \\
+    \alpha u_x(0, t) + \beta u(0, t) = 0, \\
+    |u(+\infty, t)| < \infty, \\
+    u(x, 0) = \psi(x),
+  \end{cases}
+  \Rightarrow
+  u(x, t) = \int\limits_0^{+\infty} \psi(x) G_1(x, \xi, t) \, d\xi
+  + \int\limits_{0}^{+\infty} \int_0^t f(\xi, t-\tau) G(x, \xi, t - \tau) \, d\tau d\xi.
+\]
