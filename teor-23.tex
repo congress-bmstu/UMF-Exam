@@ -2,7 +2,7 @@
 \subsubsection{Штурм -- Лиувилль}
 %aut: Slava
 %ref: Свешников, стр. 121 (147 2ed.)
-Рассматривается задача 
+Рассматривается задача
 \[
   \begin{cases}
     \Delta u + \lambda u = 0, & 0 < r < a, \ 0\leqslant \varphi \leqslant 2\pi,
@@ -13,14 +13,15 @@
   \end{cases}
 \]
 Напомним\footnote{См. раздел \ref{sec:14}.}, 
-\[
-  \Delta u(r,\varphi,z) = \Delta_2 u + u_{zz},
-\]
-где $ \Delta_2 $ --- оператор Лапласа на плоскости.
+\begin{equation}
+  \label{eq:laplace_cyl}
+  \Delta u(r,\varphi,z) = \Delta_{r\varphi} u + u_{zz},
+\end{equation}
+где $ \Delta_{r \varphi} $ --- оператор Лапласа на плоскости $ (r, \varphi) $.
 
 Разделим переменные --- $ u = v(r, \varphi) Z(z) $ --- и получим соотношение 
 \[
-    \frac{\Delta_2 v + \lambda v}{v} = - \frac{Z''}{Z} =: \nu.
+  \frac{\Delta_{r\varphi} v + \lambda v}{v} = - \frac{Z''}{Z} =: \nu \geqslant 0.
 \]
 Так задача Штурма -- Лиувилля распалась на две задачи Штурма -- Лиувилля: 
 \[
@@ -30,13 +31,16 @@
     \alpha_2 Z'(l) + \beta_2 Z(l) = 0.
   \end{cases}\quad
   \begin{cases}
-    \Delta v + \varkappa = 0, \quad 0 < r < a, \ 0 \leqslant \varphi \leqslant
+    \Delta v + \varkappa v = 0, \quad 0 < r < a, \ 0 \leqslant \varphi \leqslant
     2\pi,\\
-    \alpha v_z(a,\varphi) + \beta v(a,\varphi) = 0,
+    \alpha v_r(a,\varphi) + \beta v(a,\varphi) = 0,
   \end{cases}
-\]
+\] %FIXME: в учебнике вместо v_r стоит v_z
 где $ \varkappa := \lambda - \nu $. Первая (одномерная) задача была решена в
-разделе \ref{sec:S-L}, вторая (круговая) --- в разделе \ref{sec:20}. 
+разделе \ref{sec:S-L}, вторая (круговая) --- в разделе \ref{sec:20}\footnote{При
+данных условиях $ \varkappa \geqslant 0 $. Иной случай
+разобран ниже.}. 
+%TODO: откуда знаем, что \varkappa > 0?
 
 Собственные функции имеют вид 
 \[
@@ -50,8 +54,136 @@
 
 \subsubsection{Лаплас}
 %ref: Пикулин, стр. 32
+\label{sec:laplace_cylinder}
+Физические задачи почти во всех случаях обладают азимутальной симметрией, то есть ищется
+функция $ u(r, z) $, поскольку граничные условия не
+зависят от $ \varphi $. Это сильно упрощает задачу. Рассмотрим, однако, общий
+случай\footnote{См. также формулу \eqref{eq:laplace_cyl}. Минус при $ \alpha_1 $
+указывает на то, что внешняя нормаль направлена против оси $ z
+$.}
+\[
+  \begin{cases}
+    \Delta u = 0, & 0 < r < a, \ 0\leqslant \varphi \leqslant 2\pi,
+    \ 0 < z < l,\\
+    \alpha u_z(r, \varphi, l) + \beta u(r,\varphi, l) = f(r, \varphi),\\
+    -\alpha_1 u_z(r,\varphi, 0) + \beta_1 u(r,\varphi, 0) = g(r, \varphi),\\
+    \alpha_2 u_r(a,\varphi, z) + \beta_2 u(a,\varphi, z) = h(\varphi, z).
+  \end{cases}
+\]
+Представим решение в виде\footnote{Разделение переменных здесь не поможет
+хотя бы потому, что все граничные функции зависят от $ \varphi $.} $ u = u_1 +
+u_2 $, где справедливы уравнения  
+\[
+  \begin{cases}
+    \Delta u_1 = 0, \quad 0 < r < a, \ 0\leqslant \varphi \leqslant 2\pi,
+    \ 0 < z < l, \\
+    \alpha u_z(r, \varphi, l) + \beta u(r,\varphi, l) = f(r, \varphi),\\
+    -\alpha_1 u_z(r,\varphi, 0) + \beta_1 u(r,\varphi, 0) = g(r, \varphi),\\
+    \alpha_2 u_r(a,\varphi, z) + \beta_2 u(a,\varphi, z) = 0;
+  \end{cases} 
+  \begin{cases}
+    \Delta u_2 = 0, \quad 0 < r < a, \ 0\leqslant \varphi \leqslant 2\pi,
+    \ 0 < z < l, \\
+    \alpha u_z(r, \varphi, l) + \beta u(r,\varphi, l) = 0,\\
+    -\alpha_1 u_z(r,\varphi, 0) + \beta_1 u(r,\varphi, 0) = 0,\\
+    \alpha_2 u_r(a,\varphi, z) + \beta_2 u(a,\varphi, z) = h(\varphi, z).
+  \end{cases}
+\]
+Здесь уже нужно разделить переменные. Для обеих задач получаем
+соотношения
+%TODO: откуда знаем, что \lambda >= 0?
+\[
+  \frac{\Delta_{r\varphi} v(r, \varphi)}{v(r,\varphi)} = - \frac{Z''(z)}{Z(z)}
+  =: \lambda.
+\]
+При этом для $ u_1 $ имеем $ \lambda \leqslant 0 $ ввиду однородности условий на $ v $,
+а для $ u_2 $ имеем $ \lambda \geqslant 0 $ ввиду однородности\footnote{Задача
+Штурма -- Лиувилля с однородными условиями нашего вида не может иметь
+отрицательных собственных значений.} условий на $ Z $. Как и выше, получили по две задачи Штурма -- Лиувилля на каждое $ u $ --- на
+отрезке и внутри круга. Более того, теперь у этих двух задач общие собственные
+значения $ \lambda_k $, что позволяет найти их лишь однажды.
+%\footnote{Сделать это
+ % лучше в одномерной задаче, поскольку в круговой собственные значения находятся
+%численно.}. 
+Перечислим эти четыре задачи Штурма -- Лиувилля: 
+\begin{align*}
+  % &\begin{cases}
+    &Z_1'' + \lambda Z_1 = 0, \quad 0 < z < l,
+    % \alpha Z_1'(l) + \beta Z_1(l) = \ldots,\\
+    % -\alpha_1Z_1'(0) -\beta_1 Z_1(0) = \ldots,
+  % \end{cases} 
+  &\begin{cases}
+    \Delta v_1 - \lambda v_1 = 0, \quad 0 < r < a, \ 0 \leqslant \varphi \leqslant
+    2\pi,\\
+    \alpha_2 v_{1r}(a,\varphi) + \beta_2 v_1(a,\varphi) = 0;
+  \end{cases} \\
+  &\begin{cases}
+    Z_2'' + \lambda Z_2 = 0, \quad 0 < z < l,\\
+    \alpha Z_2'(l) + \beta Z_2(l) = 0,\\
+    -\alpha_1Z_2'(0) -\beta_1 Z_2(0) = 0,
+  \end{cases} \qquad
+  % &\begin{cases}
+    &\Delta v_2 - \lambda v_2 = 0, \quad 0 < r < a, \ 0 \leqslant \varphi \leqslant
+    2\pi.
+    % \alpha_2 v_{2r}(a,\varphi) + \beta_2 v_2(a,\varphi) = \ldots
+  % \end{cases}
+\end{align*}
+Решение задачи $ v_1 $ нам уже известно. С известными $ \lambda_{nk} $ уравнение на $ Z $ будет иметь
+гиперболические или линейные решения\footnote{См. раздел \ref{sec:S-L}.}.
+Полученный ряд $ u_1 = \sum u_1^{(nk)} $, $ u_1^{(nk)} =
+R_{nk}(r)\Phi_{n}(\varphi)Z_{k}(z)$
+подставляем в оба граничных условия, попутно раскладывая функции $ f, \ g $ по
+полученным левым частям. Приравнивая коэффициенты в левой и правой частях, получаем
+ответ\footnote{Как, например, в решении из раздела
+\ref{sec:laplace_example}.}.
 
+% Как видно, ранее не рассматривались только случаи задач на $ v_1 $ и $ v_2 $. В обеих
+% задачах изменился знак собственного значения, а у $ v_2 $ к тому же неоднородное
+% граничное условие. На $ v_2 $ и остановимся.
 
-
+Решение для $ Z_2 $ известно. Для $ v_2 $ после разделения переменных получим 
+\[
+    \frac{r(rR')' - \lambda r^2 R}{R} = -\frac{\Phi''}{\Phi} =: \nu \geqslant 0,
+  \]
+то есть уравнение на $ \Phi $ осталось без изменений, а для $ R $ теперь
+имеем
+\[
+    r^2R'' + rR' - (\lambda r^2 + n^2)R = 0.
+\]
+Сравнивая с системой \eqref{eq:bessel_eq}, видим, что теперь воспользоваться
+функциями Бесселя не получится. Однако практически той же заменой $ x :=
+i\sqrt\lambda r $ приходим к уравнению Бесселя 
+\[
+    x^2 y'' + x y' + (x^2 - n^2)y = 0.
+\]
+Его решениями будут функции Бесселя от чисто мнимого аргумента, именуемые
+\emph{функцией Инфельда $ I_n $} и \emph{функцией Макдональда $ K_n $}.
+Последнюю исключаем, поскольку она неограниченна в нуле. Случай $ \lambda = 0 $
+приводит к классическому уравнению Эйлера\footnote{Подробнее разобрано в других
+разделах.}, которое подстановкой $ r^\varkappa $ даёт решения $ R(r) = A + B\ln
+r$ при $ n = 0 $ и $ Ar^{n} + Br^{-n} $ при $ n \in \mathbb N $. Константа будет
+учтена другими решениями, а решения $ r^{-n}, \ln r $ следует исключить ввиду их
+неограниченности в нуле. Итоговая ФСР: $ \{r^n, I_n(\sqrt{\lambda_k} r)\} $.
+Осталось представить решение в виде $ u_2^{(nk)} = R_{nk}(r) \Phi_n(\varphi) Z_k(z)
+$, $ u_2 = \sum u_2^{(nk)} $ и разложить\footnote{Длину $ \|I_n\| $ можно найти тем же способом, каким
+искалась длина $ \|J_n\| $.}  граничную функцию $ h(\varphi, z)
+$ по базису $ \alpha_2u_r^{(nk)} + \beta_2 u $. Покоординатное приравние
+коэффициентов даст ответ.
 \subsubsection{Пуассон}
 %ref: Пикулин, стр. 37
+Для решения задачи Пуассона нужно сначала подобрать\footnote{Это возможно
+  сделать при некотором специальном виде правой части. Например, для неоднородной части $ r^2\cos 2\varphi $ решение подбирается в виде
+$ Ar^\alpha\cos2\varphi $; если неоднородная часть константа, то $ w = Ar^\alpha
+$.} частное решение
+неоднородного уравнения
+(без учёта граничных условий) $ w(r,\varphi, z) $, а после перейти к однородной
+задаче
+\[
+  \begin{cases}
+    \Delta u = 0, & 0 < r < a, \ 0\leqslant \varphi \leqslant 2\pi,
+    \ 0 < z < l,\\
+    \alpha (u_z - w_z) + \beta (u-w) \Big|_{z=l} = f(r, \varphi),\\
+      -\alpha_1 (u_z - w_z) + \beta_1 (u - w)\Big|_{z=0} = g(r, \varphi),\\
+      \alpha_2 (u_r - w_r) + \beta_2 (u-w) \Big|_{r=a} = h(\varphi, z).
+  \end{cases}
+\]
