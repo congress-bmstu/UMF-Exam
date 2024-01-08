@@ -1,45 +1,89 @@
-\subsection{Пространство быстроубывающих функций и пространство функций медленного роста. Обобщённое преобразование Фурье. Обобщённое преобразование Фурье свертки и обобщённое равенство Парсеваля.}
+\subsection{Пространство быстроубывающих функций и пространство функций медленного роста.
+Обобщённое преобразование Фурье. Обобщённое преобразование Фурье свертки и обобщённое равенство
+Парсеваля.}
 
-\paragraph{Пространства $\mathcal{D}$ и $\mathcal{D}'$}
-ОПРЕДЕЛЕНИЕ. Отнесём ко множеству \emph{основных функций} $\mathcal{D} = \mathcal{D} (\mathbb{R}^n)$ все
-финитные бесконечно дифференцируемые в $\mathbb{R}^n$ функции. Сходимость в $\mathcal{D}$
-определим следующим образом:
+\subsubsection{Пространство функций медленного роста}
+
+ОПРЕДЕЛЕНИЕ. Пространство основных функций $\mathcal{S}$ определим следующим образом: это все
+функции класса $\mathcal{C}^\infty (\mathbb{R}^n)$, убывающие при $|x| \to \infty$ вместе со всеми
+производными быстрее $|x|^{-k}$. Сходимость в $\mathcal{S}$ определим следующим образом:
+последовательность функций $\varphi_k \in \mathcal{S}$ сходится к функции
+$\varphi \in \mathcal{S}, \varphi_k \to \varphi, k \to \infty \text{ в } \mathcal{S}$, если для
+всех $\alpha, \beta$
 \[
-  \varphi_k \to \varphi \text{ в } \mathcal{D}, \varphi_k, \varphi \in \mathcal{D}
-  \Leftrightarrow
-  \begin{cases}
-    \exists R > 0 : \operatorname{supp} \varphi_k \subset U_R, \\
-    \forall \alpha=(\alpha_1, \alpha_2, \dots, \alpha_n) :
-      \partial^{\alpha} \varphi_k(x) \rightrightarrows \partial^{\alpha} \varphi(x), x\in\mathbb{R}^n, 
-      k \to \infty
-  \end{cases}
+  x^\beta \partial^\alpha \varphi_k (x) \rightrightarrows x^\beta \partial^\alpha \varphi(x), x\in\mathbb{R}^n, k \to \infty.
 \]
 
-Обозначение: $\mathcal{D} (G) = \left\{ \varphi \in \mathcal{D} : \supp\varphi \subset G \right\}$.
+Это пространство получается замкнутым относительно дифференцирования:
+$\forall \varphi \in \mathcal{S} \forall \alpha : \partial^\alpha \varphi \in \mathcal{S}$.
+Но что было хорошо с пространством $\mathcal{D}$, так это то, что оно было замкнуто относительно
+умножения на любую бесконечно-дифференцируемую функцию:
+$\forall \varphi \in \mathcal{D} \forall f \in \mathcal{C}^\infty (\mathbb{R}^n) : \varphi(x) \cdot f(x) \in \mathcal{D}$. Такого нельзя сказать про пространство $\mathcal{S}$, однако если чуть
+сузить класс функций, на которые мы хотим уметь умножать, то получим пространство функций медленного
+роста (????):
+\[
+  \Omega_M = \left\{ a\in\mathcal{C}^\infty(\mathbb{R}^n) :
+    \forall\alpha : \left| \partial^\alpha a(x) \right|
+      \leqslant C_\alpha (1+|x|)^{m(\alpha)} \right\} 
+\]
 
-ОПРЕДЕЛЕНИЕ. Обобщённой функцией называется всякий линейный непрерывный функционал на пространстве
-основных функций $\mathcal{D}$. $\mathcal{D}' = \left\{ f: \mathcal{D} \mapsto \mathbb{C} \right\} $
+ОПРЕДЕЛЕНИЕ. Пространством обобщённых функций медленного роста называется пространство линейных
+непрерывных функционалов над $\mathcal{S}$.
 
+Верна следующая теорема:
+\begin{theorem}[Л. Шварц]
+  Для того, чтобы линейный функционал $f$ на $\mathcal{S}$ принадлежал $\mathcal{S}'$ (т.е. был
+  непрерывным на $\mathcal{S}$), необходимо и достаточно, чтобы существовали число $C>0$ и целое
+  число $p\geqslant 0$ такие, что
+  \[
+    |(f, \varphi)| \leqslant C \|\varphi\|_p
+  \]
+  для любой $\varphi \in \mathcal{S}$, где
+  \[
+    \|\varphi\|_p = \sup_{|\alpha| \leqslant p, x\in\mathbb{R}^n} (1+|x|)^p |\partial^\alpha \varphi(x)|.
+  \]
+\end{theorem}
+
+Пользуясь теоремой Л. Шварца, можно доказать, что всякая обобщенная функция из $\mathcal{S}'$
+является производной (в смысле обобщённых функций) от непрерывной функции медленного роста. Этим и
+объясняется название пространства $\mathcal{S}'$.
+
+\subsubsection{Преобразование Фурье обобщённых функций из $\mathcal{S}'$}
+
+Определим преобразование Фурье обобщённой функции так, чтобы выполнялось соотношение
+\[
+  (F[f], \varphi) = (f, F[\varphi]), \varphi \in \mathcal{S}.
+\]
+делаем именно так, чтобы если подставить вместо $f$ что-то обычное, получалось бы верное равенство:
+\begin{multline*}
+  \int F[f] \varphi \, d\xi
+  = \int \left( \int f(x) e^{i (\xi, x)} \, dx \right) \varphi(\xi) \, d\xi
+  = \int f(x) \left( \int \varphi(\xi) e^{i (x, \xi)} \, d\xi \right) \, dx
+  = \int f(x) F[\varphi](x) \, dx.
+\end{multline*}
+
+Введём на $\mathcal{S}'$ еще операцию $F^{-1}$:
+\[
+  F^{-1}[f] = \dfrac{1}{(2\pi)^n} F[f(-x)], f\in\mathcal{S}'.
+\]
+
+Из важного:
 \begin{itemize}
-  \item Линейный: $\forall f \in \mathcal{D}' \quad \forall \varphi, \psi \in \mathcal{D} : (f, \lambda \varphi + \mu \psi) = \lambda (f, \varphi) + \mu (f, \psi)$.
-
-  \item Непрерывный: $\varphi_k \to 0 \text{ в } \mathcal{D}, k \to \infty \Rightarrow (f, \varphi_k) \to 0, k \to \infty$.
-
-  \item Сходимость в пространстве $\mathcal{D}'$: $f_k \to f, f_k, f \in \mathcal{D}' \Leftrightarrow
-\forall \varphi \in \mathcal{D} : (f_k, \varphi) \to (f, \varphi), k \to \infty$.
-
- \item Говорят, что обобщённая функция равна нулю в $G$, если $\forall \varphi \in \mathcal{D}(G) : (f, \varphi) = 0$. 
+  \item 
+    \[
+      \partial^\alpha F[f] = F \left[ (ix)^\alpha f(x) \right].
+    \]
+  \item
+    \[
+      F \left[ \partial^\alpha f \right] (\xi) = (-i\xi)^\alpha F[f] (\xi).
+    \]
+  \item Преобразование Фурье свёртки
+    \[
+      F \left[ f * g \right] = F[f] \cdot F[g]
+    \]
 \end{itemize}
 
-ОПРЕДЕЛЕНИЕ. \emph{Регулярными обобщёнными функциями} называются такие обобщённые функции, которые
-определяются локально интегрируемыми в $\mathbb{R}^n$ функциями по формуле:
-\[
-  (f, \varphi) = \int f(x) g(x) \, dx,
-\]
-остальные называются \emph{сингулярными}.
+\subsubsection{Равенство Парсеваля}
 
-То есть таким функциям можно сопоставить какуюто нормальную обычную функцию $f(x)$, причём верна
-лемма Дюбуа-Реймона: для того, чтобы локально интегрируемая в $G$ функция $f(x)$ обращалась в нуль
-в области $G$ в смысле обобщенных функций, необходимо и достаточно, чтобы $f(x) = 0$ в $G$.
-
+% TODO дописать равенство Парсеваля
 
