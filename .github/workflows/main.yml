@@ -50,5 +50,6 @@ jobs:
         with:
           name: Build ${{ github.event.repository.updated_at}}
           body: build ${{ github.event.repository.updated_at}}
+          tag_name: pdf
           files: |
             document.pdf
