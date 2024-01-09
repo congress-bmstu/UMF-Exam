@@ -71,6 +71,14 @@ $x = (i_1, i_2, \dots, i_k), k < n$:
   F_x [f(\vec{x})] (\xi) = \int_{\mathbb{R}^k} f(\vec{\xi}) e^{i (\vec{x}, \vec{\xi})} \, d\vec{\xi}
 \]
 
+Вся идея строить какое-то пространство функций, отличных от $\mathcal{D}$ была в том, чтобы найти 
+замкнутые пространства относительно каких-либо операций. В данном случае пространство $\mathcal{S}$
+замкнуто относительно преобразования Фурье: $\varphi \in \mathcal{S} \Rightarrow 
+F[\varphi] (\xi) \in \mathcal{S}$. Причём преобразование Фурье спокойно может выдать
+комплекснозначную функцию, а значит и всё это пространство будет комплексно-значных функций.
+Если я правильно понял, в случае с пространством $\mathcal{D}$ мы тоже могли рассматривать
+комплекснозначные функции, но никакого выйгрыша нам это не давало.
+
 \subsubsection{Преобразование Фурье обобщённых функций из $\mathcal{S}'$}
 
 Определим преобразование Фурье обобщённой функции так, чтобы выполнялось соотношение
@@ -79,15 +87,15 @@ $x = (i_1, i_2, \dots, i_k), k < n$:
 \]
 делаем именно так, чтобы если подставить вместо $f$ что-то обычное, получалось бы верное равенство:
 \begin{multline*}
-  \int F[f] \varphi \, d\xi
-  = \int \left( \int f(x) e^{i (\xi, x)} \, dx \right) \varphi(\xi) \, d\xi
+  \int \bar{F[f]} \varphi \, d\xi
+  = \int \left( \int f(x) e^{i (\xi, x)} \, dx \right)} \varphi(\xi) \, d\xi
   = \int f(x) \left( \int \varphi(\xi) e^{i (x, \xi)} \, d\xi \right) \, dx
   = \int f(x) F[\varphi](x) \, dx.
 \end{multline*}
 
 Введём на $\mathcal{S}'$ еще операцию $F^{-1}$:
 \[
-  F^{-1}[f] = \dfrac{1}{(2\pi)^n} F[f(-x)], f\in\mathcal{S}'.
+  F^{-1}[f] = \dfrac{1}{(2\pi)^n} F[f(-x)], f\in \mathcal{S}'.
 \]
 
 Из важного:
@@ -108,11 +116,26 @@ $x = (i_1, i_2, \dots, i_k), k < n$:
 
 \subsubsection{Равенство Парсеваля}
 
-Вот такое соотношение обычно называют равенством Парсеваля \footnote{Гельфанд, Шилов -- Обобщённые функции и действия над ними, стр. 210}:
+% Вот такое соотношение обычно называют равенством Парсеваля \footnote{Гельфанд, Шилов -- Обобщённые функции и действия над ними, стр. 210}:
+% \begin{multline*}
+%   (f, \varphi) = \int f \varphi \, dx = \int f(x) F^{-1} [ F[\varphi] ] (x) \, dx
+%   = \int_{\mathbb{R}^n} f(x) \dfrac{1}{2\pi}\int_{\mathbb{R}^n} F[\varphi] (\xi) e^{-ix \xi} \, d\xi dx = \\
+%   = \dfrac{1}{2\pi}\int_{\mathbb{R}^n} F[\varphi](\xi) \int_{\mathbb{R}^n} f(x) e^{-ix \xi} \, dx d\xi
+%   = \int_{\mathbb{R}^n} F[\varphi](\xi) F^{-1} [f] (\xi) \, d\xi
+%   = (F^{-1} [f], F[\varphi])
+% \end{multline*}
+
 \begin{multline*}
-  (f, \varphi) = \int f \varphi \, dx = \int f(x) F^{-1} [ F[\varphi] ] (x) \, dx
-  = \int_{\mathbb{R}^n} f(x) \dfrac{1}{2\pi}\int_{\mathbb{R}^n} F[\varphi] (\xi) e^{-ix \xi} \, d\xi dx = \\
-  = \dfrac{1}{2\pi}\int_{\mathbb{R}^n} F[\varphi](\xi) \int_{\mathbb{R}^n} f(x) e^{-ix \xi} \, dx d\xi
-  = \int_{\mathbb{R}^n} F[\varphi](\xi) F^{-1} [f] (\xi) \, d\xi
-  = (F^{-1} [f], F[\varphi])
+  \int |f|^2 \, dx = \int \bar f \cdot f \, dx
+  = \int F^{-1} [\tilde f] (x) \cdot \bar f(x) \, dx
+  = \int \left( \dfrac{1}{2\pi} \int \tilde f(\xi) e^{-ix\xi} \, d\xi\right) \bar f(x) \, dx = \\
+  = \dfrac{1}{2\pi} \int \tilde f(\xi) \int \bar f(x) e^{- i x \xi} \, dx d\xi
+  = \dfrac{1}{2\pi} \int \tilde f \left( \overline{\int f(x) e^{- i x \xi} \, dx} \right) \, d\xi
+  = \dfrac{1}{2\pi} \int \tilde f \bar{\tilde f} \, d\xi
+  = \dfrac{1}{2\pi} \int |\tilde f|^2 \, d\xi
 \end{multline*}
+
+Равенством Парсеваля называется:
+\[
+  \int |f|^2 \, dx = \dfrac{1}{2\pi} \int |\tilde f|^2 \, dx
+\]
