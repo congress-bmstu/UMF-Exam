@@ -2,92 +2,72 @@
 \label{DalamberFormula}
 
 %autor: Сеня
-Многие задачи механики и физики описываются уравнением колебаний вида \footnote{Т.-С. стр. 54 и далее}
-\begin{equation} \label{oscillation}
-	\rho \frac{\partial^2 u}{\partial t^2} = \operatorname{div}(p \operatorname{grad}{u}) - q u + F(x, t),
-\end{equation}
-где неизвестная функция $ u(x, t) $ зависит от $ n (n = 1, 2, 3)$ пространственных координат $x = (x_1, x_2, \dotsc, x_n)$ и времени $t$; коэффициенты $\rho, p$ и $q$ определяются свойствами среды, где происходит колебательный процесс; свободный член $F(x, t)$ выражает интенсивность внешнего возмущения. В уравнении \eqref{oscillation} в соответствии с определением операторов $\operatorname{div}$ и $\operatorname{grad}$
-\begin{equation*}
-	\operatorname{div}(p\operatorname{grad} u) = \sum \limits_{i = 1}^{n} \frac{\partial}{\partial x_i} \Big(p \frac{\partial u}{\partial x_i}\Big).
-\end{equation*}
 
-Изучение методов построения решений краевых задач для уравнений гиперболического типа мы начинаем с задачи с начальными условиями для неограниченной струны 
-\begin{align}
-	u_{tt} - a^2 u_{xx} = 0, \label{infinite_string} \\
-	\begin{rcases}
-		u(x, 0) = \varphi(x), \\
-		u_t(x, 0) = \psi(x).
-	\end{rcases} \label{inf_str_cond}
-\end{align}
 
-Преобразуем это уравнение к каноническому виду, содержащему смешанную производную. Уравнение характеристик 
-\begin{equation*}
-	d x^2 - a^2 d t^2 = 0 
-\end{equation*}
-распадается на два уравнения:
-\begin{equation*}
-	d x - a dt = 0, \quad d x + a dt = 0,
-\end{equation*}
-интегралами которых являются прямые 
-\begin{equation*}
-	x - a t = C_1, \quad x + a t = C_2.
-\end{equation*}
-Введя, как обычно, новые переменные
-\begin{equation}
-	\xi = x + a t, \quad \eta = x - a t,
-\end{equation}
-уравнение колебаний струны преобразуем к виду
-\begin{equation} \label{homo_oscil}
-	u_{\xi \eta} = 0.
+\paragraph{Решение уравнения колебаний бесконечной струны и получение формулы Даламбера.}
+Имеем уравнение:
+\begin{gather}
+	u_{tt} - a^2 u_{xx} = 0, \label{kernel_prob} \\
+	u |_{t = 0} = u_0(x), \quad u_t|_{t = 0} = u_1(x).
+\end{gather}
+
+Докажем лемму.
+
+\textsc{Лемма.} Для того чтобы функция $u(x, t)$ была решением уравнения, необходимо и достаточно, чтобы она имела представление 
+\begin{equation} \label{represofsol}
+	u(x, t) = f(x - at) + g(x + at),
 \end{equation}
 
-Найдем общий интеграл последнего уравнения, проинтегрировав последнее уравнение по $\xi$. Очевидно, для всякого решения \eqref{homo_oscil}
+\textsc{Доказательство.} Функция \eqref{represofsol} удовлетворяет уравнению \eqref{kernel_prob}, т.к. 
 \begin{equation*}
-	u_{\eta}(\xi, \eta) = f^{\ast}(\eta),
+	\frac{\partial^2 u}{\partial t^2} = a^2 f''(x - at) + a^2 g''(x + at) = a^2 \frac{\partial^2 u}{\partial x^2}.
 \end{equation*}
-где $f^{\ast}(\eta)$ --- некоторая непрерывная функция только переменного $\eta$. 
-Интегрируя это равенство по $\eta$ при фиксированном $\xi$, получаем
-\begin{equation} \label{ufunc}
-	u(\xi, \eta) = \int^{\eta} f^{\ast}(\eta) \, d \eta + f_1(\xi) = f_1(\xi) + f_2(\eta)
-\end{equation}
-где $f_1$ и $f_2$ являются функциями только переменных $\xi$ и $\eta$. Обратно, какими бы ни были $f_1$ и $f_2$, функция $u(\xi, \eta)$, определяемая формулой \eqref{ufunc}, представляет собой решение \eqref{homo_oscil}. Т.к. всякое решение \eqref{ufunc} может быть представленно в виде \eqref{homo_oscil} при соответствующем выборе $f_1$ и $f_2$, то формула \eqref{homo_oscil} является общим интегралом этого уравнения. Следовательно функция
-\begin{equation} \label{general_int}
-	u(x, t) = f_1(x + a t) + f_2(x - a t)
-\end{equation}
-является общим интегралом уравнения \eqref{infinite_string}.
 
-Допустим, что решение рассматриваемой задачи существует, тогда оно дается формулой \eqref{general_int}. Определим функции $f_1$ и $f_2$ таким образом, чтобы удовлетворялись начальные условия:
-\begin{align}
-	u(x, 0) = f_1(x) + f_2(x) = \varphi(x), \\
-	u_t(x, 0) = a f'_1(x) - a f'_2(x) = \psi(x).
-\end{align}
-
-Интегрируя второе равенство, получаем 
+Обратно, пусть функция $u(x, t)$ удовлетворяет уравнению \eqref{kernel_prob}, представим это уравнение в каноническом виде. Дифференциальные уравнения характеристик\footnote{Объясню в следующем параграфе} имеют вид 
+\begin{gather*}
+	\frac{u_{tt}}{u_{xx}} = a^2 \\
+	\frac{d t^2}{d x^2} = a^2 \\
+	\frac{dx}{dt} = - a, \quad \frac{dx}{dt} = a,
+\end{gather*}
+заменим переменные
 \begin{equation*}
-	f_1(x) - f_2(x) = \frac{1}{a} \int \limits_{x_0}^{x} \psi(\alpha) \, d\alpha + C,
+	\xi = x - a t, \quad \eta = x + a t
 \end{equation*}
-где $x_0$ и $C$ --- постоянные. Из равенств 
+это приводит уравнение к каноническому виду
+\begin{equation*}
+	\frac{\partial^2 \tilde{u}}{\partial \xi \partial \eta} = 0.
+\end{equation*}
+
+Интегрируя это уравнение по $\xi$, получим
+\begin{equation*}
+	\frac{\partial \tilde{u}}{\partial \eta} = \chi(\eta),
+\end{equation*}
+
+Запишем функцию $\tilde{u}$, проинтегрировав по $\eta$:
+\begin{equation*}
+	\tilde{u}(\xi, \eta) = \int^{\eta} \chi(\eta') \, d\eta' + f(\xi) = f(\xi) + g(\eta).
+\end{equation*}
+
+Переходя к старым переменным $x$ и $t$ из последнего представления убеждаемся, что предположение верно. Лемма доказана.  
+
+
+Вернемся к решению уравнения \eqref{kernel_prob}. Для того чтобы решение удовлетворяло начальным условиям, необхолимо, чтобы
+\begin{equation*}
+	f(x) + g(x) = u_0(x), \quad -a f'(x) + a g'(x) = u_1(x)
+\end{equation*}
+т.е. 
+\begin{equation*}
+	f(\xi) + g(\xi) = u_0(\xi), \quad g(\xi) - f(\xi) = \frac{1}{a} \int_{0}^{\xi} u_1(\xi') \, d\xi' + C,
+\end{equation*}
+решая относительно $f$ и $g$ найдем
 \begin{align*}
-	f_1(x) + f_2(x) = \varphi(x), \\
-	f_1(x) - f_2(x) = \frac{1}{a} \int \limits_{x_0}^{x} \psi(\alpha) \, d\alpha + C
+	f(\xi) = \frac{1}{2} u_0(\xi) - \frac{1}{2 a} \int_{0}^{\xi} u_1(\xi') \, d\xi' - \frac{C}{2}, \\
+	g(\eta) = \frac{1}{2} u_0(\eta) + \frac{1}{2 a} \int_{0}^{\eta} u_1(\xi') \, d\xi' + \frac{C}{2}.
 \end{align*}
-находим
-\begin{equation} \label{f1f2}
-	\begin{rcases}
-		f_1(x) = \frac{1}{2} \varphi(x) + \frac{1}{2a} \int \limits_{x_0}^{x} \psi(\alpha) \, d\alpha + \frac{C}{2}, \\
-		f_2(x) = \frac{1}{2} \varphi(x) - \frac{1}{2a} \int \limits_{x_0}^{x} \psi(\alpha) \, d\alpha - \frac{C}{2}.
-	\end{rcases}
-\end{equation}
 
-Таким образом, мы определили функции $f_1$ и $f_2$ через заданные функции $\varphi$ и $\psi$, причем равенства  \eqref{f1f2} должны иметь место для любого значения аргумента. Подставив в \eqref{general_int} найденные значения $f_1$ и $f_2$, получим
-\begin{equation}
-	u(x, t) = \frac{\varphi(x + a t) + \varphi(x - a t)}{2} + \frac{1}{2a} \Bigg\{\int \limits_{x_0}^{x  + a t}\psi(\alpha) \, d\alpha - \int \limits_{x_0}^{x - at} \psi(\alpha) \, d\alpha \Bigg\}
-\end{equation}
-или 
-\begin{equation} \label{dAlamber}
-	u(x, t) = \frac{\varphi(x + a t) + \varphi(x - a t)}{2} + \frac{1}{2a} \int \limits_{x - a t}^{x + a t} \psi(\alpha) \, d\alpha.
-\end{equation}
+Подставляя полученные выражения в \eqref{represofsol}, получаем формулу Даламбера
+\begin{equation*}
+	u(x, t) = \frac{1}{2} [u_0(x + a t) + u_0(x - a t)] + \frac{1}{2 a} \int_{x - a t}^{x + a t} u_1(\xi) \, d\xi.
+\end{equation*}
 
-Формулу \eqref{dAlamber}, называемую \textit{формулой Даламбера}, мы получили, предполагая существование рещения поставленной задачи. Эта формула доказывает единственность решения. В самом деле, если бы существовало второе решение задачи \eqref{infinite_string}--\eqref{inf_str_cond}, то оно бы представлялось формулой \eqref{dAlamber} и совпадало с первым решением. 
-
-Нетрудно убедиться, что \eqref{dAlamber} удовлетворяет (в предположении двукратной дифференцируемости функции $\varphi$ и однократной функции $\psi$) уравнению и начальным условиям. Таким образом, изложенный метод доказывает как единственность, так и существование решения поставленной задачи.
+\paragraph{Про характеристики.}
