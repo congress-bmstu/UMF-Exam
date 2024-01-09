@@ -1,44 +1,69 @@
 \subsection{Первая и вторая формулы Грина в ограниченной области. Потенциалы простого и
 двойного слоя. Их свойства, физический смысл.}
-
-\paragraph{Первая формула Грина}
-
-В Тихонове-Самарском (стр. 307) даётся такая первая формула Грина:
-\begin{equation} \label{first_green_formula}
-	\iiint \limits_T u \Delta v \, d\tau
-	= \iint \limits_\Sigma u \dfrac{\partial v}{\partial n} \, d\sigma
-	- \iiint \limits_T \left(
-	\dfrac{\partial u}{\partial x} \dfrac{\partial v}{\partial x} + 
-	\dfrac{\partial u}{\partial y} \dfrac{\partial v}{\partial y} + 
-	\dfrac{\partial u}{\partial z} \dfrac{\partial v}{\partial z} \right) \, d\tau,
-\end{equation}
-где $T$ -- некоторый объём, органиченный поверхностью $\Sigma$;
-$u(x, y, z), v(x, y, z)$ -- непрерывно-дифференцируемы внутри $T+\Sigma$;
-$\dfrac{\partial}{\partial n} = \cos\alpha \dfrac{\partial}{\partial x} 
-  + \cos\beta \dfrac{\partial}{\partial y} 
-  + \cos\gamma \dfrac{\partial}{\partial z}$ -- производная по направлению внешней нормали.
-Эта формула является прямым следствием формулы Остроградского-Гаусса. Причём можно чуть упростить
-запись этой формулы, если вспомнить что такое градиент:
-$\grad u = \nabla u = \left( \dfrac{\partial u}{\partial x}, 
-  \dfrac{\partial u}{\partial y},
-  \dfrac{\partial u}{\partial z} \right) $:
+{\footnotesize Некоторые напоминания из векторного анализа: 
 \[
+  \operatorname{grad} u = \nabla u = \left\{\frac{\partial u}{\partial x}, \frac{\partial
+    u}{\partial y}, \frac{\partial u}{\partial z}\right\},\quad
+      \operatorname{div} \mathbf A = \nabla \cdot \mathbf A = \frac{\partial
+      A_x}{\partial x} +  \frac{\partial
+      A_y}{\partial y} + \frac{\partial
+      A_z}{\partial z},\quad
+        \frac{\partial u}{\partial \mathbf n} = \nabla u \cdot \mathbf n.
+    \]
+  }
+
+\paragraph{Первая формула Грина.}
+Для некоторой области $ T
+\subset
+\mathbb R^3$ и
+её границы $ \Sigma $ известна формула
+Остроградского -- Гаусса 
+\[
+  \iiint\limits_T \operatorname{div} \mathbf A\, dxdydz = \iint\limits_\Sigma (\mathbf A, n)\,d\sigma.
+\]
+Пусть\footnote{$ C^1(\bar T) $ есть пространство функций с непрерывными первыми
+производными на замыкании $ \bar T = T \cup \Sigma $. Аналогично с $ C^2(T) $.} $ u, v \in C^1(\bar T) $ и $ u, v \in C^2(T) $.
+% --- функции, непрерывные
+% вместе со своими первыми производными внутри $ \bar T $ и имеющие непрерывные
+% вторые производные внутри $ T $. 
+Полагая $ \mathbf A = u\nabla v $, то есть
+\[
+    A_x = u \frac{\partial v}{\partial x}, \quad A_y = u \frac{\partial
+    v}{\partial y}, \quad A_z = u \frac{\partial v}{\partial z},
+\]
+приходим к \emph{первой формуле Грина}\footnote{Подход к определению в Тихонове
+  -- Самарском (стр.
+307).} 
+% \begin{equation} \label{first_green_formula}
+% 	\iiint \limits_T u \Delta v \, d\tau
+% 	= \iint \limits_\Sigma u \dfrac{\partial v}{\partial n} \, d\sigma
+% 	- \iiint \limits_T \left(
+% 	\dfrac{\partial u}{\partial x} \dfrac{\partial v}{\partial x} + 
+% 	\dfrac{\partial u}{\partial y} \dfrac{\partial v}{\partial y} + 
+% 	\dfrac{\partial u}{\partial z} \dfrac{\partial v}{\partial z} \right) \, d\tau,
+% \end{equation}
+% $\dfrac{\partial}{\partial n} = \cos\alpha \dfrac{\partial}{\partial x} 
+%   + \cos\beta \dfrac{\partial}{\partial y} 
+%   + \cos\gamma \dfrac{\partial}{\partial z}$ -- производная по направлению внешней нормали.
+% Её можно переписать следующим образом:
+% $\grad u = \nabla u = \left( \dfrac{\partial u}{\partial x}, 
+%   \dfrac{\partial u}{\partial y},
+%   \dfrac{\partial u}{\partial z} \right) $:
+\begin{equation}\label{first_green_formula}
   \iiint \limits_T u \Delta v \, d\tau
   = \iint \limits_\Sigma u \dfrac{\partial v}{\partial n} \, d\sigma
     - \iiint \limits_T \nabla u \cdot \nabla v \, d\tau,
-\]
+\end{equation}
 
-\paragraph{Вторая формула Грина}
-
+\paragraph{Вторая формула Грина.}
 Рассматривая разницу первых формул Грина, применённых к $u \Delta v$ и $v \Delta u$, можно
 получить вторую формулу Грина:
-\[
+\begin{equation}\label{eq:green2}
   \iiint \limits_T \left( u \Delta v - v \Delta u \right) \, d\tau
   = \iint \limits_\Sigma \left( u \dfrac{\partial v}{\partial n} - v \dfrac{\partial u}{\partial n}  \right) \, d\sigma
-\]
+\end{equation}
 
-\paragraph{Потенциалы простого и двойного слоя}
-
+\paragraph{Потенциалы простого и двойного слоя.}
 Я не стал переделывать обозначения, поэтому просто: область у нас G, поверхность, которая ее
 ограничивает -- $S$, и, если я правильно понял, $G_1 = \mathbb{R}^n \backslash \bar G$. 
 

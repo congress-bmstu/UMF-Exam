@@ -1,8 +1,107 @@
 \subsection{Функция Грина уравнения Лапласа первой краевой задачи в круге, на полуплоскости в полупространстве. Метод отражений.}
-%autor: Сеня
+%autor: Сеня, Слава (первый раздел)
+\subsubsection{Введение. Основная формула Грина}
+\paragraph{Случай $ \mathbb R^3 $.}
+Ранее была получена \emph{вторая формула Грина} \eqref{eq:green2}. Легко
+заметить\footnote{Надо записать уравнение Лапласа в сферических координатах, где
+функцию $ v $ считать зависимой только от $ r $ и проинтегрировать ОДУ.}, что
+функция $ v(M) = 1/R_{MM_0} $ является гармонической\footnote{То есть
+  удовлетворяет уравнению Лаплама. Символом $ R_{MM_0} $ обозначается расстояние
+$ MM_0 $.} при $ M \neq M_0 $. Подставим эту функцию во вторую формулу Грина для
+некоторой области $ T\setminus U(M_0; \varepsilon) $\footnote{Обозначения: $ U(M_0;
+\varepsilon) $ --- шар с центром в особой точке $ M_0 $ и радиусом $ \varepsilon
+$; $ \partial U(M_0; \varepsilon) $ --- его граница.}, где нет особых точек: 
+\[
+  \iiint\limits_{T\setminus U} \left( u\Delta \frac{1}{R} - \frac{1}{R}\Delta u \right)
+  dxdydz = \iint\limits_{\partial T} \left( u \frac{\partial}{\partial n}
+  \left(\frac{1}{R}\right) - \frac{1}{R} \frac{\partial u}{\partial n} \right)
+  \,d\sigma + \iint\limits_{\partial U} u \frac{\partial}{\partial n} \left(
+  \frac{1}{R} \right) \, d\sigma - \iint\limits_{\partial U} \frac{1}{R}
+  \frac{\partial u}{\partial n}\,d\sigma.
+\]
+Теперь заметим, что 
+\begin{align*}
+  \frac{\partial}{\partial n} \left( \frac{1}{R} \right) \bigg|_{\partial U} &= -
+  \frac{\partial}{\partial r} \left( \frac{1}{R} \right) \bigg|_{r=\varepsilon} =
+  \frac{1}{\varepsilon^2},\\
+  \iint\limits_{\partial U} u \frac{\partial}{\partial n} \left( \frac{1}{R}
+\right)\, d\sigma &= \frac{1}{\varepsilon^2} 4\pi\varepsilon^2 u^\ast = 4\pi
+  u^\ast,
+\end{align*}
+где $ u^\ast $ --- среднее значение функции $ u(M)|_{\partial U} $. Аналогично 
+\[
+  \iint\limits_{\partial U} \frac{1}{R} \frac{\partial u}{\partial n}\,d\sigma =
+  \frac{1}{\varepsilon} 4\pi\varepsilon^2 \left( \frac{\partial u}{\partial n}
+  \right)^\ast = 4\pi\varepsilon \left( \frac{\partial u}{\partial n}
+  \right)^\ast.
+\]
+Заметим также, что при $ \varepsilon \to 0 $ верно $ u^\ast \to u(M_0) $ и $
+4\pi\varepsilon (\partial u/\partial n)^\ast \to 0 $. Так мы пришли к
+\emph{основной интегральной формуле Грина} 
+\begin{equation}\label{eq:green3}
+  4\pi u(M_0) = - \iint\limits_{\partial T} \left[ u(P) \frac{\partial}{\partial
+  n} \left( \frac{1}{R_{M_0 P}} \right)  - \frac{1}{R_{M_0 P}}\frac{\partial
+u}{\partial n} \right] \,d\sigma - \iiint\limits_T \frac{\Delta
+u(M)}{R_{M_0M}}\,dxdydz,
+\end{equation}
+где $ P $ --- некоторая граничная точка области $ T $. До этого предполагалось,
+что $ M_0 \in T $. При $ M_0 \in \partial T$ несложно прийти к формуле
+\eqref{eq:green3}, где слева вместо $ 4\pi $ стоит $ 2\pi $ (поскольку там имеем
+вместо $ U(M_0; \varepsilon) $ поверхность, чей объём при малых $ \varepsilon $
+близок к половине объёма шара). Если $ M_0 $ не
+принадлежит замыканию $ T $, то функция $ v $ гармонична во всей области, и
+вместо $ 4\pi $ следует поставить ноль.
+
+\paragraph{Случай $ \mathbb R^2 $.}
+Совершенно аналогично, только для гармоничности теперь $ v = \ln(1/R) $, тройные
+интегралы меняются на двойные\ldots, а в уравнении \eqref{eq:green3} коэффициент
+слева теперь принимает значения соответственно в таких же условиях $ 2\pi $, $ \pi $ и 0.
+
+\paragraph{Функция источника.} Попробуем с полученными знаниями решить уравнение $ \Delta u  = 0 $. Пусть функция $ v(M) \in C^1(\bar T) $, $ \Delta v = 0 $ не имеет особенностей.
+Согласно второй формуле Грина \eqref{eq:green2} в этом случае 
+\[
+  0 = \iint\limits_{\partial T} \left( v \frac{\partial u}{\partial n} - u
+  \frac{\partial v}{\partial n} \right) \,d\sigma - \iiint\limits_T v\Delta
+  u\,dxdydz. 
+\]
+Сложим теперь это равенство с основной формулой Грина \eqref{eq:green3}  и
+получим 
+\[
+  u(M_0) = \iint\limits_{\partial T} \left( G \frac{\partial u}{\partial n} - u
+  \frac{\partial G}{\partial n}\right) \,d\sigma - \iiint\limits_T \Delta u
+  \cdot G\,dxdydz,
+\]
+где 
+\begin{equation}\label{eq:green-func}
+  G(M, M_0) := \frac{1}{4\piR_{MM_0}} + v.
+\end{equation}
+Функция $ v $ по понятным причинам выбирается так, чтобы $ G|_{\partial T} = 0 $ в случае первой
+краевой задачи (Дирихле) и $ \partial G/\partial n |_{\partial T} = 0 $ для
+второй (Неймана). Определим $ G $ с помощью следующих условий:
+\begin{enumerate}
+  \item $G(M, P)$ как функция точки $ P $ гармоническая всюду при $ P \neq M $.
+  \item $ G(M, P = M) $ равна бесконечонсти и представима в виде
+    \eqref{eq:green-func}, где $ \Delta v = 0 $ всюду в $ T $.
+  \item $ G(M, P)|_{P\in\partial T} = 0 $. Для этого положим $ v|_{\partial T} =
+    -1/(4\pi R)$.
+\end{enumerate}
+Таким образом, например, решение задачи Дирихле с граничной функцией $ f $
+уравнения Лапласа есть 
+\[
+  u(M_0) = - \iint\limits_{\partial T} f \frac{\partial G}{\partial n}\,d\sigma.
+\]
+
+Двумерная функция источника строится с аналогичными условиями и имеет вид 
+\[
+  G = \frac{1}{2\pi} \ln \frac{1}{R_{MM_0}} + v(M, M_0), \quad \Delta v = 0, \
+  v|_{\partial T} = - \frac{1}{2\pi} \ln \frac{1}{R}.
+\]
+
+
 
 \paragraph{Метод отражений (метод электростатических изображений).}\footnote{Т.-С. стр. 343}
 
+%TODO: мотивация
 Для построения функции источника в виде
 \begin{equation*}
 	G(M, M_0) = \frac{1}{4 \pi R_{M M_0}} + v
@@ -13,9 +112,7 @@
 \end{equation*}
 
 Приведем примеры построения функции источника методом отражений.
-
 Пусть дана сфера радиуса $R$ с центром в точке $O$.
-
 Поместим в точку $M_0$ единичный заряд и отложим на радиусе, проходящем через точку $M_0$, такой отрезок $OM_1$, что
 \begin{equation} \label{section}
 	\rho_0 \rho_1 = R^2,
