@@ -1,10 +1,10 @@
 \subsection{Штурм-Лиувилль. Дополнительные сведения.}
 
 Имеем задачу на собственные значения 
-\begin{align*}
-	\Delta u + \lambda u = 0, \\
-	\alpha u + \beta \frac{\partial u}{\partial n} \Big|_{S} = 0
-\end{align*}
+\begin{align}
+	\Delta u + \lambda \rho u = 0, \label{shturm} \\
+	u|_{S} = 0 \label{liouville}
+\end{align}
 
 Утверждается, что:
 \begin{enumerate}
@@ -13,5 +13,32 @@
 		\lambda_1 \leqslant \lambda_2 \leqslant \dotsc \leqslant \lambda_n \leqslant \dotsc
 	\end{equation}
 	
+	\item Все собственные значения положительны $\lambda_n > 0$. Обозначим через $\{u_n(M)\}$ множество собственных значений функций задачи \eqref{shturm}--\eqref{liouville}:
+	\begin{equation*}
+		v_n(M) = \sqrt{\rho(M)} u_n(M).
+	\end{equation*}
 	
+	Воспользуемся первой формулой Грина:
+	\begin{equation*}
+		\int \limits_{D} u_n \Delta u_n \, dV = \oint \limits_{S} u_n \frac{\partial u_n}{\partial n} \, dS - \int \limits_{D} (\nabla u_n)^2 \, dV.
+	\end{equation*}
+	Поскольку $\Delta u_n = - \lambda_n \rho u_n, u_n|_{S} = 0$, то 
+	\begin{equation} \label{eqforsl}
+		\lambda_n \int \limits_{D} \rho u_n^2 \, dV = \int \limits_{D} (\nabla u_n)^2 \, dV.
+	\end{equation}
+	Отсюда сразу следует, что $\lambda_n > 0$ при всех $n$. 
+	
+	Заметим, что для задачи Штурма-Лиувилля с граничным условием Неймана из \eqref{eqforsl} следует, что она имеет наименьшее нулевое собственное значение. С этим обстоятельством связана неединственность решения внутренней задачи Неймана для уравнения Лапласа. Наконец, заметим, что в случае Штурма-Лиувилля с третьим граничным условием ($\frac{\partial u}{\partial n} + h u |_{s} = 0$) при отрицательной функции $h(P) < 0$ задача может иметь конечное число отрицательных значений $\lambda_n$. 
+	
+	\item Собственные функции ортогональны в области $D$ с весом $\rho(M)$:
+	\begin{equation}
+		\int \limits_{D} u_n u_m \rho \, dV = 0 \text{ при } n \not = m.
+	\end{equation}
 \end{enumerate}
+
+\begin{theorem}[В.А. Стеклов]
+	Всякая функция $f$ разлагается в регулярно сходящийся ряд Фурье по собственным функциям $\{X_k\}$ задачи Штурма-Лиувилля:
+	\begin{equation*}
+		f(x) = \sum \limits_{k = 1}^{\infty} (f, X_k) X_k(x).
+	\end{equation*}
+\end{theorem}
