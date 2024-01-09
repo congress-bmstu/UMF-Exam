@@ -51,8 +51,13 @@ jobs:
       - name: Release with Notes
         uses: softprops/action-gh-release@v1
         with:
-          name: Build ${{ github.event.repository.updated_at}}
-          body: build ${{ github.event.repository.updated_at}}
+          name: Build
+          body: build
           tag_name: pdf
           files: |
             document.pdf
+      - name: Publish HTML to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: /
