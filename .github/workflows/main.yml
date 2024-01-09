@@ -10,7 +10,8 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: document.tex
-          args: -f -jobname=document -pdf -file-line-error -shell-escape -interaction=nonstopmode -synctex=1
+          extra_system_packages: "inkscape"
+          args: -f -jobname=document -pvc -pdf -file-line-error -shell-escape -interaction=nonstopmode -synctex=1
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
