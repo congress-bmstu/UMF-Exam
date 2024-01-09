@@ -49,6 +49,18 @@ $\forall \varphi \in \mathcal{D} \forall f \in \mathcal{C}^\infty (\mathbb{R}^n)
 является производной (в смысле обобщённых функций) от непрерывной функции медленного роста. Этим и
 объясняется название пространства $\mathcal{S}'$.
 
+\subsubsection{Преобразование Фурье}
+
+Это интегральное преобразование, которое действует по формуле:
+\[
+  F[f(\vec{x})](\vec{\xi}) = \int_{\mathbb{R}^n} f(\vec{\xi}) e^{i (\vec{x},\vec{\xi})} \, d\vec{\xi}
+\]
+Также можно взять преобразование только по какой-то части координат, это обозначается так:
+$x = (i_1, i_2, \dots, i_k), k < n$:
+\[
+  F_x [f(\vec{x})] (\xi) = \int_{\mathbb{R}^k} f(\vec{\xi}) e^{i (\vec{x}, \vec{\xi})} \, d\vec{\xi}
+\]
+
 \subsubsection{Преобразование Фурье обобщённых функций из $\mathcal{S}'$}
 
 Определим преобразование Фурье обобщённой функции так, чтобы выполнялось соотношение
@@ -86,5 +98,11 @@ $\forall \varphi \in \mathcal{D} \forall f \in \mathcal{C}^\infty (\mathbb{R}^n)
 
 \subsubsection{Равенство Парсеваля}
 
-% TODO дописать равенство Парсеваля
-
+Вот такое соотношение обычно называют равенством Парсеваля \footnote{Гельфанд, Шилов -- Обобщённые функции и действия над ними, стр. 210}:
+\begin{multline*}
+  (f, \varphi) = \int f \varphi \, dx = \int f(x) F^{-1} [ F[\varphi] ] (x) \, dx
+  = \int_{\mathbb{R}^n} f(x) \dfrac{1}{2\pi}\int_{\mathbb{R}^n} F[\varphi] (\xi) e^{-ix \xi} \, d\xi dx = \\
+  = \dfrac{1}{2\pi}\int_{\mathbb{R}^n} F[\varphi](\xi) \int_{\mathbb{R}^n} f(x) e^{-ix \xi} \, dx d\xi
+  = \int_{\mathbb{R}^n} F[\varphi](\xi) F^{-1} [f] (\xi) \, d\xi
+  = (F^{-1} [f], F[\varphi])
+\end{multline*}
