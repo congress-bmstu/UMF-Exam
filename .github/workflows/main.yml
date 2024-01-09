@@ -19,34 +19,36 @@ jobs:
         with:
           name: PDF
           path: document.pdf
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Build ${{ github.ref }}
-          body: |
-            New build
-          draft: false
-          prerelease: false
-      # Прикладываемые файлы надо заливать отдельным step
-      - name: Upload pdf asset
-        uses: actions/upload-release-asset@v1
-        env:
-          # Тоже требуется токен
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          # Из предыдущего step с id=create_release генерится upload_url — по нему и надо заливать
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          # Не переходим в папку latex_sources, поскольку download-artifacts грузит в текущую директорию
-          asset_path: ./document.pdf
-          # Имя, которое будет высвечиваться в релизе
-          asset_name: document.pdf
-          asset_content_type: application/pdf
+      # - name: Create Release
+      #   id: create_release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      #   with:
+      #     tag_name: ${{ github.ref }}
+      #     release_name: Build ${{ github.ref }}
+      #     body: |
+      #       New build
+      #     draft: false
+      #     prerelease: false
+      # # Прикладываемые файлы надо заливать отдельным step
+      # - name: Upload pdf asset
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     # Тоже требуется токен
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     # Из предыдущего step с id=create_release генерится upload_url — по нему и надо заливать
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     # Не переходим в папку latex_sources, поскольку download-artifacts грузит в текущую директорию
+      #     asset_path: ./document.pdf
+      #     # Имя, которое будет высвечиваться в релизе
+      #     asset_name: document.pdf
+      #     asset_content_type: application/pdf
       - name: Release with Notes
         uses: softprops/action-gh-release@v1
         with:
+          name: Build ${{ github.event.repository.updated_at}}
+          body: build ${{ github.event.repository.updated_at}}
           files: |
             document.pdf
